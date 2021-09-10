@@ -6,7 +6,7 @@
 #    By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/10 16:06:59 by gozsertt          #+#    #+#              #
-#    Updated: 2021/09/10 17:15:25 by gozsertt         ###   ########.fr        #
+#    Updated: 2021/09/10 17:28:14 by gozsertt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,11 @@ NAME        =   minishell
 CC          =   gcc
 
 SRC_DIR		= 	$(shell find srcs -type d)
-INC_DIR		= 	$(shell find includes -type d)
+INC_DIR		= 	$(shell find includes -type d) \
+					$(shell find libft/includes -type d)
 LIB_DIR		=	libft
 OBJ_DIR		=	obj
-LIB 		=	ft	
+LIB 		=	ft
 
 vpath %.c $(foreach dir, $(SRC_DIR), $(dir):)
 
@@ -31,6 +32,9 @@ OBJ			=	$(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 CFLAGS      =	-Wall -Wextra -Werror -g3 -fsanitize=address
 
 IFLAGS		=	$(foreach dir, $(INC_DIR), -I $(dir))
+
+LFLAGS		=	$(foreach dir, $(LIB_DIR), -L $(dir)) \
+				$(foreach lib, $(LIB), -l $(lib))
 
 # Colors
 

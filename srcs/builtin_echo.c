@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/10 17:04:53 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/10 17:16:56 by chdespon         ###   ########.fr       */
+/*   Created: 2021/06/29 12:16:42 by chdespon          #+#    #+#             */
+/*   Updated: 2021/06/29 12:17:04 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "minishell.h"
 
-# define _BLUE "\033[1;34m"
-# define _WHITE "\033[0;37m"
-# define _GREEN "\033[32m"
-# define _PURPLE "\033[1;35m"
-# define _RED "\033[1;31m"
+void	print_echo(char **splited_line, t_bool n_flag)
+{
+	int		i;
+	char	*tmp;
 
-# include <limits.h>
-# include <sys/wait.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <signal.h>
-# include "libft.h"
-
-#endif
+	i = 1 + n_flag;
+	while (splited_line[i] != NULL)
+	{
+		if (i > 1 + (int)n_flag)
+			ft_putchar(' ');
+		tmp = ft_rm_charset(splited_line[i], "\"\'");
+		ft_putstr(tmp);
+		free(tmp);
+		i++;
+	}
+	if (n_flag == false)
+		ft_putchar('\n');
+}

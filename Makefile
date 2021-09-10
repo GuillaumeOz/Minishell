@@ -6,7 +6,7 @@
 #    By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/10 16:06:59 by gozsertt          #+#    #+#              #
-#    Updated: 2021/09/10 16:34:38 by gozsertt         ###   ########.fr        #
+#    Updated: 2021/09/10 17:12:45 by gozsertt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ CC          =   gcc
 
 SRC_DIR		= 	$(shell find srcs -type d)
 INC_DIR		= 	$(shell find includes -type d)
+LIB_DIR		=	libft
 OBJ_DIR		=	obj
+LIB 		=	ft	
 
 vpath %.c $(foreach dir, $(SRC_DIR), $(dir):)
 
@@ -26,7 +28,7 @@ OBJ			=	$(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 
 # Compilation flags
 
-CFLAGS      =	-Wall -Wextra -Werror
+CFLAGS      =	-Wall -Wextra -Werror -g3 -fsanitize=address
 
 IFLAGS		=	$(foreach dir, $(INC_DIR), -I $(dir))
 
@@ -52,12 +54,23 @@ show:
 	@echo "$(_BLUE)OBJ :\n$(_YELLOW)$(OBJ)$(_WHITE)"
 	@echo "$(_BLUE)CFLAGS :\n$(_YELLOW)$(CFLAGS)$(_WHITE)"
 	@echo "$(_BLUE)IFLAGS :\n$(_YELLOW)$(IFLAGS)$(_WHITE)"
+	@echo "$(_BLUE)LFLAGS :\n$(_YELLOW)$(LFLAGS)$(_WHITE)"
+	@echo "$(_BLUE)LIB_DIR :\n$(_YELLOW)$(LIB_DIR)$(_WHITE)"
 	@echo "\n-----\n"
-	@echo "$(_BLUE)Compiling : \n$(_YELLOW)$(CC) $(CFLAGS) $(OBJ) -o $(NAME)$(_WHITE)"
+	@echo "$(_BLUE)Compiling : \n$(_YELLOW)$(CC) $(CFLAGS) $(OBJ) -o $(NAME) -lreadline$(_WHITE)"
 
-$(NAME): $(OBJ)
+install:
+	@$(foreach dir, $(LIB_DIR), make -C $(dir);)
+
+re-install:
+	@$(foreach dir, $(LIB_DIR), make -C $(dir) re;)
+
+fclean-install:
+	@$(foreach dir, $(LIB_DIR), make -C $(dir) fclean;)
+
+$(NAME): install $(OBJ)
 	@echo "-----\nCreating Binary File $(_YELLOW)$@$(_WHITE) ... \c"
-	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) $(LFLAGS) -o $(NAME) -lreadline
 	@echo "$(_GREEN)DONE$(_WHITE)\n-----"
 
 $(OBJ_DIR)/%.o : %.c
@@ -78,4 +91,4 @@ fclean:	clean
 	@rm -f $(NAME)
 	@echo "$(_GREEN)DONE$(_WHITE)\n-----"
 
-.PHONY: all show re clean flcean
+.PHONY: all show install re-install fclean-install re clean flcean

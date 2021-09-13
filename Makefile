@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/09/10 16:06:59 by gozsertt          #+#    #+#              #
-#    Updated: 2021/09/10 17:28:14 by gozsertt         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME        =   minishell
 
 CC          =   gcc
@@ -49,9 +37,7 @@ _WHITE=	$'\033[37m
 
 # MAIN part --------------------------------------------------------
 
-all:
-	@echo "\n$(_BLUE)___$(NAME) Setting___\n$(_WHITE)"
-	@make $(NAME)
+all:		$(NAME)
 
 show:
 	@echo "$(_BLUE)SRC :\n$(_YELLOW)$(SRC)$(_WHITE)"
@@ -63,16 +49,16 @@ show:
 	@echo "\n-----\n"
 	@echo "$(_BLUE)Compiling : \n$(_YELLOW)$(CC) $(CFLAGS) $(OBJ) -o $(NAME) -lreadline$(_WHITE)"
 
-install:
-	@$(foreach dir, $(LIB_DIR), make -C $(dir);)
+libft/libft.a:
+	@$(foreach dir, $(LIB_DIR), make --no-print-directory -C $(dir); )
 
 re-install:
-	@$(foreach dir, $(LIB_DIR), make -C $(dir) re;)
+	@$(foreach dir, $(LIB_DIR), make --no-print-directory -C $(dir) re; )
 
 fclean-install:
-	@$(foreach dir, $(LIB_DIR), make -C $(dir) fclean;)
+	@$(foreach dir, $(LIB_DIR), make --no-print-directory -C $(dir) fclean; )
 
-$(NAME): install $(OBJ)
+$(NAME): libft/libft.a $(OBJ)
 	@echo "-----\nCreating Binary File $(_YELLOW)$@$(_WHITE) ... \c"
 	@$(CC) $(CFLAGS) $(OBJ) $(LFLAGS) -o $(NAME) -lreadline
 	@echo "$(_GREEN)DONE$(_WHITE)\n-----"
@@ -95,4 +81,4 @@ fclean:	clean
 	@rm -f $(NAME)
 	@echo "$(_GREEN)DONE$(_WHITE)\n-----"
 
-.PHONY: all show install re-install fclean-install re clean flcean
+.PHONY: all show re-install fclean-install re clean flcean

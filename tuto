@@ -1,0 +1,3 @@
+1 tokenizer check->lexer recuperer cmd args decouper nom de command arguments command quote double simple
+2 organiser les token dans une structure AST 
+3 executeur parcourir l'arbre lancer execve builtin 

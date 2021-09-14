@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   builtin_echo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/10 17:05:03 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/13 16:20:04 by gozsertt         ###   ########.fr       */
+/*   Created: 2021/06/29 12:16:42 by chdespon          #+#    #+#             */
+/*   Updated: 2021/09/13 16:16:28 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char **argv, char **env)
+void	print_echo(char **splited_line, t_bool n_flag)
 {
-	char **new_env;
+	int		i;
+	char	*tmp;
 
-	(void)argv;
-	if (argc != 1)
-		return (0);
-	new_env = alloc_env(env);
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, handle_sigint);
-	prompt(new_env);
-	ft_free_tab((void **)new_env);
-	ft_putstr("exit\n");
-	return (0);
+	i = 1 + n_flag;
+	while (splited_line[i] != NULL)
+	{
+		if (i > 1 + (int)n_flag)
+			ft_putchar(' ');
+		tmp = ft_rm_charset(splited_line[i], "\"\'");
+		ft_putstr(tmp);
+		free(tmp);
+		i++;
+	}
+	if (n_flag == false)
+		ft_putchar('\n');
 }

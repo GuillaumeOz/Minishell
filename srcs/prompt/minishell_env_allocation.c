@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   minishell_env_allocation.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/29 12:16:42 by chdespon          #+#    #+#             */
-/*   Updated: 2021/06/29 12:17:04 by chdespon         ###   ########.fr       */
+/*   Created: 2021/09/13 16:17:27 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/09/13 16:18:30 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_echo(char **splited_line, t_bool n_flag)
+char	**alloc_env(char **env)
 {
+	char	**dest;
 	int		i;
-	char	*tmp;
 
-	i = 1 + n_flag;
-	while (splited_line[i] != NULL)
+	dest = (char **)ft_tab_new(ft_tab_len((void **)env));
+	i = 0;
+	while (env[i])
 	{
-		if (i > 1 + (int)n_flag)
-			ft_putchar(' ');
-		tmp = ft_rm_charset(splited_line[i], "\"\'");
-		ft_putstr(tmp);
-		free(tmp);
+		dest[i] = ft_strdup(env[i]);
 		i++;
 	}
-	if (n_flag == false)
-		ft_putchar('\n');
+	return (dest);
 }

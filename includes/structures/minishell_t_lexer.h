@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 18:50:00 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/16 00:28:50 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/16 01:43:53 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ typedef enum e_token_type
 	PIPE = '|',
 	QUOTE = '\'',
 	QUOTES = '\"',
-	GREATER = '>',
 	LOWER = '<',
 	GREATER = '>',
 	DOUBLE_LOWER,
@@ -34,6 +33,7 @@ typedef enum e_token_format
 	DEFAULT,
 	SIMPLE_QUOTE,
 	DOUBLE_QUOTE,
+	MIX_QUOTE,
 }				t_token_format;
 
 typedef struct s_lexer

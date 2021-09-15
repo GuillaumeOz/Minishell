@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:32:24 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/16 00:41:22 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/16 01:31:30 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,13 @@ void print_token(t_lexer *lexer)
 			PRINTS("format : [SIMPLE_QUOTE]\n")
 		else if (lexer->format == DOUBLE_QUOTE)
 			PRINTS("format : [DOUBLE_QUOTE]\n")
+		else if (lexer->format == MIX_QUOTE)
+			PRINTS("format : [MIX_QUOTE]\n")
 		
 		if (lexer->args == NULL)
 			PRINTS("args : [NULL]\n")
 		else
-			printf("args : %s", lexer->args);
+			printf("args : %s\n", lexer->args);
 		i++;
 		lexer = lexer->next;
 	}

@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minishell_lower_token.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/10 17:05:03 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/15 18:42:45 by gozsertt         ###   ########.fr       */
+/*   Created: 2021/09/15 22:37:07 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/09/15 23:05:12 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char **argv, char **env)
+t_lexer	*lower_token(t_lexer *lexer, char *line, int *i)
 {
-	char **new_env;
+	t_lexer *new_lexer;
 
-	(void)argv;
-	if (argc != 1)
-		return (0);
-	new_env = alloc_env(env);
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, handle_sigint);
-	prompt(new_env);
-	ft_free_tab((void **)new_env);
-	ft_putstr("exit\n");
-	return (0);
+	if (line[*i + 1] == LOWER)
+    {
+        (*i) += 2;
+        new_lexer = init_lexer(lexer, DOUBLE_LOWER, DEFAULT);
+    }
+    else
+    {
+        (*i) += 1;
+        new_lexer = init_lexer(lexer, LOWER, DEFAULT);
+    }
+    return (new_lexer);
 }

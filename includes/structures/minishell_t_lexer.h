@@ -6,36 +6,50 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 18:50:00 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/14 20:08:49 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/16 00:28:50 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_T_LEXER_H
 # define MINISHELL_T_LEXER_H
 
-typedef enum e_type
+typedef enum e_token_type
 {
-	TYPE_SPACE,
-	TYPE_PIPE,
-	TYPE_PIPE,
+	NONE,
+	ARGS,
+	SPACE,//use this ?
+	TAB,//use this ?
+	PIPE = '|',
+	QUOTE = '\'',
+	QUOTES = '\"',
+	GREATER = '>',
+	LOWER = '<',
+	GREATER = '>',
+	DOUBLE_LOWER,
+	DOUBLE_GREATER,
+}				t_token_type;
 
-	
-};
-
-typedef enum e_format
+typedef enum e_token_format
 {
-	FORMAT_DEFAULT,
-	FORMAT_SIMPLE_QUOTE,
-	FORMAT_DOUBLE_QUOTE,
-};
+	DEFAULT,
+	SIMPLE_QUOTE,
+	DOUBLE_QUOTE,
+}				t_token_format;
 
 typedef struct s_lexer
 {
-	enum e_type		type;
-	enum e_format	format;
-
-	struct s_lexer	*previous;
-	struct s_lexer	*next;
+	t_token_type		type;
+	t_token_format		format;
+	char				*args;
+	struct s_lexer		*previous;
+	struct s_lexer		*next;
 }				t_lexer;
+
+t_lexer	*malloc_lexer(t_token_type type, t_token_format format);
+t_lexer	create_lexer(t_token_type type, t_token_format format);
+void	destroy_lexer(t_lexer to_destroy);
+void	free_lexer(t_lexer *to_free);
+
+t_lexer *init_lexer(t_lexer *lexer, t_token_type type, t_token_format format);
 
 #endif

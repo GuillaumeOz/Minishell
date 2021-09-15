@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minishell_pipe_token.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/10 17:05:03 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/15 18:42:45 by gozsertt         ###   ########.fr       */
+/*   Created: 2021/09/15 18:53:36 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/09/15 22:51:21 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char **argv, char **env)
+t_lexer	*pipe_token(t_lexer *lexer, int *i)
 {
-	char **new_env;
+	t_lexer *new_lexer;
 
-	(void)argv;
-	if (argc != 1)
-		return (0);
-	new_env = alloc_env(env);
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, handle_sigint);
-	prompt(new_env);
-	ft_free_tab((void **)new_env);
-	ft_putstr("exit\n");
-	return (0);
+	(*i) += 1;
+	new_lexer = init_lexer(lexer, PIPE, DEFAULT);
+	return (new_lexer);
 }

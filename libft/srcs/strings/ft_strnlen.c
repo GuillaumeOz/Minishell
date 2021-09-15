@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strnlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/10 17:05:03 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/15 18:42:45 by gozsertt         ###   ########.fr       */
+/*   Created: 2021/09/16 00:38:43 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/09/16 00:39:14 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+size_t	ft_strnlen(const char *s, size_t maxlen)
 {
-	char **new_env;
+	size_t	i;
 
-	(void)argv;
-	if (argc != 1)
-		return (0);
-	new_env = alloc_env(env);
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, handle_sigint);
-	prompt(new_env);
-	ft_free_tab((void **)new_env);
-	ft_putstr("exit\n");
-	return (0);
+	i = 0;
+	while (i < maxlen && s[i])
+		++i;
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 16:02:51 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/14 18:48:12 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/16 00:01:33 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	prompt(char **env)
 {
+	t_lexer	*lexer;
 	char	*line;
 
 	(void)env;
@@ -23,7 +24,7 @@ void	prompt(char **env)
 		if (line != NULL && ft_strcmp(line, "\n") > 0
 			&& ft_str_is_only_whitespaces(line) == 0)
 		{
-			lexer(line);
+			lexer = tokenizer(line);
 			add_history(line);
 		}
 		if (line == NULL)

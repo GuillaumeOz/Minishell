@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/10 17:05:03 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/15 18:42:45 by gozsertt         ###   ########.fr       */
+/*   Created: 2021/09/16 00:34:12 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/09/16 00:34:37 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char **env)
+char	*ft_strndup(const char *src, size_t n)
 {
-	char **new_env;
+	char	*dst;
+	size_t	i;
 
-	(void)argv;
-	if (argc != 1)
-		return (0);
-	new_env = alloc_env(env);
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, handle_sigint);
-	prompt(new_env);
-	ft_free_tab((void **)new_env);
-	ft_putstr("exit\n");
-	return (0);
+	dst = NULL;
+	dst = (char *)malloc(sizeof(char) * (ft_strnlen(src, n) + 1));
+	if (dst == NULL)
+		return (NULL);
+	i = -1;
+	while (++i < n)
+		dst[i] = src[i];
+	dst[i] = '\0';
+	return (dst);
 }

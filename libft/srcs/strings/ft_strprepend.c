@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_signals.c                                :+:      :+:    :+:   */
+/*   ft_strprepend.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/13 15:56:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/16 15:03:59 by gozsertt         ###   ########.fr       */
+/*   Created: 2021/09/17 00:03:10 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/09/17 00:10:13 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	handle_sigint(int sig)
+char	*ft_strprepend(char *s1, char *s2, int free_s1, int free_s2)
 {
-	if (sig == SIGINT)
-	{
-		ft_putchar('\n');
-		rl_on_new_line();
-		// rl_replace_line("", 0);
-		rl_redisplay();
-	}
+	return (ft_strjoinfre(s2, s1, free_s2, free_s1));
 }

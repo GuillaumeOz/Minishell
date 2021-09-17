@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 16:02:51 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/16 00:01:33 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/17 05:15:23 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	prompt(char **env)
 	t_lexer	*lexer;
 	char	*line;
 
-	(void)env;
+	(void)env;//add environement modification gestion
 	while (1)
 	{
 		line = readline(_BLUE"("_RED"Minishell" _BLUE") "_GREEN"➜"_WHITE" ");
@@ -25,7 +25,11 @@ void	prompt(char **env)
 			&& ft_str_is_only_whitespaces(line) == 0)
 		{
 			lexer = tokenizer(line);
+			parser(lexer);
+			print_token(lexer);
+			exit(0);//suppr this
 			add_history(line);
+			free_lexer(lexer);
 		}
 		if (line == NULL)
 			break ;

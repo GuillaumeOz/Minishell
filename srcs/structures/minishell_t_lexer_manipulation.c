@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_signals.c                                :+:      :+:    :+:   */
+/*   minishell_t_lexer_manipulation.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/13 15:56:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/16 15:03:59 by gozsertt         ###   ########.fr       */
+/*   Created: 2021/09/16 19:00:32 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/09/16 19:04:46 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	handle_sigint(int sig)
+t_lexer *set_first_lexer(t_lexer *lexer)
 {
-	if (sig == SIGINT)
-	{
-		ft_putchar('\n');
-		rl_on_new_line();
-		// rl_replace_line("", 0);
-		rl_redisplay();
-	}
+	while (lexer->previous != NULL)
+		lexer = lexer->previous;
+	return (lexer);
 }

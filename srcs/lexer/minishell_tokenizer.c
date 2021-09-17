@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:32:24 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/16 01:31:30 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/16 19:05:15 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 void print_token(t_lexer *lexer)
 {
 	int i;
-	
+
 	i = 1;
 	while (lexer->previous != NULL)
 		lexer = lexer->previous;
@@ -66,7 +66,6 @@ void print_token(t_lexer *lexer)
 	}
 }
 
-
 t_lexer	*tokenizer(char *line)
 {
 	t_lexer *lexer;
@@ -87,7 +86,5 @@ t_lexer	*tokenizer(char *line)
 		else
 			lexer = args_token(lexer, line, &i);
 	}
-	print_token(lexer);
-	exit(0);//suppr this
 	return (lexer);
 }

@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_signals.c                                :+:      :+:    :+:   */
+/*   ft_strjoinfre.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/13 15:56:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/16 15:03:59 by gozsertt         ###   ########.fr       */
+/*   Created: 2021/09/17 00:05:11 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/09/17 00:10:20 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	handle_sigint(int sig)
+char    *ft_strjoinfre(char *s1, char *s2, int free_s1, int free_s2)
 {
-	if (sig == SIGINT)
-	{
-		ft_putchar('\n');
-		rl_on_new_line();
-		// rl_replace_line("", 0);
-		rl_redisplay();
-	}
+	char	*new_str;
+
+	new_str = ft_strjoin(s1, s2);
+	if (s1 && free_s1)
+		free((void *)s1);
+	if (s2 && free_s2)
+		free((void *)s2);
+	return (new_str);
 }

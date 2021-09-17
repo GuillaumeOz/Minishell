@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_signals.c                                :+:      :+:    :+:   */
+/*   minishell_mix_quote_transformation.c               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/13 15:56:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/16 15:03:59 by gozsertt         ###   ########.fr       */
+/*   Created: 2021/09/16 19:09:18 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/09/17 05:39:49 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	handle_sigint(int sig)
+void	mix_quote_transformation(t_lexer *lexer)
 {
-	if (sig == SIGINT)
+	int i;
+
+	i = 0;
+	while (lexer->args[i] != '\0')
 	{
-		ft_putchar('\n');
-		rl_on_new_line();
-		// rl_replace_line("", 0);
-		rl_redisplay();
+		if (lexer->args[i] == QUOTE)
+			compute_simple_quote(lexer, &i);
+		else if (lexer->args[i] == QUOTES)
+			compute_double_quote(lexer, &i);
+		else
+			i++;
 	}
+	lexer->format = DEFAULT;
 }

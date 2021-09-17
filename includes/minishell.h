@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 17:04:53 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/16 00:23:59 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/16 19:12:14 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@
 # include "minishell_signals.h"
 # include "minishell_prompt.h"
 # include "minishell_tokenizer.h"
+# include "minishell_parsing.h"
+
+int g_exit_code;// its usefull ?
 
 #define debug     write(1, "ICI\n", 4);
 #define info     printf("line -> %d, fonction -> %s\n", __LINE__, __func__);

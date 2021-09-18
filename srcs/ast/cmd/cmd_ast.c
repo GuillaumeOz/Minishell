@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cmd_ast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/10 17:05:03 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/18 16:23:57 by gozsertt         ###   ########.fr       */
+/*   Created: 2021/09/18 22:21:13 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/09/18 22:49:23 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char **argv, char **env)
-{
-	char **new_env;
+//	cmd	 ::== exec >> io
+//		 ::== exec << io
+//		 ::== exec < io
+//		 ::== exec > io
+//		 ::== exec
 
-	(void)argv;
-	if (argc != 1)
-		return (0);
-	new_env = alloc_env(env);
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, handle_sigint);
-	prompt(new_env);
-	ft_free_tab((void **)new_env);
-	ft_putstr("exit\n");
-	return (0);
+void	cmd_ast(t_lexer *lexer, t_ast_option option)
+{
+	
 }

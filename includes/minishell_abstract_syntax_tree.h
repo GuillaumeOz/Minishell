@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minishell_abstract_syntax_tree.h                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/10 17:05:03 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/18 16:23:57 by gozsertt         ###   ########.fr       */
+/*   Created: 2021/09/18 16:09:39 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/09/18 22:20:02 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef MINISHELL_ABSTRACT_SYNTAX_TREE_H
+# define MINISHELL_ABSTRACT_SYNTAX_TREE_H
 
-int	main(int argc, char **argv, char **env)
-{
-	char **new_env;
 
-	(void)argv;
-	if (argc != 1)
-		return (0);
-	new_env = alloc_env(env);
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, handle_sigint);
-	prompt(new_env);
-	ft_free_tab((void **)new_env);
-	ft_putstr("exit\n");
-	return (0);
-}
+void	cmd_ast(t_lexer *lexer, t_ast_option option);
+// void    line();
+// void    line_pipe();
+
+void    line_ast(t_lexer *lexer, t_ast_option option);
+
+void	abstract_syntax_tree(t_lexer *lexer);
+
+
+#endif

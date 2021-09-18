@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 18:50:00 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/16 22:42:25 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/18 14:30:03 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef enum e_token_type
 	PIPE = '|',
 	QUOTE = '\'',
 	QUOTES = '\"',
+	DOLLAR = '$',
 	LOWER = '<',
 	GREATER = '>',
 	DOUBLE_LOWER,

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 19:09:35 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/17 05:56:18 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/18 14:36:19 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	compute_dollar(t_lexer *lexer, int *i)
 	before = ft_strndup(lexer->args, (*i));
 	while (ft_is_whitespaces(lexer->args[(*i) + j + 1]) == false
 		&& lexer->args[(*i) + j + 1] != QUOTES
+		&& lexer->args[(*i) + j + 1] != DOLLAR
 		&& lexer->args[(*i) + j + 1] != '\0')
 		j++;
 	env = ft_strndup(lexer->args + (*i) + 1, j);
@@ -53,7 +54,7 @@ void    compute_double_quote(t_lexer *lexer, int *i)
 	start = (*i);
 	while (lexer->args[(*i)] != QUOTES)
 	{
-		if (lexer->args[*i] == '$')
+		if (lexer->args[*i] == DOLLAR)
 			compute_dollar(lexer, i);
 		else
 			(*i) += 1;

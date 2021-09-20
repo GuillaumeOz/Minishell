@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_echo.c                                     :+:      :+:    :+:   */
+/*   minishell_signals.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/29 12:16:42 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/15 15:26:21 by chdespon         ###   ########.fr       */
+/*   Created: 2021/09/13 15:56:23 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/09/15 14:39:21 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	print_echo(char **splited_line, t_bool n_flag)
+void	handle_sigint(int sig)
 {
-	int		i;
-	char	*tmp;
-
-	i = 1 + n_flag;
-	while (splited_line[i] != NULL)
+	if (sig == SIGINT)
 	{
-		if (i > 1 + (int)n_flag)
-			ft_putchar(' ');
-		tmp = ft_rm_charset(splited_line[i], "\"\'");
-		ft_putstr(tmp);
-		free(tmp);
-		i++;
-	}
-	if (n_flag == false)
 		ft_putchar('\n');
-	return (EXIT_SUCCESS);
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+		return_val = 130;
+	}
 }

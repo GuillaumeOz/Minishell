@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:18:47 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/10 17:40:43 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/09/16 14:28:19 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	set_env(const char *name, const char *value, char ***env)
 	else
 		variable = ft_strjoin((char *)name, (char *)value);
 	ft_add_to_tab((void *)variable, (void ***)env);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	find_var_env(char **env, char *find)
@@ -47,7 +47,7 @@ int	find_var_env(char **env, char *find)
 	return (-1);
 }
 
-void	unset_env(char *name, char ***env)
+int	unset_env(char *name, char ***env)
 {
 	int		env_index;
 	char	**tmp;
@@ -58,7 +58,7 @@ void	unset_env(char *name, char ***env)
 	env_index = find_var_env(tmp, name);
 	printf("%d\n", env_index);
 	if (env_index == -1)
-		return ;
+		return (EXIT_FAILURE);
 	*env = (char **)ft_tab_new(ft_tab_len((void **)tmp));
 	i = 0;
 	j = 0;
@@ -71,6 +71,7 @@ void	unset_env(char *name, char ***env)
 		}
 		i++;
 	}
+	return (EXIT_SUCCESS);
 	// ft_free_tab((void **)tmp);
 }
 

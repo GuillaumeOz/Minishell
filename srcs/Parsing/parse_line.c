@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:12:52 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/13 12:08:55 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/09/16 15:21:57 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,15 @@ static void	parse_splited_line(char **splited_line, char **env, int pipe)
 	else if (ft_strcmp(splited_line[0], "echo") == 0)
 	{
 		if (splited_line[1] != NULL && ft_strcmp(splited_line[1], "-n") == 0)
-			print_echo(splited_line, true);
+			return_val = print_echo(splited_line, true);
 		else
-			print_echo(splited_line, false);
+			return_val = print_echo(splited_line, false);
 	}
 	else if (ft_strcmp(splited_line[0], "cd") == 0)
 	{
 		if (splited_line[2] != NULL)
 		{
+			return_val = 1;
 			ft_putstr("cd: trop d'arguments\n");
 			return ;
 		}
@@ -44,10 +45,10 @@ static void	parse_splited_line(char **splited_line, char **env, int pipe)
 		print_pwd();
 	else if (ft_strcmp(splited_line[0], "unset") == 0
 		&& splited_line[1] != NULL)
-		unset_env(splited_line[1], &env);
+		return_val = unset_env(splited_line[1], &env);
 	else if (ft_strcmp(splited_line[0], "export") == 0
 		&& splited_line[1] != NULL)
-		set_env(splited_line[1] , NULL, &env);
+		return_val = set_env(splited_line[1] , NULL, &env);
 	else
 	{
 		cmd = find_cmd(env, splited_line[0]);
@@ -121,14 +122,12 @@ void	parse_line(char *line, char **env, int pipe)
 	char	**splited_line;
 	int		i;
 
-	if (line != NULL && ft_strcmp(line, "exit") == 0)
-	{
-		ft_free_tab((void **)env);
-		free(line);
-		ft_putstr("exit\n");
-		exit(EXIT_SUCCESS);
-	}
 	splited_line = ft_split(line, ' ');
+	if (line != NULL && ft_strcmp(splited_line[0], "exit") == 0)
+	{
+		builtin_exit(splited_line + 1, env);
+		return ;
+	}
 	i = 0;
 	while (splited_line[i] != NULL)
 	{

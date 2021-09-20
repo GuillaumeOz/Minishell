@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minishell_env_allocation.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/10 17:05:03 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/15 11:55:29 by chdespon         ###   ########.fr       */
+/*   Created: 2021/09/13 16:17:27 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/09/13 16:18:30 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char **argv, char **env)
+char	**alloc_env(char **env)
 {
-	char **new_env;
+	char	**dest;
+	int		i;
 
-	(void)argv;
-	if (argc != 1)
-		return (EXIT_FAILURE);
-	new_env = alloc_env(env);
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, handle_sigint);
-	prompt(new_env);
-	return (EXIT_SUCCESS);
+	dest = (char **)ft_tab_new(ft_tab_len((void **)env));
+	i = 0;
+	while (env[i])
+	{
+		dest[i] = ft_strdup(env[i]);
+		i++;
+	}
+	return (dest);
 }

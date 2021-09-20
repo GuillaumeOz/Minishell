@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:44:35 by ncoudsi           #+#    #+#             */
-/*   Updated: 2021/05/25 12:42:15 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/09/16 14:50:33 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ t_bool	ft_str_is_only_digit(char *str)
 		return (false);
 	while (str[index] != '\0')
 	{
-		if (ft_is_digit(str[index]) == false)
+		if (ft_is_digit(str[index]) == false
+			&& (index != 0 && str[index] != '-'))
 			return (false);
 		index++;
 	}

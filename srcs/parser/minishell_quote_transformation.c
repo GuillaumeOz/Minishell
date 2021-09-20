@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_whitespaces.c                                :+:      :+:    :+:   */
+/*   minishell_quote_transformation.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/25 12:14:14 by ldutriez          #+#    #+#             */
-/*   Updated: 2021/09/15 21:43:47 by gozsertt         ###   ########.fr       */
+/*   Created: 2021/09/16 16:03:19 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/09/17 05:39:01 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-t_bool	ft_is_whitespaces(char p_c)
+void	quote_transformation(t_lexer *lexer)
 {
-	if (p_c == '\t' || p_c == '\v' || p_c == '\n' || p_c == '\r'
-		|| p_c == '\f' || p_c == ' ')
-		return (true);
-	return (false);
+	while (lexer != NULL)
+	{
+		if (lexer->format == MIX_QUOTE)
+			mix_quote_transformation(lexer);
+		else if (lexer->format == DOUBLE_QUOTE)
+			double_quote_transformation(lexer);
+		else if (lexer->format == SIMPLE_QUOTE)
+			simple_quote_transformation(lexer);
+		lexer = lexer->next;
+	}
 }

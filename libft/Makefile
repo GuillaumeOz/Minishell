@@ -17,10 +17,12 @@ SRC =		ft_f_abs.c ft_f_floor.c ft_f_roof.c ft_i_abs.c ft_i_roof.c \
 			ft_itoa_base.c ft_itoa.c ft_atoi.c ft_itoa_hexa.c ft_itoa_octa.c \
 			ft_itoa_unsigned_deci.c ft_f_round.c \
 			\
-			ft_strdup.c ft_strdup_c.c ft_strlen.c ft_strlen_arg.c ft_strnew.c \
+			ft_strdup.c ft_strndup.c ft_strdup_c.c ft_strlen.c ft_strnlen.c \
+			ft_strlen_arg.c ft_strnew.c \
 			ft_strcpy.c ft_strsub.c ft_strstr.c ft_str_count_c.c ft_rm_charset.c\
-			ft_strjoin.c ft_split.c ft_str_add_prefixe.c ft_str_add_suffix.c \
-			ft_str_count_c.c ft_strnstr.c ft_swap.c \
+			ft_strjoin.c ft_strappend.c ft_strprepend.c ft_strjoinfre.c ft_split.c\
+			ft_str_add_prefixe.c ft_str_add_suffix.c ft_str_count_c.c ft_strnstr.c\
+			ft_swap.c \
 			\
 			ft_str_is_only_digit.c ft_is_digit.c ft_strcmp.c ft_strcmp_c.c \
 			ft_is_alpha.c ft_is_lower.c ft_is_upper.c ft_is_alpha_num.c \

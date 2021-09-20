@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_signals.c                                :+:      :+:    :+:   */
+/*   minishell_error.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/13 15:56:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/20 12:02:28 by chdespon         ###   ########.fr       */
+/*   Created: 2021/09/15 16:08:30 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/09/15 16:12:32 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	handle_sigint(int sig)
+void	minishell_error(char *error_msg)
 {
-	if (sig == SIGINT)
-	{
-		ft_putchar('\n');
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-		return_val = 130;
-	}
+	ft_putstr_fd(2, "Error : ");
+	ft_putstr_fd(2, error_msg);
+	ft_putstr_fd(2, "\n");
+	exit(EXIT_FAILURE);
 }

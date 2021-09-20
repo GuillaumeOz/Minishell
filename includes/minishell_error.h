@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_signals.c                                :+:      :+:    :+:   */
+/*   minishell_error.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/13 15:56:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/20 12:02:28 by chdespon         ###   ########.fr       */
+/*   Created: 2021/09/15 16:06:17 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/09/15 16:10:53 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef MINISHELL_ERROR_H
+# define MINISHELL_ERROR_H
 
-void	handle_sigint(int sig)
-{
-	if (sig == SIGINT)
-	{
-		ft_putchar('\n');
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-		return_val = 130;
-	}
-}
+void	minishell_error(char *error_msg);
+
+#endif

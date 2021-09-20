@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_signals.c                                :+:      :+:    :+:   */
+/*   minishell_white_space_token.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/13 15:56:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/20 12:02:28 by chdespon         ###   ########.fr       */
+/*   Created: 2021/09/15 16:58:19 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/09/15 22:15:13 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	handle_sigint(int sig)
+void	white_space_token(char *line, int *i)
 {
-	if (sig == SIGINT)
-	{
-		ft_putchar('\n');
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-		return_val = 130;
-	}
+	while (ft_is_whitespaces(line[*i]) == true)
+		(*i) += 1;
 }

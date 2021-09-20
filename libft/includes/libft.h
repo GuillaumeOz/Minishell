@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 17:06:39 by ncoudsi           #+#    #+#             */
-/*   Updated: 2021/09/10 17:24:58 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/17 00:09:05 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,17 @@
 
 char			*ft_strnew(size_t p_len);
 char			*ft_strdup(char *p_src);
+char			*ft_strndup(const char *src, size_t n);
 char			*ft_strdup_c(char p_c);
 size_t			ft_strlen(char	*p_src);
+size_t			ft_strnlen(const char *s, size_t maxlen);
 size_t			ft_strlen_arg(char *p_str, char p_c);
 char			*ft_strcpy(char *p_src, char *p_dest);
 char			*ft_strsub(char *p_src, size_t p_start, size_t p_len);
 char			*ft_strjoin(char *p_str1, char *p_str2);
+char			*ft_strjoinfre(char *s1, char *s2, int free_s1, int free_s2);
+char			*ft_strappend(char *s1, char *s2, int free_s1, int free_s2);
+char			*ft_strprepend(char *s1, char *s2, int free_s1, int free_s2);
 char			*ft_strstr(char *p_haystack, char *p_needle);
 char			**ft_split(char *p_src, char p_sep);
 void			ft_str_add_prefixe(char *p_prefixe, char **p_str);

@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_signals.c                                :+:      :+:    :+:   */
+/*   minishell_pipe_token.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/13 15:56:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/20 12:02:28 by chdespon         ###   ########.fr       */
+/*   Created: 2021/09/15 18:53:36 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/09/15 22:51:21 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	handle_sigint(int sig)
+t_lexer	*pipe_token(t_lexer *lexer, int *i)
 {
-	if (sig == SIGINT)
-	{
-		ft_putchar('\n');
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-		return_val = 130;
-	}
+	t_lexer *new_lexer;
+
+	(*i) += 1;
+	new_lexer = init_lexer(lexer, PIPE, DEFAULT);
+	return (new_lexer);
 }

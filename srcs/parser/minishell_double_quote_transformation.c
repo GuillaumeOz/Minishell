@@ -6,40 +6,11 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 19:09:35 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/18 14:36:19 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/21 17:22:00 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	compute_dollar(t_lexer *lexer, int *i)
-{
-	char	*before;
-	char	*env;
-	char	*after;
-	char	*converted_env;
-	int		j;
-
-	j = 0;
-	before = ft_strndup(lexer->args, (*i));
-	while (ft_is_whitespaces(lexer->args[(*i) + j + 1]) == false
-		&& lexer->args[(*i) + j + 1] != QUOTES
-		&& lexer->args[(*i) + j + 1] != DOLLAR
-		&& lexer->args[(*i) + j + 1] != '\0')
-		j++;
-	env = ft_strndup(lexer->args + (*i) + 1, j);
-	converted_env = getenv(env);
-	free(env);
-	after = ft_strdup(lexer->args + (*i) + 1 + j);
-	free(lexer->args);
-	if (converted_env != NULL)
-	{
-		converted_env = ft_strappend(before, converted_env, true, false);
-		lexer->args = ft_strappend(converted_env, after, true, true);
-	}
-	else
-		lexer->args = ft_strappend(before, after, true, true);
-}
 
 void    compute_double_quote(t_lexer *lexer, int *i)
 {
@@ -54,7 +25,8 @@ void    compute_double_quote(t_lexer *lexer, int *i)
 	start = (*i);
 	while (lexer->args[(*i)] != QUOTES)
 	{
-		if (lexer->args[*i] == DOLLAR)
+		if (lexer->args[*i] == DOLLAR
+			&& previous_is_double_lower(lexer) == false)
 			compute_dollar(lexer, i);
 		else
 			(*i) += 1;
@@ -78,6 +50,8 @@ void	double_quote_transformation(t_lexer *lexer)
 	{
 		if (lexer->args[i] == QUOTES)
 			compute_double_quote(lexer, &i);
+		else if (lexer->args[i] == DOLLAR)
+			compute_dollar(lexer, &i);
 		else
 			i++;
 	}

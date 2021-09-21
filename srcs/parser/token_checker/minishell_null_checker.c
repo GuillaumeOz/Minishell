@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_ast.c                                          :+:      :+:    :+:   */
+/*   minishell_null_checker.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/18 22:21:13 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/18 22:49:23 by gozsertt         ###   ########.fr       */
+/*   Created: 2021/09/21 17:15:14 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/09/21 17:19:54 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//	cmd	 ::== exec >> io
-//		 ::== exec << io
-//		 ::== exec < io
-//		 ::== exec > io
-//		 ::== exec
-
-void	cmd_ast(t_lexer *lexer, t_ast_option option)
+t_bool	previous_is_null_checker(t_lexer *lexer)
 {
-	
+	if (lexer->previous == NULL)
+		return (true);
+	else
+		return (false);
+}
+
+t_bool	next_is_null_checker(t_lexer *lexer)
+{
+	if (lexer->next == NULL)
+		return (true);
+	else
+		return (false);
 }

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 19:09:03 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/17 05:36:29 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/21 17:20:23 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	simple_quote_transformation(t_lexer *lexer)
 	{
 		if (lexer->args[i] == QUOTE)
 			compute_simple_quote(lexer, &i);
+		else if (lexer->args[i] == DOLLAR)
+			compute_dollar(lexer, &i);
 		else
 			i++;
 	}

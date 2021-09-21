@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 19:06:04 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/18 22:20:32 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/21 15:32:06 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ void	line_ast(t_lexer *lexer, t_ast_option option)
 	{
 		if (is_line_pipe(lexer, &reader) == true)
 		{
-			cmd_ast(lexer, CMD_OPTION_1);
+			// cmd_ast(lexer, CMD_OPTION_1);
 			print_token(reader);
 			line_ast(reader, LINE_OPTION_1);
 		}
 		else
 			line_ast(reader, LINE_OPTION_2);
 	}
-	else if (option == LINE_OPTION_2)
-		cmd_ast(lexer, CMD_OPTION_1);
+	// else if (option == LINE_OPTION_2)
+	// 	cmd_ast(lexer, CMD_OPTION_1);
 }

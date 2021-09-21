@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 16:24:18 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/21 14:52:43 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/21 21:33:09 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,16 @@
 //	line ::== cmd | line
 //		 ::== cmd
 //
-//	cmd	 ::== exec >> io		io	::== file >> file
-//		 ::== exec << io			::== file > file
-//		 ::== exec < io				::== file
-//		 ::== exec > io				add file << file case ??
+//	cmd	 ::== exec >> io		
+//		 ::== exec << io			
+//		 ::== exec < io				
+//		 ::== exec > io				
 //		 ::== exec
+//
+// 	io   ::== file >> file
+//       ::== file > file
+//       ::== file
+//       add file << file case ??
 //
 //	exec ::== execname + args	args ::== arg + args
 //		 ::== execname				 ::== arg
@@ -32,6 +37,8 @@ void	abstract_syntax_tree(t_lexer *lexer)
     t_ast   ast;
 
 	(void)ast;
+	if (lexer == NULL || lexer->error == true)
+		return ;
 	lexer = set_first_lexer(lexer);
 	line_ast(lexer, LINE_OPTION_1);
 }

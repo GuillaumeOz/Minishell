@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_null_checker.c                           :+:      :+:    :+:   */
+/*   minishell_fork_setter.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/21 17:15:14 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/21 21:20:46 by gozsertt         ###   ########.fr       */
+/*   Created: 2021/09/21 21:24:02 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/09/21 21:43:51 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_bool	previous_is_null_checker(t_lexer *lexer)
+static void	set_lexer_fork(t_lexer *lexer)
 {
-	if (lexer->previous == NULL)
-		return (true);
-	else
-		return (false);
+	while (lexer != NULL)
+	{
+		lexer->fork = true;
+		lexer = lexer->next;
+	}
 }
 
-t_bool	next_is_null_checker(t_lexer *lexer)
+void	fork_setter(t_lexer *lexer)
 {
-	if (lexer->next == NULL)
-		return (true);
-	else
-		return (false);
+	t_lexer *tmp;
+
+	tmp = lexer;
+	while (tmp != NULL)
+	{
+		if (tmp->type == PIPE)
+		{
+			set_lexer_fork(lexer);
+			return ;
+		}
+		tmp = tmp->next;
+	}
 }

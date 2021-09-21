@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_null_checker.c                           :+:      :+:    :+:   */
+/*   minishell_pipe_error_handler.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/21 17:15:14 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/21 21:20:46 by gozsertt         ###   ########.fr       */
+/*   Created: 2021/09/21 22:00:16 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/09/21 22:09:37 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_bool	previous_is_null_checker(t_lexer *lexer)
+t_bool	pipe_error_handler(t_lexer *lexer)
 {
-	if (lexer->previous == NULL)
+	if (previous_is_null_checker(lexer) == true)
 		return (true);
-	else
-		return (false);
-}
-
-t_bool	next_is_null_checker(t_lexer *lexer)
-{
-	if (lexer->next == NULL)
+	else if (next_is_null_checker(lexer) == true)
 		return (true);
-	else
-		return (false);
+	else if ()
 }

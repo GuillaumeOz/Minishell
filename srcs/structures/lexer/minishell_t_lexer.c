@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 14:00:05 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/17 05:01:28 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/21 21:32:59 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ t_lexer	create_lexer(t_token_type type, t_token_format format)
 
 	lexer.type = type;
 	lexer.format = format;
+	lexer.fork = false;
+	lexer.error = false;
 	lexer.args = NULL;
 	lexer.previous = NULL;
 	lexer.next = NULL;

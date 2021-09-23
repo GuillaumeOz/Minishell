@@ -6,17 +6,20 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 17:05:03 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/21 15:01:42 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/22 14:11:23 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// extern int g_exit_code;
+
 int	main(int argc, char **argv, char **env)
 {
-	char **new_env;
+	char	**new_env;
 
 	(void)argv;
+	g_exit_code = 0;
 	if (argc != 1)
 		return (0);
 	new_env = alloc_env(env);

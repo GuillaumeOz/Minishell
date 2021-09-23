@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 17:04:53 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/18 18:38:20 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/22 11:51:53 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # include "minishell_parsing.h"
 # include "minishell_abstract_syntax_tree.h"
 
-int g_exit_code;// its usefull ?
+int g_exit_code;
 
 #define debug     write(1, "ICI\n", 4);
 #define info     printf("line -> %d, fonction -> %s\n", __LINE__, __func__);

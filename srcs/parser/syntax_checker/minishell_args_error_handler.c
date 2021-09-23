@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_double_lower_checker.c                   :+:      :+:    :+:   */
+/*   minishell_args_error_handler.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/21 17:11:17 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/23 23:47:10 by gozsertt         ###   ########.fr       */
+/*   Created: 2021/09/23 20:07:39 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/09/23 20:12:10 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_bool	previous_is_double_lower_checker(t_lexer *lexer)
+t_bool	args_error_handler(t_lexer *lexer)//add some stuff or delete tis funct
 {
-	if (lexer->previous == NULL)
-		return (false);
-	if (lexer->previous->type == DOUBLE_LOWER)
-		return (true);
-	else
-		return (false);
-}
-
-t_bool	next_is_double_lower_checker(t_lexer *lexer)
-{
-	if (lexer->next == NULL)
-		return (false);
-	if (lexer->next->type == DOUBLE_LOWER)
-		return (true);
-	else
-		return (false);
+	(void)lexer;
+	return (false);
 }

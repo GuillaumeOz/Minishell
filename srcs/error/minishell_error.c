@@ -6,13 +6,24 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:08:30 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/21 20:23:05 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/24 00:21:51 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	minishell_error(char *error_msg)
+void	set_lexer_error(t_lexer *lexer)
+{
+	while (lexer->previous != NULL)
+		lexer = lexer->previous;
+	while (lexer != NULL)
+	{
+		lexer->error = true;
+		lexer = lexer->next;
+	}
+}
+
+void	minishell_error(char *error_msg)// delete this function ?
 {
 	ft_putstr_fd(2, "Error : ");
 	ft_putstr_fd(2, error_msg);
@@ -20,11 +31,24 @@ void	minishell_error(char *error_msg)
 	exit(EXIT_FAILURE);//remove exit later
 }
 
-void	minishell_syntax_error(char *token)
+void	minishell_syntax_error(t_lexer *lexer, char *token)
 {
-	ft_putstr_fd(2, "Minishell: syntax error near unexpected token");
+	set_lexer_error(lexer);
+	ft_putstr_fd(2, "Minishell: syntax error near unexpected token ");
 	ft_putstr_fd(2, "`");
 	ft_putstr_fd(2, token);
 	ft_putstr_fd(2, "'");
 	ft_putstr_fd(2, "\n");
+	g_exit_code = 2;
+}
+
+void	minishell_multiline_error(t_lexer *lexer, char *token)
+{
+	set_lexer_error(lexer);
+	ft_putstr_fd(2, "Minishell: parsing error, multiline detected with token ");
+	ft_putstr_fd(2, "`");
+	ft_putstr_fd(2, token);
+	ft_putstr_fd(2, "'");
+	ft_putstr_fd(2, "\n");
+	g_exit_code = EXIT_FAILURE;
 }

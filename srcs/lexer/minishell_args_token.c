@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 23:10:52 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/16 14:59:44 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/22 14:08:10 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static void simple_quote_control(t_lexer *lexer, char *line, int *i)
 		(*i) += 1;
 	if (line[(*i)] == '\0')
 	{
-		minishell_error("unclosed quotes detected");
-		minishell_quit(lexer, EXIT_FAILURE);
+		minishell_multiline_error(lexer, "\'");
+		return ;
 	}
 	(*i) += 1;
 }
@@ -42,8 +42,8 @@ static void	double_quote_control(t_lexer *lexer, char *line, int *i)
 		(*i) += 1;
 	if (line[(*i)] == '\0')
 	{
-		minishell_error("unclosed quotes detected");
-		minishell_quit(lexer, EXIT_FAILURE);
+		minishell_multiline_error(lexer, "\"");
+		return ;
 	}
 	(*i) += 1;
 }
@@ -54,7 +54,8 @@ static void	fill_args(t_lexer *lexer, char *line, int *i)
 
 	start = *i;
 	while (ft_is_whitespaces(line[*i]) == false && line[*i] != PIPE
-		&& line[*i] != LOWER && line[*i] != GREATER && line[*i] != '\0')
+		&& line[*i] != LOWER && line[*i] != GREATER && line[*i] != '\0'
+		&& lexer->error == false)
 	{
 		if (line[*i] == QUOTE)
 			simple_quote_control(lexer, line, i);
@@ -63,7 +64,8 @@ static void	fill_args(t_lexer *lexer, char *line, int *i)
 		else
 			(*i) += 1;
 	}
-	lexer->args = ft_strndup(line + start, (*i) - start);
+	if (lexer->error == false)
+		lexer->args = ft_strndup(line + start, (*i) - start);
 }
 
 t_lexer	*args_token(t_lexer *lexer, char *line, int *i)

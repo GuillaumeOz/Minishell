@@ -6,20 +6,36 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 15:08:34 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/21 22:06:26 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/24 00:21:05 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_PARSING_H
 # define MINISHELL_PARSING_H
 
+t_bool	previous_is_double_greater_checker(t_lexer *lexer);
+t_bool	next_is_double_greater_checker(t_lexer *lexer);
+
+t_bool	previous_is_double_lower_checker(t_lexer *lexer);
+t_bool	next_is_double_lower_checker(t_lexer *lexer);
+
+t_bool	previous_is_greater_checker(t_lexer *lexer);
+t_bool	next_is_greater_checker(t_lexer *lexer);
+
+t_bool	previous_is_lower_checker(t_lexer *lexer);
+t_bool	next_is_lower_checker(t_lexer *lexer);
+
+t_bool	previous_is_pipe_checker(t_lexer *lexer);
+t_bool	next_is_pipe_checker(t_lexer *lexer);
+
 t_bool	previous_is_null_checker(t_lexer *lexer);
 t_bool	next_is_null_checker(t_lexer *lexer);
 
-t_bool	previous_is_double_lower(t_lexer *lexer);
-t_bool	next_is_double_lower(t_lexer *lexer);
-
-
+t_bool	args_error_handler(t_lexer *lexer);
+t_bool	double_greater_error_handler(t_lexer *lexer);
+t_bool	double_lower_error_handler(t_lexer *lexer);
+t_bool	greater_error_handler(t_lexer *lexer);
+t_bool	lower_error_handler(t_lexer *lexer);
 t_bool	pipe_error_handler(t_lexer *lexer);
 
 void	syntax_checker(t_lexer *lexer);

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:32:24 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/21 21:18:41 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/22 14:07:26 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,9 @@ t_lexer	*tokenizer(char *line)
 	lexer = NULL;
 	while (line[i] != '\0')
 	{
-		if (ft_is_whitespaces(line[i]) == true)
+		if (lexer != NULL && lexer->error == true)
+			return (lexer);
+		else if (ft_is_whitespaces(line[i]) == true)
 			white_space_token(line, &i);
 		else if (line[i] == PIPE)//special
 			lexer = pipe_token(lexer, &i);

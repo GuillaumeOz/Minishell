@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 19:09:35 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/21 17:22:00 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/23 23:50:00 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void    compute_double_quote(t_lexer *lexer, int *i)
 	while (lexer->args[(*i)] != QUOTES)
 	{
 		if (lexer->args[*i] == DOLLAR
-			&& previous_is_double_lower(lexer) == false)
+			&& previous_is_double_lower_checker(lexer) == false)
 			compute_dollar(lexer, i);
 		else
 			(*i) += 1;

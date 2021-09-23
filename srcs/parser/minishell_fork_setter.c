@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 21:24:02 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/21 21:43:51 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/22 12:49:16 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	set_lexer_fork(t_lexer *lexer)
 	}
 }
 
-void	fork_setter(t_lexer *lexer)
+void	fork_setter(t_lexer *lexer)//change the pipe gestion / parse the number of cmds
 {
 	t_lexer *tmp;
 

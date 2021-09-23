@@ -6,36 +6,34 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 21:14:42 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/21 22:08:07 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/24 00:13:20 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	set_lexer_error(t_lexer *lexer)
-{
-	while (lexer != NULL)
-	{
-		lexer->error = true;
-		lexer = lexer->next;
-	}
-}
 
 void	syntax_checker(t_lexer *lexer)
 {
 	t_lexer *tmp;
 
 	tmp = lexer;
-	while (tmp != NULL || tmp->error == false)
+	while (tmp != NULL && lexer->error == false)
 	{
-		if (tmp->type == PIPE)
-			if (pipe_error_handler(tmp) == true);
-				set_lexer_error(lexer);
-			//pipe error handler
-		else if (tmp->type)
-			//other error handler
-		else if (tmp->type == ARGS)
-
+		if (tmp->type == PIPE && pipe_error_handler(tmp) == true)
+			set_lexer_error(lexer);
+		else if (tmp->type == LOWER && lower_error_handler(tmp) == true)
+			set_lexer_error(lexer);
+		else if (tmp->type == GREATER && greater_error_handler(tmp) == true)
+			set_lexer_error(lexer);
+		else if (tmp->type == DOUBLE_LOWER
+			&& double_lower_error_handler(tmp) == true)
+			set_lexer_error(lexer);
+		else if (tmp->type == DOUBLE_GREATER
+			&& double_greater_error_handler(tmp) == true)
+			set_lexer_error(lexer);
+		else if (tmp->type == ARGS
+			&& args_error_handler(tmp) == true)
+			set_lexer_error(lexer);
 		tmp = tmp->next;
 	}
 }

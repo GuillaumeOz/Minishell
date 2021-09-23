@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:03:19 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/21 21:14:09 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/23 23:49:48 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	quote_dollar_transformation(t_lexer *lexer)
 			simple_quote_transformation(lexer);
 		else if (lexer->format == DEFAULT
 			&& lexer->type == ARGS
-			&& previous_is_double_lower(lexer) == false)
+			&& previous_is_double_lower_checker(lexer) == false)
 			dollar_transformation(lexer);
 		lexer = lexer->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 15:51:13 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/23 15:38:07 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/24 01:44:25 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,20 @@ static t_bool	is_dollar_limit(t_lexer *lexer, int *i, int j)
 		return (true);
 }
 
+static void	compute_dollar_question_mark(t_lexer *lexer, int *i)
+{
+	char	*before;
+	char	*exit_code;
+	char	*after;
+
+	before = ft_strndup(lexer->args, (*i));
+	exit_code = ft_itoa(g_exit_code);
+	after = ft_strdup(lexer->args + (*i) + 1 + 1);
+	free(lexer->args);
+	lexer->args = ft_strappend(before, exit_code, true, true);
+	lexer->args = ft_strappend(lexer->args, after, true, true);
+}
+
 void	compute_dollar(t_lexer *lexer, int *i)
 {
 	char	*before;
@@ -33,6 +47,8 @@ void	compute_dollar(t_lexer *lexer, int *i)
 	int		j;
 
 	j = 0;
+	if (lexer->args[(*i) + 1] == '?')
+		return (compute_dollar_question_mark(lexer, i));
 	before = ft_strndup(lexer->args, (*i));
 	while (is_dollar_limit(lexer, i, j) == false)
 		j++;

@@ -6,13 +6,13 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:12:52 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/20 12:35:32 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/09/23 15:54:24 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	parse_splited_line(char **splited_line, char **env, int pipe)
+static void	parse_splited_line(char **splited_line, char ***env, int pipe)
 {
 	char	*cmd;
 	if (splited_line[0] == NULL)
@@ -35,30 +35,32 @@ static void	parse_splited_line(char **splited_line, char **env, int pipe)
 		else if (chdir(splited_line[1]) != 0)
 			printf("cd: %s: Aucun fichier ou dossier de ce type\n",
 				splited_line[1]);
-		change_pwd(&env, splited_line[1]);
+		change_pwd(env, splited_line[1]);
 	}
 	else if (ft_strcmp(splited_line[0], "env") == 0
 		&& splited_line[1] == NULL)
-		print_env(env);
+		return_val = print_env(*env);
 	else if (ft_strcmp(splited_line[0], "pwd") == 0
 		&& splited_line[1] == NULL)
 		print_pwd();
 	else if (ft_strcmp(splited_line[0], "unset") == 0
 		&& splited_line[1] != NULL)
-		return_val = unset_env(splited_line[1], &env);
+		return_val = unset_env(splited_line[1], env);
 	else if (ft_strcmp(splited_line[0], "export") == 0
 		&& splited_line[1] != NULL)
-		return_val = set_env(splited_line[1] , NULL, &env);
+			return_val = set_env(splited_line[1] , ft_strdup(""), env);
+	else if (ft_strcmp(splited_line[0], "export") == 0 && splited_line[1] == NULL)
+		return_val = export_whiout_argument(*env);
 	else
 	{
-		cmd = find_cmd(env, splited_line[0]);
+		cmd = find_cmd(*env, splited_line[0]);
 		if (pipe == 1)
 		{
-			if (execve(cmd, splited_line, env) == -1)
+			if (execve(cmd, splited_line, *env) == -1)
 				exit(EXIT_FAILURE);
 		}
 		else
-			launch_fork(splited_line, env, cmd);
+			launch_fork(splited_line, *env, cmd);
 		free(cmd);
 		cmd = NULL;
 	}
@@ -69,7 +71,9 @@ void	pipe_fork(char **env, char *line)
 	int		pipefd[2];
 	pid_t	cpid;
 	char	**splited_line;
+	int		status;
 
+	status = 0;
 	splited_line = ft_split(line, '|');
 	// (void)env;
 	// if (ft_tab_len((void **)line) != 2)
@@ -87,14 +91,15 @@ void	pipe_fork(char **env, char *line)
 		close(pipefd[1]);		/* Close unused write end */
 		dup2(pipefd[0], 0);
 		close(pipefd[0]);
-		parse_line(splited_line[1], env, 1);
+		parse_line(splited_line[1], &env, 1);
 	}
 	else
 	{	/* Parent writes first command to pipe */
 		close(pipefd[0]);			/* Close unused read end */
 		dup2(pipefd[1], 1);
 		close(pipefd[1]);			/* Reader will see EOF */
-		parse_line(splited_line[0], env, 1);			/* Wait for child */
+		parse_line(splited_line[0], &env, 1);
+		waitpid(cpid, &status, 0);
 	}
 }
 
@@ -117,7 +122,7 @@ void	fork_minishell(char **env, char *line)
 	}
 }
 
-void	parse_line(char *line, char **env, int pipe)
+void	parse_line(char *line, char ***env, int pipe)
 {
 	char	**splited_line;
 	int		i;
@@ -125,7 +130,7 @@ void	parse_line(char *line, char **env, int pipe)
 	splited_line = ft_split(line, ' ');
 	if (line != NULL && ft_strcmp(splited_line[0], "exit") == 0)
 	{
-		builtin_exit(splited_line + 1, env);
+		builtin_exit(splited_line + 1, *env);
 		return ;
 	}
 	i = 0;
@@ -133,7 +138,7 @@ void	parse_line(char *line, char **env, int pipe)
 	{
 		if (ft_strcmp(splited_line[i], "|") == 0 && splited_line[i + 1] != NULL)
 		{
-			fork_minishell(env, line);
+			fork_minishell(*env, line);
 			ft_free_tab((void **)splited_line);
 			return ;
 		}

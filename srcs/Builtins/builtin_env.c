@@ -6,25 +6,11 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:18:47 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/20 16:49:18 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/09/23 15:53:26 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	set_env(const char *name, const char *value, char ***env)
-{
-	char	*variable;
-
-	if (name == NULL)
-		return (-1);
-	if (value == NULL)
-		variable = ft_strdup((char *)name);
-	else
-		variable = ft_strjoin((char *)name, (char *)value);
-	ft_add_to_tab((void *)variable, (void ***)env);
-	return (EXIT_SUCCESS);
-}
 
 int	find_var_env(char **env, char *find)
 {
@@ -47,38 +33,12 @@ int	find_var_env(char **env, char *find)
 	return (-1);
 }
 
-int	unset_env(char *name, char ***env)
-{
-	int		env_index;
-	char	**tmp;
-	int		i;
-	int		j;
-
-	tmp = *env;
-	env_index = find_var_env(tmp, name);
-	printf("%d\n", env_index);
-	if (env_index == -1)
-		return (EXIT_FAILURE);
-	*env = (char **)ft_tab_new(ft_tab_len((void **)tmp));
-	i = 0;
-	j = 0;
-	while (tmp[i])
-	{
-		if (i != env_index)
-		{
-			(*env)[j] = ft_strdup(tmp[i]);
-			j++;
-		}
-		i++;
-	}
-	return (EXIT_SUCCESS);
-	// ft_free_tab((void **)tmp);
-}
-
-void	print_env(char **env)
+int	print_env(char **env)
 {
 	int	i;
 
+	if (env == NULL)
+		return (-1);
 	i = 0;
 	while (env[i] != NULL)
 	{
@@ -86,4 +46,5 @@ void	print_env(char **env)
 		ft_putchar('\n');
 		i++;
 	}
+	return (EXIT_SUCCESS);
 }

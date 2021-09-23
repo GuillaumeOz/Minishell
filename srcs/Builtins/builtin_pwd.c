@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   builtin_pwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:15:15 by chdespon          #+#    #+#             */
-/*   Updated: 2021/06/29 12:25:14 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/09/23 16:16:33 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*get_pwd(void)
 	return (buf);
 }
 
-void	print_pwd(void)
+int	print_pwd(void)
 {
 	char	*pwd;
 
@@ -63,4 +63,5 @@ void	print_pwd(void)
 	ft_str_add_suffix(&pwd, "\n");
 	ft_putstr_fd(1, pwd);
 	free(pwd);
+	return (EXIT_SUCCESS);
 }

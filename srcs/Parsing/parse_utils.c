@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:28:05 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/15 16:19:32 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/09/22 15:05:07 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ char	*find_cmd(char **env, char *param)
 	ft_putstr_fd(2, param);
 	ft_putstr_fd(2, ": command not found\n");
 	ft_free_tab((void **)path);
+	return_val = 127;
 	return (cmd);
 }

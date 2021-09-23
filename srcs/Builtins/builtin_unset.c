@@ -1,36 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_echo.c                                     :+:      :+:    :+:   */
+/*   builtin_unset.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/29 12:16:42 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/21 12:26:06 by chdespon         ###   ########.fr       */
+/*   Created: 2021/09/22 16:09:58 by chdespon          #+#    #+#             */
+/*   Updated: 2021/09/22 17:32:24 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	print_echo(char **splited_line, t_bool n_flag)
+int	unset_env(char *name, char ***env)
 {
+	int		env_index;
+	char	**tmp;
 	int		i;
+	int		j;
 
-	i = 1 + n_flag;
-	if (ft_strcmp(splited_line[i], "$?") == 0)
+	tmp = *env;
+	env_index = find_var_env(tmp, name);
+	if (env_index == -1)
 	{
-		ft_putnbr(return_val);
-		ft_putchar('\n');
-		return (EXIT_SUCCESS);
+		printf("minishell: unset: « %s » : identifiant non valable\n", name);
+		return (-1);
 	}
-	while (splited_line[i] != NULL)
+	*env = (char **)ft_tab_new(ft_tab_len((void **)tmp));
+	i = 0;
+	j = 0;
+	while (tmp[i])
 	{
-		if (i > 1 + (int)n_flag)
-			ft_putchar(' ');
-		ft_putstr(splited_line[i]);
+		if (i != env_index)
+		{
+			(*env)[j] = ft_strdup(tmp[i]);
+			j++;
+		}
 		i++;
 	}
-	if (n_flag == false)
-		ft_putchar('\n');
 	return (EXIT_SUCCESS);
+	ft_free_tab((void **)tmp);
 }

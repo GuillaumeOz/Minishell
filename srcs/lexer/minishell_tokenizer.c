@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:32:24 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/22 14:07:26 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/24 01:52:51 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void print_token(t_lexer *lexer)
 	int i;
 
 	i = 1;
-	while (lexer->previous != NULL)
-		lexer = lexer->previous;
+	// while (lexer->previous != NULL)
+	// 	lexer = lexer->previous;
 	while (lexer != NULL)
 	{
 		PRINTS("-------------------------------------------------\n")

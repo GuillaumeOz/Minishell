@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 15:08:34 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/24 00:30:30 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/24 07:03:25 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ t_bool	lower_error_handler(t_lexer *lexer);
 t_bool	pipe_error_handler(t_lexer *lexer);
 
 void	syntax_checker(t_lexer *lexer);
+
+void	cmd_number_setter(t_lexer *lexer);
 
 void	fork_setter(t_lexer *lexer);
 

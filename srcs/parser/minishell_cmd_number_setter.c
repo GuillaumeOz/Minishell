@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   minishell_cmd_number_setter.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/04 14:55:32 by ncoudsi           #+#    #+#             */
-/*   Updated: 2021/09/24 03:29:30 by gozsertt         ###   ########.fr       */
+/*   Created: 2021/09/24 07:04:12 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/09/24 07:11:41 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-int	ft_strcmp(char *p_src, char *p_target)
+void	cmd_number_setter(t_lexer *lexer)
 {
-	size_t	i;
+	t_lexer	*tmp;
+	int		count;
 
-	i = 0;
-	while (p_src[i] != '\0' || p_target[i] != '\0')
+	tmp = lexer;
+	count = 1;
+	while (tmp != NULL)
 	{
-		if (p_src[i] < p_target[i])
-			return (-1);
-		if (p_src[i] > p_target[i])
-			return (1);
-		i++;
+		if (tmp->type == PIPE)
+			count++;
+		tmp->next;
 	}
-	return (0);
+	tmp = lexer;
+	while (tmp != NULL)
+	{
+		tmp->nb_cmd = count;
+		tmp->next;
+	}
 }

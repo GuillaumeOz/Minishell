@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   minishell_line_case.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/04 14:55:32 by ncoudsi           #+#    #+#             */
-/*   Updated: 2021/09/24 03:29:30 by gozsertt         ###   ########.fr       */
+/*   Created: 2021/09/24 02:03:30 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/09/24 06:25:30 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-int	ft_strcmp(char *p_src, char *p_target)
+t_bool is_cmd_pipe_line_case(t_lexer *lexer, t_lexer **reader)
 {
-	size_t	i;
-
-	i = 0;
-	while (p_src[i] != '\0' || p_target[i] != '\0')
+	while (lexer != NULL)
 	{
-		if (p_src[i] < p_target[i])
-			return (-1);
-		if (p_src[i] > p_target[i])
-			return (1);
-		i++;
+		if (lexer->type == PIPE)
+		{
+			(*reader) = lexer->next;
+			return (true);
+		}
+		lexer = lexer->next;
 	}
-	return (0);
+	return (false);
 }

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 21:24:02 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/22 12:49:16 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/24 07:12:01 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ static void	set_lexer_fork(t_lexer *lexer)
 {
 	while (lexer != NULL)
 	{
-		lexer->fork = true;
+		lexer->fork = false;
 		lexer = lexer->next;
 	}
 }
 
-void	fork_setter(t_lexer *lexer)//change the pipe gestion / parse the number of cmds
+void	fork_setter(t_lexer *lexer)
 {
 	t_lexer *tmp;
 
@@ -29,10 +29,18 @@ void	fork_setter(t_lexer *lexer)//change the pipe gestion / parse the number of 
 	while (tmp != NULL)
 	{
 		if (tmp->type == PIPE)
-		{
-			set_lexer_fork(lexer);
 			return ;
-		}
+		tmp = tmp->next;
+	}
+	tmp = lexer;
+	while (tmp != NULL)
+	{
+		if (tmp->type == ARGS)
+			if (ft_strcmp("export", lexer->args) == 0)
+			{
+				set_lexer_fork(lexer);
+				return ;
+			}
 		tmp = tmp->next;
 	}
 }

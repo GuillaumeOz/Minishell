@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 16:02:51 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/24 01:30:01 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/24 03:52:30 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	prompt(char **env)
 	t_lexer	*lexer;
 	char	*line;
 
-	(void)env;//add environement modification gestion
 	while (1)
 	{
 		line = readline(_BLUE"("_RED"Minishell" _BLUE") "_GREEN"➜"_WHITE" ");
@@ -26,9 +25,9 @@ void	prompt(char **env)
 		{
 			lexer = tokenizer(line);
 			parser(lexer);
-			print_token(lexer);//suppr this
+			// print_token(lexer);//suppr this
 			// exit(0);//suppr this
-			abstract_syntax_tree(lexer);
+			abstract_syntax_tree(lexer, &env);
 
 			add_history(line);
 			free_lexer(lexer);

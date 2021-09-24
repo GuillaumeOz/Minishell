@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 18:32:34 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/18 21:55:17 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/24 03:51:42 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ t_ast	*malloc_ast()
 t_ast	create_ast()
 {
 	t_ast ast;
-	
+
+	ast.env = NULL;
 	ast.pipe = NULL;
 	ast.cmd = NULL;
 	ast.args = NULL;

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 15:12:29 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/24 01:29:48 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/24 07:12:03 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	parser(t_lexer *lexer)
 	{
 		quote_dollar_transformation(lexer);
 		fork_setter(lexer);
-		//add cmd nbr parsing
+		cmd_number_setter(lexer);
 		//add some token modification if needed later
 	}
 }

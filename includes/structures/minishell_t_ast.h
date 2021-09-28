@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 18:15:51 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/24 03:51:00 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/26 17:17:25 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ typedef struct s_ast
 	char	*limiter;
 }				t_ast;
 
-t_ast	*malloc_ast(void);
-t_ast	create_ast(void);
+t_ast	*malloc_ast(char ***env);
+t_ast	create_ast(char ***env);
 void	destroy_ast(t_ast ast);
 void	free_ast(t_ast *ast);
 

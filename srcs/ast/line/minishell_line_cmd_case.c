@@ -1,22 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_error.h                                  :+:      :+:    :+:   */
+/*   minishell_line_cmd_case.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/15 16:06:17 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/26 17:21:18 by gozsertt         ###   ########.fr       */
+/*   Created: 2021/09/28 17:41:18 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/09/28 19:56:24 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_ERROR_H
-# define MINISHELL_ERROR_H
+#include "minishell.h"
 
-void	set_lexer_error(t_lexer *lexer);
+void	cmd_case(t_lexer *lexer, t_lexer *reader, pid_t *pid, char ***env)
+{
+	t_ast	*ast;
 
-void	minishell_multiline_error(t_lexer *lexer, char *token);
-void	minishell_syntax_error(t_lexer *lexer, char *token);
-void	minishell_error(char *error_msg);
-
-#endif
+	ast = NULL;
+	if (lexer->fork == false)
+	{
+		ast = malloc_ast(env);
+		cmd_ast(lexer, reader, ast, CMD_OPTION_1);
+		free_ast(ast);
+	}
+	else
+	{
+		*pid = fork();
+		if (*pid == 0)
+		{
+			ast = malloc_ast(env);
+			cmd_ast(lexer, reader, ast, CMD_OPTION_1);
+			free_ast(ast);
+		}
+	}
+}

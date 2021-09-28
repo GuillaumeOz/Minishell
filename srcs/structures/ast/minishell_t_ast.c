@@ -6,20 +6,20 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 18:32:34 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/24 03:51:42 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/28 17:14:23 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_ast	*malloc_ast()
+t_ast	*malloc_ast(char ***env)
 {
 	t_ast	*ast;
 
 	ast = (t_ast *)malloc(sizeof(t_ast));
 	if (ast == NULL)
 		minishell_error("t_lexer can't be allocate");
-	*ast = create_ast();
+	*ast = create_ast(env);
 	return (ast);
 }
 
@@ -28,11 +28,11 @@ t_ast	*malloc_ast()
 	// char	**args;
 	// char	*limiter;
 
-t_ast	create_ast()
+t_ast	create_ast(char ***env)
 {
 	t_ast ast;
 
-	ast.env = NULL;
+	ast.env = env;
 	ast.pipe = NULL;
 	ast.cmd = NULL;
 	ast.args = NULL;

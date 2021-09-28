@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:08:30 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/24 00:21:51 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/26 17:20:57 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,13 @@ void	set_lexer_error(t_lexer *lexer)
 	}
 }
 
-void	minishell_error(char *error_msg)// delete this function ?
+void	minishell_error(char *error_msg)
 {
-	ft_putstr_fd(2, "Error : ");
+	set_lexer_error(lexer);
+	ft_putstr_fd(2, "Minishell: critical error, ");
 	ft_putstr_fd(2, error_msg);
 	ft_putstr_fd(2, "\n");
-	exit(EXIT_FAILURE);//remove exit later
+	exit(-1);
 }
 
 void	minishell_syntax_error(t_lexer *lexer, char *token)
@@ -50,5 +51,5 @@ void	minishell_multiline_error(t_lexer *lexer, char *token)
 	ft_putstr_fd(2, token);
 	ft_putstr_fd(2, "'");
 	ft_putstr_fd(2, "\n");
-	g_exit_code = EXIT_FAILURE;
+	g_exit_code = -1;
 }

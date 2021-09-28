@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_line_case.c                              :+:      :+:    :+:   */
+/*   minishell_line_is_case.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 02:03:30 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/24 06:25:30 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/28 17:37:58 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_bool is_cmd_pipe_line_case(t_lexer *lexer, t_lexer **reader)
+t_bool is_cmd_pipe_case(t_lexer *lexer, t_lexer **reader)
 {
 	while (lexer != NULL)
 	{

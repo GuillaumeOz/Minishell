@@ -43,7 +43,9 @@ SRC =		ft_f_abs.c ft_f_floor.c ft_f_roof.c ft_i_abs.c ft_i_roof.c \
 			ft_lst_add_back.c ft_lst_clear.c ft_lst_rm_data.c ft_lst_map.c \
 			ft_lst_size.c ft_lst_add_front.c ft_lst_create_node.c \
 			ft_lst_iter.c ft_lst_rm_node.c char_list_creators.c \
-			char_list_destructors.c
+			char_list_destructors.c \
+			\
+			int_vector2.c t_list2_utils.c t_list2.c \
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 

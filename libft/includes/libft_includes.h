@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 17:09:28 by ncoudsi           #+#    #+#             */
-/*   Updated: 2021/09/10 17:24:57 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/30 19:52:14 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@
 # include "libft_structures.h"
 # include "libft_defines.h"
 # include "get_next_line.h"
+# include "t_list2.h"
 
 #endif

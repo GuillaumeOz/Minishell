@@ -6,13 +6,13 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 21:26:04 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/30 15:16:49 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/30 20:59:09 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exec_case()
+void	exec_case(t_ast *ast)
 {
 	PRINTS("EXEC")
 }

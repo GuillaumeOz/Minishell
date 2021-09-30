@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 21:24:02 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/24 07:12:01 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/30 20:37:06 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	fork_setter(t_lexer *lexer)
 	while (tmp != NULL)
 	{
 		if (tmp->type == ARGS)
-			if (ft_strcmp("export", lexer->args) == 0)
+			if (ft_strcmp("export", tmp->args) == 0)
 			{
 				set_lexer_fork(lexer);
 				return ;

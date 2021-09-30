@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 13:46:29 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/30 19:59:28 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/30 21:05:04 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ void				free_int_vector2(t_int_vector2 *to_free);
 
 typedef void	(*t_list2_destroy_funct)(void *to_destroy);
 
-t_list2			create_list(size_t p_push_size);
-t_list2			*malloc_list(size_t p_push_size);
-void			destroy_list(t_list2 to_destroy, t_list2_destroy_funct funct);
-void			free_list(t_list2 *to_free, t_list2_destroy_funct funct);
+t_list2			create_list2(size_t p_push_size);
+t_list2			*malloc_list2(size_t p_push_size);
+void			destroy_list2(t_list2 to_destroy, t_list2_destroy_funct funct);
+void			free_list2(t_list2 *to_free, t_list2_destroy_funct funct);
 
-t_int_vector2	list_calc_index_coord(t_list2 *list, size_t index);
-void			list_push_back(t_list2 *list, void *to_add);
-void			*list_at(t_list2 *list, size_t index);
-void			**list_get(t_list2 *list, size_t index);
-void			clear_list(t_list2 *to_clear, t_list2_destroy_funct funct);
+t_int_vector2	list2_calc_index_coord(t_list2 *list, size_t index);
+void			list2_push_back(t_list2 *list, void *to_add);
+void			*list2_at(t_list2 *list, size_t index);
+void			**list2_get(t_list2 *list, size_t index);
+void			clear_list2(t_list2 *to_clear, t_list2_destroy_funct funct);
 
 #endif

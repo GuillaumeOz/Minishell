@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 18:15:51 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/30 19:41:48 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/30 21:40:39 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ typedef enum e_ast_option
 typedef struct s_ast
 {
 	char	***env;
-	t_list	*fd;
+	t_list2	*fd;
+	int		in_fd;
+	int		out_fd;
 	int		*pipe;
 	char	*cmd;
 	char	**args;

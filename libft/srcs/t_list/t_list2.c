@@ -6,13 +6,13 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 13:51:40 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/30 20:06:26 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/30 21:06:49 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list2	*malloc_list(size_t p_push_size)
+t_list2	*malloc_list2(size_t p_push_size)
 {
 	t_list2	*result;
 
@@ -23,11 +23,11 @@ t_list2	*malloc_list(size_t p_push_size)
 		ft_putstr_fd(2, "A int_vector2 can't be malloc");
 		exit(-1);
 	}
-	*result = create_list(p_push_size);
+	*result = create_list2(p_push_size);
 	return (result);
 }
 
-t_list2	create_list(size_t p_push_size)
+t_list2	create_list2(size_t p_push_size)
 {
 	t_list2	result;
 
@@ -39,7 +39,7 @@ t_list2	create_list(size_t p_push_size)
 	return (result);
 }
 
-void	clear_list(t_list2 *to_clear, t_list2_destroy_funct funct)
+void	clear_list2(t_list2 *to_clear, t_list2_destroy_funct funct)
 {
 	size_t	i;
 	size_t	j;
@@ -58,19 +58,19 @@ void	clear_list(t_list2 *to_clear, t_list2_destroy_funct funct)
 	to_clear->size = 0;
 }
 
-void	destroy_list(t_list2 to_destroy, t_list2_destroy_funct funct)
+void	destroy_list2(t_list2 to_destroy, t_list2_destroy_funct funct)
 {
 	size_t	i;
 
 	i = 0;
-	clear_list(&to_destroy, funct);
+	clear_list2(&to_destroy, funct);
 	while (i < to_destroy.nb_line)
 		free(to_destroy.content[i++]);
 	free(to_destroy.content);
 }
 
-void	free_list(t_list2 *to_free, t_list2_destroy_funct funct)
+void	free_list2(t_list2 *to_free, t_list2_destroy_funct funct)
 {
-	destroy_list(*to_free, funct);
+	destroy_list2(*to_free, funct);
 	free(to_free);
 }

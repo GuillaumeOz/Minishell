@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 22:21:13 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/30 19:41:45 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/30 21:35:03 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	cmd_ast(t_lexer *lexer, t_lexer *limiter,
 	(void)ast;
 	if (option == CMD_OPTION_1)
 		if (is_exec_double_greater_io_case(lexer, limiter, &reader) == true)
-			exec_double_greater_io_case();
+			exec_double_greater_io_case(ast, lexer, limiter, &reader);
 		else
 			cmd_ast(lexer, limiter, ast, CMD_OPTION_2);
 	else if (option == CMD_OPTION_2)

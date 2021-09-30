@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 18:32:34 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/30 16:40:12 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/30 21:38:33 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ t_ast	create_ast(char ***env)
 	t_ast ast;
 
 	ast.env = env;
-	ast.fd = NULL;//complete later use guigui t_list
+	ast.fd = malloc_list2(10);
+	ast.in_fd = 0;
+	ast.out_fd = 1;
 	ast.pipe = NULL;
 	ast.cmd = NULL;
 	ast.args = NULL;

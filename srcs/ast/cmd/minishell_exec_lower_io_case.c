@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_line_ast.c                               :+:      :+:    :+:   */
+/*   minishell_exec_lower_io_case.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/18 19:06:04 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/30 17:17:37 by gozsertt         ###   ########.fr       */
+/*   Created: 2021/09/28 21:26:43 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/09/30 15:16:00 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-//	line ::== cmd | line
-//		 ::== cmd
-*/
-
-void	line_ast(t_lexer *lexer, pid_t *pid,
-	char ***env, t_ast_option option)
+void	exec_lower_io_case()
 {
-	t_lexer	*reader;
-
-	reader = NULL;
-	if (option == LINE_OPTION_1
-	&& is_cmd_pipe_case(lexer, &reader) == true)
-		cmd_pipe_case(lexer, reader, pid, env);
-	else
-		cmd_case(lexer, reader, pid, env);
+	PRINTS("LOWER")
 }

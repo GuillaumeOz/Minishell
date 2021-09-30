@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 18:32:34 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/28 17:14:23 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/30 16:40:12 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_ast	create_ast(char ***env)
 	t_ast ast;
 
 	ast.env = env;
+	ast.fd = NULL;//complete later use guigui t_list
 	ast.pipe = NULL;
 	ast.cmd = NULL;
 	ast.args = NULL;
@@ -42,6 +43,7 @@ t_ast	create_ast(char ***env)
 
 void	destroy_ast(t_ast ast)
 {
+	//add t_list gestion
 	if (ast.pipe != NULL)
 		free(ast.pipe);
 	if (ast.cmd != NULL)

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 16:24:18 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/28 19:42:18 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/30 17:17:35 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,18 @@
 //	exec ::== execname + args	args ::== arg + args
 //		 ::== execname				 ::== arg
 
+static void	wait_childs(pid_t *pid, int nb_cmd)
+{
+	int	i;
+
+	i = 0;
+	while (i < nb_cmd)
+	{
+		waitpid(pid[i], &g_exit_code, 0);
+		i++;
+	}
+}
+
 void	abstract_syntax_tree(t_lexer *lexer, char ***env)
 {
 	pid_t	*pid;
@@ -40,4 +52,5 @@ void	abstract_syntax_tree(t_lexer *lexer, char ***env)
 		minishell_error("too many commands");
 	lexer = set_first_lexer(lexer);
 	line_ast(lexer, pid, env, LINE_OPTION_1);
+	wait_childs(pid, lexer->nb_cmd);
 }

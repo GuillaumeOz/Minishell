@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 17:41:18 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/28 19:56:24 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/30 15:17:17 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	cmd_case(t_lexer *lexer, t_lexer *reader, pid_t *pid, char ***env)
 			ast = malloc_ast(env);
 			cmd_ast(lexer, reader, ast, CMD_OPTION_1);
 			free_ast(ast);
+			exit(0);
 		}
 	}
 }

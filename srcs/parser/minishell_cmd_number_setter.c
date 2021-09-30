@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 07:04:12 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/24 07:11:41 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/30 14:40:58 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	cmd_number_setter(t_lexer *lexer)
 	{
 		if (tmp->type == PIPE)
 			count++;
-		tmp->next;
+		tmp = tmp->next;
 	}
 	tmp = lexer;
 	while (tmp != NULL)
 	{
 		tmp->nb_cmd = count;
-		tmp->next;
+		tmp = tmp->next;
 	}
 }

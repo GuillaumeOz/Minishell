@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 16:09:39 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/28 19:26:15 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/28 21:20:07 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@ t_bool	is_exec_lower_io_case(t_lexer *lexer,
 			t_lexer *limiter, t_lexer **reader);
 t_bool	is_exec_case(t_lexer *lexer, t_lexer *limiter, t_lexer **reader);
 
-// typedef t_bool (*t_is_cmd_ast)(t_lexer *lexer, t_lexer *limiter, t_lexer **reader);
+void	exec_case();
+void	exec_lower_io_case();
+void	exec_greater_io_case();
+void	exec_double_lower_io_case();
+void	exec_double_greater_io_case();
 
 void	cmd_ast(t_lexer *lexer,
 			t_lexer *limiter, t_ast * ast, t_ast_option option);

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:08:30 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/26 17:20:57 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/30 14:38:35 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	set_lexer_error(t_lexer *lexer)
 
 void	minishell_error(char *error_msg)
 {
-	set_lexer_error(lexer);
 	ft_putstr_fd(2, "Minishell: critical error, ");
 	ft_putstr_fd(2, error_msg);
 	ft_putstr_fd(2, "\n");

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 18:15:51 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/26 17:17:25 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/30 16:35:28 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,20 @@ typedef enum e_ast_option
 	ERROR,//its usefull ?
 
 	LINE_OPTION_1,
-	LINE_OPTION_2,
+	LINE_OPTION_2,//suppri this ?
 
 	CMD_OPTION_1,
 	CMD_OPTION_2,
 	CMD_OPTION_3,
 	CMD_OPTION_4,
-	CMD_OPTION_5,
+	CMD_OPTION_5,//same ?
 
 }				t_ast_option;
 
 typedef struct s_ast
 {
 	char	***env;
+	t_list	*fd;
 	int		*pipe;
 	char	*cmd;
 	char	**args;

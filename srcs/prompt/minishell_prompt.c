@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 16:02:51 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/22 15:08:45 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/09/27 17:19:19 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	quit(char **env, t_bool print_exit)
 	if (print_exit == true)
 		ft_putstr("exit\n");
 	ft_free_tab((void **)env);
+	clear_history();
 	exit(return_val);
 }
 
@@ -29,7 +30,7 @@ void	prompt(char ***env)
 	{
 		line = readline(_BLUE"("_RED"Minishell" _BLUE") "_GREEN"➜"_WHITE" ");
 		if (line != NULL && ft_strcmp(line, "\n") > 0
-			&& ft_str_is_only_whitespaces(line) == 0)
+			&& ft_str_is_only_whitespaces(line) == false)
 		{
 			// lexer = tokenizer(line);
 			// parser(lexer);

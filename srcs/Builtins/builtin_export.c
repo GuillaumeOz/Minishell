@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 15:43:51 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/23 15:52:34 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/09/27 17:15:33 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,14 @@ int	set_env(const char *name, const char *value, char ***env)
 
 	if (name == NULL)
 		return (-1);
-	if (ft_strcmp((char *)name, "=") == 0)
-		return (-1);
 	if (find_var_env(*env, (char *)name) >= 0)
 	{
 		if (value != NULL)
-			*env[find_var_env(*env, (char *)name)] = ft_strdup((char *)name);
+		{
+			free(*env[find_var_env(*env, (char *)name)]);
+			*env[find_var_env(*env, (char *)name)] = ft_strjoin((char *)name,
+				(char *)value);
+		}
 		return (EXIT_SUCCESS);
 	}
 	if (value == NULL)

@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:12:52 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/23 15:54:24 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/09/24 14:55:15 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	parse_splited_line(char **splited_line, char ***env, int pipe)
 		return_val = print_env(*env);
 	else if (ft_strcmp(splited_line[0], "pwd") == 0
 		&& splited_line[1] == NULL)
-		print_pwd();
+		return_val = print_pwd();
 	else if (ft_strcmp(splited_line[0], "unset") == 0
 		&& splited_line[1] != NULL)
 		return_val = unset_env(splited_line[1], env);
@@ -55,10 +55,7 @@ static void	parse_splited_line(char **splited_line, char ***env, int pipe)
 	{
 		cmd = find_cmd(*env, splited_line[0]);
 		if (pipe == 1)
-		{
-			if (execve(cmd, splited_line, *env) == -1)
-				exit(EXIT_FAILURE);
-		}
+			execve(cmd, splited_line, *env);
 		else
 			launch_fork(splited_line, *env, cmd);
 		free(cmd);
@@ -71,9 +68,9 @@ void	pipe_fork(char **env, char *line)
 	int		pipefd[2];
 	pid_t	cpid;
 	char	**splited_line;
-	int		status;
+	// int		status;
 
-	status = 0;
+	// status = 0;
 	splited_line = ft_split(line, '|');
 	// (void)env;
 	// if (ft_tab_len((void **)line) != 2)
@@ -92,6 +89,7 @@ void	pipe_fork(char **env, char *line)
 		dup2(pipefd[0], 0);
 		close(pipefd[0]);
 		parse_line(splited_line[1], &env, 1);
+		exit(EXIT_SUCCESS);
 	}
 	else
 	{	/* Parent writes first command to pipe */
@@ -99,7 +97,8 @@ void	pipe_fork(char **env, char *line)
 		dup2(pipefd[1], 1);
 		close(pipefd[1]);			/* Reader will see EOF */
 		parse_line(splited_line[0], &env, 1);
-		waitpid(cpid, &status, 0);
+		// waitpid(cpid, &status, 0);
+		exit(EXIT_SUCCESS);
 	}
 }
 

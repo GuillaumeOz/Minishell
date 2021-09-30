@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:15:15 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/23 16:16:33 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/09/27 15:11:01 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,19 @@ void	change_pwd(char ***env, char *splited_line)
 {
 	// int		env_index;
 	// int		i;
-	// char	**tmp;
+	char	*tmp;
 
+	(void)splited_line;
+	(void)env;
+
+	tmp = getenv("PWD");
+	set_env("OLDPWD", tmp, env);
 	// i = 0;
 	// tmp = NULL;
 	// env_index = find_var_env(*env, "PWD");
-	(void)splited_line;
-	(void)env;
 	// if (ft_strcmp(splited_line, "..") == 0)
 	// {
-	// 	// tmp = ft_split(*env[env_index], '/');
+	// 	tmp = ft_split(*env[env_index], '/');
 	// 	while (tmp[i++])
 	// 	ft_strjoin("/", tmp[i]);
 	// 	ft_rm_charset(*env[env_index], tmp[i]);

@@ -6,23 +6,19 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:15:15 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/27 15:11:01 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/09/30 17:52:31 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	change_pwd(char ***env, char *splited_line)
+void	change_pwd(char ***env)
 {
 	// int		env_index;
 	// int		i;
-	char	*tmp;
 
-	(void)splited_line;
-	(void)env;
-
-	tmp = getenv("PWD");
-	set_env("OLDPWD", tmp, env);
+	set_env("OLDPWD", (*env)[find_var_env(*env, "PWD")] + 4, env);
+	set_env("PWD", get_pwd(), env);
 	// i = 0;
 	// tmp = NULL;
 	// env_index = find_var_env(*env, "PWD");

@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 15:43:51 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/27 17:15:33 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/09/30 17:41:25 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	print_env_ascii(char **env)
 	}
 }
 
-int	export_whiout_argument(char **env)
+int	export_without_argument(char **env)
 {
 	int		i;
 	int		j;
@@ -64,26 +64,27 @@ int	export_whiout_argument(char **env)
 	return (EXIT_SUCCESS);
 }
 
-int	set_env(const char *name, const char *value, char ***env)
+int	set_env(char *name, char *value, char ***env)
 {
 	char	*variable;
+	int		env_index;
 
 	if (name == NULL)
 		return (-1);
-	if (find_var_env(*env, (char *)name) >= 0)
+	env_index = find_var_env(*env, name);
+	if (env_index >= 0)
 	{
 		if (value != NULL)
 		{
-			free(*env[find_var_env(*env, (char *)name)]);
-			*env[find_var_env(*env, (char *)name)] = ft_strjoin((char *)name,
-				(char *)value);
+			free((*env)[env_index]);
+			(*env)[env_index] = ft_strjoin(ft_strjoin(name, "="), value);
 		}
 		return (EXIT_SUCCESS);
 	}
 	if (value == NULL)
-		variable = ft_strdup((char *)name);
+		variable = ft_strdup(name);
 	else
-		variable = ft_strjoin((char *)name, (char *)value);
+		variable = ft_strjoin(name, value);
 	ft_add_to_tab((void *)variable, (void ***)env);
 	return (EXIT_SUCCESS);
 }

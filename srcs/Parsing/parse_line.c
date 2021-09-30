@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:12:52 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/24 14:55:15 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/09/30 17:16:08 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@ static void	parse_splited_line(char **splited_line, char ***env, int pipe)
 	}
 	else if (ft_strcmp(splited_line[0], "cd") == 0)
 	{
+		if (splited_line[1] == NULL)
+		{
+			if (chdir(getenv("HOME")) != 0)
+				printf("cd: %s: Aucun fichier ou dossier de ce type\n",
+					getenv("HOME"));
+			change_pwd(env);
+			return ;
+		}
 		if (splited_line[2] != NULL)
 		{
 			return_val = 1;
@@ -35,7 +43,7 @@ static void	parse_splited_line(char **splited_line, char ***env, int pipe)
 		else if (chdir(splited_line[1]) != 0)
 			printf("cd: %s: Aucun fichier ou dossier de ce type\n",
 				splited_line[1]);
-		change_pwd(env, splited_line[1]);
+		change_pwd(env);
 	}
 	else if (ft_strcmp(splited_line[0], "env") == 0
 		&& splited_line[1] == NULL)
@@ -50,7 +58,7 @@ static void	parse_splited_line(char **splited_line, char ***env, int pipe)
 		&& splited_line[1] != NULL)
 			return_val = set_env(splited_line[1] , ft_strdup(""), env);
 	else if (ft_strcmp(splited_line[0], "export") == 0 && splited_line[1] == NULL)
-		return_val = export_whiout_argument(*env);
+		return_val = export_without_argument(*env);
 	else
 	{
 		cmd = find_cmd(*env, splited_line[0]);

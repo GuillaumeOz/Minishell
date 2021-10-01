@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 17:41:18 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/30 21:00:40 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/01 21:40:25 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	cmd_case(t_lexer *lexer, t_lexer *reader, pid_t *pid, char ***env)
 	if (lexer->fork == false)
 	{
 		ast = malloc_ast(env);
-		cmd_ast(lexer, reader, ast, CMD_OPTION_1);
+		cmd_ast(lexer, reader, ast);
 		free_ast(ast);
 	}
 	else
@@ -29,7 +29,7 @@ void	cmd_case(t_lexer *lexer, t_lexer *reader, pid_t *pid, char ***env)
 		if (*pid == 0)
 		{
 			ast = malloc_ast(env);
-			cmd_ast(lexer, reader, ast, CMD_OPTION_1);
+			cmd_ast(lexer, reader, ast);
 			free_ast(ast);
 			exit(0);//remove this later execve
 		}

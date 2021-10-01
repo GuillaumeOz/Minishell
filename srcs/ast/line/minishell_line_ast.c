@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 19:06:04 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/30 21:40:21 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/01 21:40:21 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,12 @@
 //		 ::== cmd
 */
 
-void	line_ast(t_lexer *lexer, pid_t *pid,
-	char ***env, t_ast_option option)
+void	line_ast(t_lexer *lexer, pid_t *pid, char ***env)
 {
 	t_lexer	*reader;
 
 	reader = NULL;
-	if (option == LINE_OPTION_1
-	&& is_cmd_pipe_case(lexer, &reader) == true)
+	if (is_cmd_pipe_case(lexer, &reader) == true)
 		cmd_pipe_case(lexer, reader, pid, env);
 	else
 		cmd_case(lexer, reader, pid, env);

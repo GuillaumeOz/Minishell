@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 16:24:18 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/30 21:06:57 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/01 21:40:17 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ void	abstract_syntax_tree(t_lexer *lexer, char ***env)
 	if (pid == NULL)
 		minishell_error("too many commands");
 	lexer = set_first_lexer(lexer);
-	line_ast(lexer, pid, env, LINE_OPTION_1);
+	line_ast(lexer, pid, env);
 	wait_childs(pid, lexer->nb_cmd);
 }

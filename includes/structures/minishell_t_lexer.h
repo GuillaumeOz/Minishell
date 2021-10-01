@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 18:50:00 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/24 07:10:34 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/30 22:07:23 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_lexer
 	t_bool				error;
 	int					nb_cmd;
 	char				*args;
+	t_bool				over;
 	struct s_lexer		*previous;
 	struct s_lexer		*next;
 }				t_lexer;

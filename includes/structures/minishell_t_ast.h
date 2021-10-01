@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 18:15:51 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/30 21:40:39 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/01 21:31:18 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,35 +27,22 @@
 	// int		here_doc_pipe[2];
 	// char	*limiter;
 
-typedef enum e_ast_option
-{
-	ERROR,//its usefull ?
-
-	LINE_OPTION_1,
-	LINE_OPTION_2,//suppri this ?
-
-	CMD_OPTION_1,
-	CMD_OPTION_2,
-	CMD_OPTION_3,
-	CMD_OPTION_4,
-	CMD_OPTION_5,//same ?
-
-}				t_ast_option;
-
 typedef struct s_ast
 {
 	char	***env;
-	t_list2	*fd;
-	int		in_fd;
-	int		out_fd;
+	t_list2	*in_fd;
+	t_list2	*out_fd;
 	int		*pipe;
+	t_bool	here_doc;
+	int		here_doc_pipe[2];
 	char	*cmd;
 	char	**args;
-	char	*limiter;
+	char	**limiter;
 }				t_ast;
 
 t_ast	*malloc_ast(char ***env);
 t_ast	create_ast(char ***env);
+void	destroy_fd_list_ast(void *to_destroy);
 void	destroy_ast(t_ast ast);
 void	free_ast(t_ast *ast);
 

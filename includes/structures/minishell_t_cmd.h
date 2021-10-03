@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_t_ast.h                                  :+:      :+:    :+:   */
+/*   minishell_t_cmd.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 18:15:51 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/01 21:31:18 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/03 19:31:17 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_T_AST_H
-# define MINISHELL_T_AST_H
+#ifndef MINISHELL_T_CMD_H
+# define MINISHELL_T_CMD_H
 
 	// int		cmd_nb;
 	// int		pipe_nb;
@@ -27,7 +27,7 @@
 	// int		here_doc_pipe[2];
 	// char	*limiter;
 
-typedef struct s_ast
+typedef struct s_cmd
 {
 	char	***env;
 	t_list2	*in_fd;
@@ -38,12 +38,12 @@ typedef struct s_ast
 	char	*cmd;
 	char	**args;
 	char	**limiter;
-}				t_ast;
+}				t_cmd;
 
-t_ast	*malloc_ast(char ***env);
-t_ast	create_ast(char ***env);
-void	destroy_fd_list_ast(void *to_destroy);
-void	destroy_ast(t_ast ast);
-void	free_ast(t_ast *ast);
+t_cmd	*malloc_cmd(char ***env);
+t_cmd	create_cmd(char ***env);
+void	destroy_fd_list_cmd(void *to_destroy);
+void	destroy_cmd(t_cmd cmd);
+void	free_cmd(t_cmd *ast);
 
 #endif

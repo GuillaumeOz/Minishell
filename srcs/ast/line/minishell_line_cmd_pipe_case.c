@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 17:38:54 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/30 21:50:42 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/03 19:38:18 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	cmd_pipe_case(t_lexer *lexer, t_lexer *reader, pid_t *pid, char ***env)
 	if (*pid == 0)
 	{
 		ast = malloc_ast(env);
-		cmd_ast(lexer, reader, ast);
+		cmd_handler(lexer);
 		free_ast(ast);
 		exit(0);//delete this
 	}

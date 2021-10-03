@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 17:04:53 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/01 16:00:56 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/03 19:25:26 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include <errno.h>
 # include "libft.h"
 # include "minishell_t_lexer.h"
-# include "minishell_t_ast.h"
+# include "minishell_t_cmd.h"
 # include "minishell_quit.h"
 # include "minishell_error.h"
 # include "minishell_signals.h"

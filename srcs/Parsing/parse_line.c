@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:12:52 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/30 17:16:08 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/05 16:25:47 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,14 @@ static void	parse_splited_line(char **splited_line, char ***env, int pipe)
 		return_val = unset_env(splited_line[1], env);
 	else if (ft_strcmp(splited_line[0], "export") == 0
 		&& splited_line[1] != NULL)
-			return_val = set_env(splited_line[1] , ft_strdup(""), env);
+			return_val = set_env(splited_line[1] , "", env);
 	else if (ft_strcmp(splited_line[0], "export") == 0 && splited_line[1] == NULL)
 		return_val = export_without_argument(*env);
 	else
 	{
 		cmd = find_cmd(*env, splited_line[0]);
+		if (cmd == NULL)
+			return ;
 		if (pipe == 1)
 			execve(cmd, splited_line, *env);
 		else

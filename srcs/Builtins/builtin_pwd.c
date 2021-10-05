@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:15:15 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/30 17:52:31 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/05 16:26:08 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,8 @@
 
 void	change_pwd(char ***env)
 {
-	// int		env_index;
-	// int		i;
-
 	set_env("OLDPWD", (*env)[find_var_env(*env, "PWD")] + 4, env);
 	set_env("PWD", get_pwd(), env);
-	// i = 0;
-	// tmp = NULL;
-	// env_index = find_var_env(*env, "PWD");
-	// if (ft_strcmp(splited_line, "..") == 0)
-	// {
-	// 	tmp = ft_split(*env[env_index], '/');
-	// 	while (tmp[i++])
-	// 	ft_strjoin("/", tmp[i]);
-	// 	ft_rm_charset(*env[env_index], tmp[i]);
-	// 	ft_free_tab((void **)tmp);
-	// }
 }
 
 char	*get_pwd(void)

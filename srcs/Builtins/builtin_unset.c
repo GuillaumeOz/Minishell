@@ -6,27 +6,17 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 16:09:58 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/22 17:32:24 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/05 16:50:57 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	unset_env(char *name, char ***env)
+static void	realloc_env(char ***env, char **tmp, int env_index)
 {
-	int		env_index;
-	char	**tmp;
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
-	tmp = *env;
-	env_index = find_var_env(tmp, name);
-	if (env_index == -1)
-	{
-		printf("minishell: unset: « %s » : identifiant non valable\n", name);
-		return (-1);
-	}
-	*env = (char **)ft_tab_new(ft_tab_len((void **)tmp));
 	i = 0;
 	j = 0;
 	while (tmp[i])
@@ -38,6 +28,24 @@ int	unset_env(char *name, char ***env)
 		}
 		i++;
 	}
-	return (EXIT_SUCCESS);
+}
+
+int	unset_env(char *name, char ***env)
+{
+	int		env_index;
+	char	**tmp;
+
+	if (name == NULL || name[0] == '=' || ft_is_digit(name[0]) == true)
+	{
+		printf("minishell: unset: « %s » : identifiant non valable\n", name);
+		return (EXIT_FAILURE);
+	}
+	env_index = find_var_env(*env, name);
+	if (env_index == -1)
+		return (EXIT_SUCCESS);
+	tmp = *env;
+	*env = (char **)ft_tab_new(ft_tab_len((void **)tmp));
+	realloc_env(env, tmp, env_index);
 	ft_free_tab((void **)tmp);
+	return (EXIT_SUCCESS);
 }

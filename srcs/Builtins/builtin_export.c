@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 15:43:51 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/30 17:41:25 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/05 15:42:10 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,28 @@ static void	ft_swap(char **x, char **y)
 
 static void	print_env_ascii(char **env)
 {
-	int	i;
+	int		i;
+	int		j;
+	t_bool	find_equal;
 
 	i = 0;
 	while (env[i] != NULL)
 	{
+		find_equal = false;
 		ft_putstr("declare -x ");
-		ft_putstr(env[i]);
+		j = 0;
+		while (env[i][j])
+		{
+			ft_putchar(env[i][j]);
+			if (env[i][j] == '=')
+			{
+				ft_putchar('"');
+				find_equal = true;
+			}
+			j++;
+		}
+		if (find_equal == true)
+			ft_putchar('"');
 		ft_putchar('\n');
 		i++;
 	}
@@ -69,8 +84,11 @@ int	set_env(char *name, char *value, char ***env)
 	char	*variable;
 	int		env_index;
 
-	if (name == NULL)
-		return (-1);
+	if (name == NULL || name[0] == '=' || ft_is_digit(name[0]) == true)
+	{
+		printf("minishell: unset: « %s » : identifiant non valable\n", name);
+		return (EXIT_FAILURE);
+	}
 	env_index = find_var_env(*env, name);
 	if (env_index >= 0)
 	{

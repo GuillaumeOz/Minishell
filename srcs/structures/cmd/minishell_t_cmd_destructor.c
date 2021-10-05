@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_t_ast_destructor.c                       :+:      :+:    :+:   */
+/*   minishell_t_cmd_destructor.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:57:36 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/03 15:07:27 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/05 17:17:01 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	destroy_fd_list_ast(void *to_destroy)
+void	destroy_fd_list_cmd(void *to_destroy)
 {
 	// int *fd;
 
@@ -21,21 +21,20 @@ void	destroy_fd_list_ast(void *to_destroy)
 	free(to_destroy);
 }
 
-void	destroy_ast(t_ast ast)
+void	destroy_cmd(t_cmd cmd)
 {
-	free_list2(ast.in_fd, destroy_fd_list_ast);// case when there are no in out fd
-	free_list2(ast.out_fd, destroy_fd_list_ast);
-	if (ast.pipe != NULL)
-		free(ast.pipe);
-	if (ast.cmd != NULL)
-		free(ast.cmd);
-	if (ast.args != NULL)
-		ft_free_tab((void **)ast.args);
+	free_list2(cmd.in_fd, destroy_fd_list_cmd);// case when there are no in out fd
+	free_list2(cmd.out_fd, destroy_fd_list_cmd);
+	if (cmd.pipe != NULL)
+		free(cmd.pipe);
+	if (cmd.cmd != NULL)
+		free(cmd.cmd);
+	if (cmd.args != NULL)
+		ft_free_tab((void **)cmd.args);
 }
-// typedef void	(*t_list2_destroy_funct)(void *to_destroy);
 
-void	free_ast(t_ast *ast)
+void	free_cmd(t_cmd *cmd)
 {
-	destroy_ast(*ast);
-	free(ast);
+	destroy_cmd(*cmd);
+	free(cmd);
 }

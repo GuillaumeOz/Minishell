@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_line_cmd_pipe_case.c                     :+:      :+:    :+:   */
+/*   minishell_line_cmd_case.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/28 17:38:54 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/03 19:38:18 by gozsertt         ###   ########.fr       */
+/*   Created: 2021/09/28 17:41:18 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/10/05 17:15:50 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	cmd_pipe_case(t_lexer *lexer, t_lexer *reader, pid_t *pid, char ***env)
+void	cmd_case(t_lexer *lexer, t_lexer *reader, pid_t *pid, char ***env)
 {
 	t_ast	*ast;
 
 	ast = NULL;
-	*pid = fork();
-	if (*pid == 0)
+	if (lexer->fork == false)
 	{
 		ast = malloc_ast(env);
-		cmd_handler(lexer);
+		cmd_handler(lexer);//redocall cmd here
 		free_ast(ast);
-		exit(0);//delete this
 	}
-	line_ast(reader, pid + 1, env);
+	else
+	{
+		*pid = fork();
+		if (*pid == 0)
+		{
+			ast = malloc_ast(env);
+			cmd_handler(lexer);//redo call cmd here
+			free_ast(ast);
+			exit(0);//remove this later execve
+		}
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 16:27:33 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/03 16:41:09 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/05 14:39:49 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	here_doc_get_next_line(int fd, char **line)
 	return (ret);
 }
 
-static void	exec_here_doc_routine(t_ast *ast)
+static void	exec_here_doc_routine(t_cmd *cmd)
 {
 	char	*line;
 	size_t	len;
@@ -56,32 +56,32 @@ static void	exec_here_doc_routine(t_ast *ast)
 	i = 0;
 	while (here_doc_get_next_line(0, &line) > 0)
 	{
-		if (ft_strcmp(line, ast->limiter[i]) == 0)
+		if (ft_strcmp(line, cmd->limiter[i]) == 0)
 		{
 			// write(1, "\n", 1);
 			free(line);
 			i++;
-			if (ast->limiter[i] == NULL)
+			if (cmd->limiter[i] == NULL)
 				break ;
 		}
 		else
 		{
 			len = ft_strlen(line);
-			write(ast->here_doc_pipe[1], line, len);
-			write(ast->here_doc_pipe[1], "\n", 1);
+			write(cmd->here_doc_pipe[1], line, len);
+			write(cmd->here_doc_pipe[1], "\n", 1);
 			free(line);
 		}
 		write(1, "> ", 2);
 	}
 }
 
-void	exec_here_doc(t_ast *ast, t_lexer *lexer, t_lexer *limiter)
+void	exec_here_doc(t_cmd *cmd, t_lexer *lexer, t_lexer *limiter)
 {
-	pipe(ast->here_doc_pipe);
+	pipe(cmd->here_doc_pipe);
 	write(1, "> ", 2);
-	exec_here_doc_routine(ast);
-	close(ast->here_doc_pipe[1]);
-	ft_free_tab((void **)ast->limiter);
-	ast->limiter = NULL;
-	cmd_input_gestion(lexer, limiter, ast);
+	exec_here_doc_routine(cmd);
+	close(cmd->here_doc_pipe[1]);
+	ft_free_tab((void **)cmd->limiter);
+	cmd->limiter = NULL;
+	cmd_input_gestion(lexer, limiter, cmd);
 }

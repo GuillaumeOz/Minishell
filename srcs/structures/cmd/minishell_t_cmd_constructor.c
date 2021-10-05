@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_t_ast_constructor.c                      :+:      :+:    :+:   */
+/*   minishell_t_cmd_constructor.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:57:07 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/01 21:01:14 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/05 14:59:23 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_ast	*malloc_ast(char ***env)
+t_cmd	*malloc_cmd(char ***env)
 {
-	t_ast	*ast;
+	t_cmd	*cmd;
 
-	ast = (t_ast *)malloc(sizeof(t_ast));
-	if (ast == NULL)
+	cmd = (t_cmd *)malloc(sizeof(t_cmd));
+	if (cmd == NULL)
 		minishell_error("t_lexer can't be allocate");
-	*ast = create_ast(env);
-	return (ast);
+	*cmd = create_cmd(env);
+	return (cmd);
 }
 
-static void create_in_out_file_ast(t_ast *ast)
+static void create_in_out_file_cmd(t_cmd *cmd)
 {
 	int	*in_std;
 	int	*out_std;
@@ -34,22 +34,22 @@ static void create_in_out_file_ast(t_ast *ast)
 		minishell_error("int * cannot be allocated");
 	*in_std = 0;
 	*out_std = 1;
-	ast->in_fd = malloc_list2(10);
-	list2_push_back(ast->in_fd, in_std);
-	ast->out_fd = malloc_list2(10);
-	list2_push_back(ast->out_fd, out_std);
+	cmd->in_fd = malloc_list2(10);
+	list2_push_back(cmd->in_fd, in_std);
+	cmd->out_fd = malloc_list2(10);
+	list2_push_back(cmd->out_fd, out_std);
 }
 
-t_ast	create_ast(char ***env)
+t_cmd	create_cmd(char ***env)
 {
-	t_ast	ast;
+	t_cmd	cmd;
 
-	ast.env = env;
-	create_in_out_file_ast(&ast);
-	ast.here_doc = false;
-	ast.pipe = NULL;
-	ast.cmd = NULL;
-	ast.args = NULL;
-	ast.limiter = NULL;
-	return (ast);
+	cmd.env = env;
+	create_in_out_file_cmd(&cmd);
+	cmd.here_doc = false;
+	cmd.pipe = NULL;
+	cmd.cmd = NULL;
+	cmd.args = NULL;
+	cmd.limiter = NULL;
+	return (cmd);
 }

@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_line_cmd_case.c                          :+:      :+:    :+:   */
+/*   minishell_exec_is_case.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/28 17:41:18 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/03 19:38:13 by gozsertt         ###   ########.fr       */
+/*   Created: 2021/09/24 03:56:41 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/10/05 16:22:28 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	cmd_case(t_lexer *lexer, t_lexer *reader, pid_t *pid, char ***env)
+t_bool	is_exec_case(t_lexer *lexer, t_lexer *limiter, t_lexer **reader)
 {
-	t_ast	*ast;
-
-	ast = NULL;
-	if (lexer->fork == false)
+	while (lexer != limiter)
 	{
-		ast = malloc_ast(env);
-		cmd_handler(lexer);//redocall cmd here
-		free_ast(ast);
-	}
-	else
-	{
-		*pid = fork();
-		if (*pid == 0)
+		if (lexer->type == ARGS && lexer->over == false)
 		{
-			ast = malloc_ast(env);
-			cmd_handler(lexer);//redo call cmd here
-			free_ast(ast);
-			exit(0);//remove this later execve
+			lexer->over = true;
+			(*reader) = lexer;
+			return (true);
 		}
+		lexer = lexer->next;
 	}
+	return (false);
 }

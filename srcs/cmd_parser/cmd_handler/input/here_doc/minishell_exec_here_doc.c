@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 16:27:33 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/05 14:39:49 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/07 16:27:41 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,12 @@ static void	exec_here_doc_routine(t_cmd *cmd)
 
 void	exec_here_doc(t_cmd *cmd, t_lexer *lexer, t_lexer *limiter)
 {
-	pipe(cmd->here_doc_pipe);
+	pipe(cmd->here_doc_pipe);//test signal in heredoc
 	write(1, "> ", 2);
 	exec_here_doc_routine(cmd);
 	close(cmd->here_doc_pipe[1]);
 	ft_free_tab((void **)cmd->limiter);
+	cmd->here_doc = true;
 	cmd->limiter = NULL;
-	cmd_input_gestion(lexer, limiter, cmd);
+	cmd_input_gestion(lexer, limiter, cmd);// change this later for handle < file << end | < file1 << end2
 }

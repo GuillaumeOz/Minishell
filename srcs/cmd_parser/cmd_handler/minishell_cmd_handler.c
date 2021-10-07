@@ -6,26 +6,11 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 22:21:13 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/05 17:15:58 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/07 16:23:56 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-//	cmd	 ::== exec >> io
-//		 ::== exec << io
-//		 ::== exec < io
-//		 ::== exec > io
-//		 ::== exec
-//
-//	io	 ::== file >> file
-//       ::== file << file
-//       ::== file < file
-//       ::== file > file
-//       ::== file
-//
-//	exec ::== execname + args	args ::== arg + args
-//		 ::== execname				 ::== arg
 
 void	cmd_exec_args_handler(t_lexer *lexer, t_lexer *limiter, t_cmd *cmd)
 {
@@ -72,9 +57,9 @@ void	cmd_handler(t_lexer *lexer, t_list2 *cmd_list, char ***env)
 	t_cmd	*cmd;
 
 	reader = lexer;
-	if (is_cmd_pipe_case(lexer, reader) == true)
+	if (is_cmd_pipe_case(lexer, &reader) == true)
 	{
-		cmd = malloc_cmd(env);
+		cmd = malloc_cmd(env);// handle the case "< file << end | < file2 << end1" as same as bash
 		cmd_input_gestion(lexer, reader, cmd);
 		cmd_output_gestion(lexer, reader, cmd);
 		cmd_exec_args_handler(lexer, reader, cmd);

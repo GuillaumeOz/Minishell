@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 16:09:39 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/05 17:21:30 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/05 18:53:54 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 # define MINISHELL_CMD_PARSER_H
 
 
-t_bool	is_cmd_pipe_case(t_lexer *lexer, t_lexer **reader);
 
-void	cmd_case(t_lexer *lexer, t_lexer *reader, pid_t *pid, char ***env);
-void	cmd_pipe_case(t_lexer *lexer, t_lexer *reader, pid_t *pid, char ***env);
+// void	cmd_case(t_lexer *lexer, t_lexer *reader, pid_t *pid, char ***env);
+// void	cmd_pipe_case(t_lexer *lexer, t_lexer *reader, pid_t *pid, char ***env);
 
-void	line_cmd(t_lexer *lexer, pid_t *pid, char ***env);
+// void	line_cmd(t_lexer *lexer, pid_t *pid, char ***env);
 
 
 
@@ -55,6 +54,8 @@ void	exec_double_lower_io_case(t_cmd *cmd, t_lexer *lexer,
 			t_lexer *limiter, t_lexer **reader);
 void	cmd_input_gestion(t_lexer *lexer, t_lexer *limiter, t_cmd *cmd);
 
+
+t_bool	is_cmd_pipe_case(t_lexer *lexer, t_lexer **reader);
 
 void	cmd_handler(t_lexer *lexer, t_list2 *cmd_list, char ***env);
 

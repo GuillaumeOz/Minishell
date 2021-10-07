@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:57:07 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/05 14:59:23 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/05 20:50:36 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ static void create_in_out_file_cmd(t_cmd *cmd)
 		minishell_error("int * cannot be allocated");
 	*in_std = 0;
 	*out_std = 1;
-	cmd->in_fd = malloc_list2(10);
+	cmd->in_fd = malloc_list2(1);
 	list2_push_back(cmd->in_fd, in_std);
-	cmd->out_fd = malloc_list2(10);
+	cmd->out_fd = malloc_list2(1);
 	list2_push_back(cmd->out_fd, out_std);
 }
 

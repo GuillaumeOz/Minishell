@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 18:15:51 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/05 14:30:57 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/07 16:23:26 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ t_cmd	*malloc_cmd(char ***env);
 t_cmd	create_cmd(char ***env);
 void	destroy_fd_list_cmd(void *to_destroy);
 void	destroy_cmd(t_cmd cmd);
-void	free_cmd(t_cmd *ast);
+void	free_cmd(void *cmd);
 
 #endif

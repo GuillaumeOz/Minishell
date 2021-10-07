@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 17:04:53 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/05 14:58:37 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/07 16:23:05 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int g_exit_code;
 #define debug     write(1, "ICI\n", 4);
 #define info     printf("line -> %d, fonction -> %s\n", __LINE__, __func__);
 #define PRINTD(x) printf("%d\n", x);
+#define PRINTP(x) printf("%p\n", x);
 #define PRINTC(x) printf("%c\n", x);
 #define PRINTS(x) printf("%s\n", x);
 

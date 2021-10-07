@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 14:00:05 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/30 22:08:10 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/07 16:15:00 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ t_lexer	create_lexer(t_token_type type, t_token_format format)
 
 void	destroy_lexer(t_lexer to_destroy)
 {
-	if (to_destroy.args != NULL)
-		free(to_destroy.args);
+	(void)to_destroy;//check leaks later
+	// if (to_destroy.args != NULL)
+	// 	free(to_destroy.args);
 }
 
 void	free_lexer(t_lexer *to_free)

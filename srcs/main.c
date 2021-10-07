@@ -6,13 +6,11 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 17:05:03 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/24 01:28:35 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/07 16:28:31 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// extern int g_exit_code;
 
 int	main(int argc, char **argv, char **env)
 {

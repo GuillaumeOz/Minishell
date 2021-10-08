@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 16:09:39 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/05 18:53:54 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/08 16:21:06 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 # define MINISHELL_CMD_PARSER_H
 
 
-
 // void	cmd_case(t_lexer *lexer, t_lexer *reader, pid_t *pid, char ***env);
 // void	cmd_pipe_case(t_lexer *lexer, t_lexer *reader, pid_t *pid, char ***env);
 
 // void	line_cmd(t_lexer *lexer, pid_t *pid, char ***env);
 
-
-
+void	cmd_pos_setter(t_lexer *lexer,t_list2 *cmd_list);
 
 t_bool	is_exec_case(t_lexer *lexer, t_lexer *limiter, t_lexer **reader);
 

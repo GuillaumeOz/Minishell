@@ -6,11 +6,30 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 22:21:13 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/07 16:23:56 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/08 15:56:08 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	cmd_pos_setter(t_lexer *lexer, t_list2 *cmd_list)
+{
+	t_cmd	*cmd;
+	int		i;
+
+	i = 0;
+	while (i < lexer->nb_cmd)
+	{
+		cmd = list2_at(cmd_list, i);
+		if (i == 0)
+			cmd->pos = FIRST_POSITION;
+		else if (i == (lexer->nb_cmd - 1))
+			cmd->pos = LAST_POSITION;
+		else
+			cmd->pos = MIDDLE_POSITION;
+		i++;
+	}
+}
 
 void	cmd_exec_args_handler(t_lexer *lexer, t_lexer *limiter, t_cmd *cmd)
 {
@@ -59,7 +78,7 @@ void	cmd_handler(t_lexer *lexer, t_list2 *cmd_list, char ***env)
 	reader = lexer;
 	if (is_cmd_pipe_case(lexer, &reader) == true)
 	{
-		cmd = malloc_cmd(env);// handle the case "< file << end | < file2 << end1" as same as bash
+		cmd = malloc_cmd(env, NO_POSITION);// handle the case "< file << end | < file2 << end1" as same as bash
 		cmd_input_gestion(lexer, reader, cmd);
 		cmd_output_gestion(lexer, reader, cmd);
 		cmd_exec_args_handler(lexer, reader, cmd);
@@ -68,10 +87,11 @@ void	cmd_handler(t_lexer *lexer, t_list2 *cmd_list, char ***env)
 	}
 	else
 	{
-		cmd = malloc_cmd(env);
+		cmd = malloc_cmd(env, NO_POSITION);
 		cmd_input_gestion(lexer, NULL, cmd);
 		cmd_output_gestion(lexer, NULL, cmd);
 		cmd_exec_args_handler(lexer, NULL, cmd);
 		list2_push_back(cmd_list, cmd);
 	}
+	cmd_pos_setter(lexer, cmd_list);
 }

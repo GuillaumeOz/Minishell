@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_tokenizer.h                              :+:      :+:    :+:   */
+/*   minishell_cmd_exec.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/13 15:05:05 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/07 19:28:55 by gozsertt         ###   ########.fr       */
+/*   Created: 2021/10/07 18:21:39 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/10/08 17:12:34 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_TOKENIZER_H
-# define MINISHELL_TOKENIZER_H
+#ifndef MINISHELL_CMD_EXEC_H
+# define MINISHELL_CMD_EXEC_H
 
-t_lexer	*args_token(t_lexer *lexer, char *line, int *i);
-t_lexer	*greater_token(t_lexer *lexer, char *line, int *i);
-t_lexer	*lower_token(t_lexer *lexer, char *line, int *i);
-t_lexer	*pipe_token(t_lexer *lexer, int *i);
+// t_bool	is_builtin_case(t_lexer *lexer, t_lexer *limiter, t_lexer **reader);
 
-void	white_space_token(char *line, int *i);
+t_bool	is_cmd_null_case(t_cmd *cmd);
+t_bool	is_cmd_builtin_case(t_cmd *cmd);
 
-t_lexer	*tokenizer(char *line);
+int		find_var_env(char **env, char *find);
+
+void	cmd_builder(t_cmd *cmd);
+
+void	cmd_execution(t_lexer *lexer, t_list2 *cmd_list, pid_t *pid);
 
 #endif

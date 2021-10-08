@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 17:04:53 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/07 17:37:46 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/07 19:29:45 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # include "minishell_tokenizer.h"
 # include "minishell_parsing.h"
 # include "minishell_cmd_parser.h"
+# include "minishell_cmd_exec.h"
 
 int g_exit_code;
 

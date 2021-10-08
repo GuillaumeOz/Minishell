@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_t_lexer.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 18:50:00 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/03 16:30:16 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/08 16:31:43 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ typedef enum e_token_type
 {
 	NONE,
 	ARGS,
-	SPACE,//use this ?
-	TAB,//use this ?
+	space, //use this ? Maybe use undercase
+	tab, //use this ? Maybe use undercase
 	PIPE = '|',
 	QUOTE = '\'',
 	QUOTES = '\"',
@@ -55,7 +55,7 @@ t_lexer	create_lexer(t_token_type type, t_token_format format);
 void	destroy_lexer(t_lexer to_destroy);
 void	free_lexer(t_lexer *to_free);
 
-t_lexer *init_lexer(t_lexer *lexer, t_token_type type, t_token_format format);
-t_lexer *set_first_lexer(t_lexer *lexer);
+t_lexer	*init_lexer(t_lexer *lexer, t_token_type type, t_token_format format);
+t_lexer	*set_first_lexer(t_lexer *lexer);
 
 #endif

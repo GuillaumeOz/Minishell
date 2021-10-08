@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   builtin_pwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:15:15 by chdespon          #+#    #+#             */
-/*   Updated: 2021/06/29 12:25:14 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/06 11:35:47 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	change_pwd(char ***env, char *splited_line)
+void	change_pwd(char ***env)
 {
-	// int		env_index;
-	// int		i;
-	// char	**tmp;
+	char	*pwd;
 
-	// i = 0;
-	// tmp = NULL;
-	// env_index = find_var_env(*env, "PWD");
-	(void)splited_line;
-	(void)env;
-	// if (ft_strcmp(splited_line, "..") == 0)
-	// {
-	// 	// tmp = ft_split(*env[env_index], '/');
-	// 	while (tmp[i++])
-	// 	ft_strjoin("/", tmp[i]);
-	// 	ft_rm_charset(*env[env_index], tmp[i]);
-	// 	ft_free_tab((void **)tmp);
-	// }
+	pwd = get_pwd();
+	set_env("OLDPWD", (*env)[find_var_env(*env, "PWD")] + 4, env);
+	set_env("PWD", pwd, env);
+	free(pwd);
 }
 
 char	*get_pwd(void)
@@ -55,7 +44,7 @@ char	*get_pwd(void)
 	return (buf);
 }
 
-void	print_pwd(void)
+int	print_pwd(void)
 {
 	char	*pwd;
 
@@ -63,4 +52,5 @@ void	print_pwd(void)
 	ft_str_add_suffix(&pwd, "\n");
 	ft_putstr_fd(1, pwd);
 	free(pwd);
+	return (EXIT_SUCCESS);
 }

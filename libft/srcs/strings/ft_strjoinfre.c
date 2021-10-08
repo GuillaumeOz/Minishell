@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoinfre.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 00:05:11 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/17 00:10:20 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/09/20 12:20:10 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char    *ft_strjoinfre(char *s1, char *s2, int free_s1, int free_s2)
+char	*ft_strjoinfre(char *s1, char *s2, int free_s1, int free_s2)
 {
 	char	*new_str;
 

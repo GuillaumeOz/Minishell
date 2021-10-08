@@ -1,36 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_echo.c                                     :+:      :+:    :+:   */
+/*   builtin_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/29 12:16:42 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/21 12:26:06 by chdespon         ###   ########.fr       */
+/*   Created: 2021/09/15 17:16:54 by chdespon          #+#    #+#             */
+/*   Updated: 2021/09/23 17:15:15 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	print_echo(char **splited_line, t_bool n_flag)
+void	builtin_exit(char **line, char **env)
 {
-	int		i;
-
-	i = 1 + n_flag;
-	if (ft_strcmp(splited_line[i], "$?") == 0)
+	if (line[0] == NULL)
+		quit(env, true);
+	if (ft_str_is_only_digit(line[0]) == true)
 	{
-		ft_putnbr(return_val);
-		ft_putchar('\n');
-		return (EXIT_SUCCESS);
+		if (line[1] == NULL)
+		{
+			return_val = ft_atoi(line[0]);
+			quit(env, true);
+		}
+		else
+		{
+			return_val = 1;
+			ft_putstr("exit\nminishell : exit: trop d'arguments\n");
+		}
 	}
-	while (splited_line[i] != NULL)
+	else
 	{
-		if (i > 1 + (int)n_flag)
-			ft_putchar(' ');
-		ft_putstr(splited_line[i]);
-		i++;
+		printf("exit\nminishell: exit: %s : argument numerique necessaire\n",
+			line[0]);
+		return_val = 2;
+		quit(env, false);
 	}
-	if (n_flag == false)
-		ft_putchar('\n');
-	return (EXIT_SUCCESS);
 }

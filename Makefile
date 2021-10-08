@@ -7,7 +7,7 @@ INC_DIR		= 	$(shell find includes -type d) \
 					$(shell find libft/includes -type d)
 LIB_DIR		=	libft
 OBJ_DIR		=	obj
-LIB 		=	ft
+LIB			=	ft
 
 vpath %.c $(foreach dir, $(SRC_DIR), $(dir):)
 

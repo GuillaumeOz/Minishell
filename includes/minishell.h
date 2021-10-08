@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 17:04:53 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/08 17:56:12 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/08 19:50:07 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	pipe_fork(char **env, char *line);
 void	fork_minishell(char **env, char *line);
 void	parse_line(char *line, char ***env, int pipe);
 void	launch_fork(char **splited_line, char **env, char *path);
-char	*find_cmd(char **env, char *param);
 
 void	quit(char **env, t_bool print_exit);
 

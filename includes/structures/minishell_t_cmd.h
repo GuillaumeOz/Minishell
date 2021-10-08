@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 18:15:51 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/08 15:42:39 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/08 19:43:38 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_cmd
 	char			**limiter;
 	char			*cmd;
 	char			**args;
+	t_bool			error;
 }				t_cmd;
 
 t_cmd	*malloc_cmd(char ***env, t_cmd_postion pos);

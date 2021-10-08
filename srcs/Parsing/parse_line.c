@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:12:52 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/05 16:25:47 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/08 13:00:11 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 static void	parse_splited_line(char **splited_line, char ***env, int pipe)
 {
 	char	*cmd;
+	// char	*tmp;
+
 	if (splited_line[0] == NULL)
 		return ;
 	else if (ft_strcmp(splited_line[0], "echo") == 0)
@@ -26,24 +28,38 @@ static void	parse_splited_line(char **splited_line, char ***env, int pipe)
 	}
 	else if (ft_strcmp(splited_line[0], "cd") == 0)
 	{
-		if (splited_line[1] == NULL)
-		{
-			if (chdir(getenv("HOME")) != 0)
-				printf("cd: %s: Aucun fichier ou dossier de ce type\n",
-					getenv("HOME"));
-			change_pwd(env);
-			return ;
-		}
-		if (splited_line[2] != NULL)
-		{
-			return_val = 1;
-			ft_putstr("cd: trop d'arguments\n");
-			return ;
-		}
-		else if (chdir(splited_line[1]) != 0)
-			printf("cd: %s: Aucun fichier ou dossier de ce type\n",
-				splited_line[1]);
-		change_pwd(env);
+		return_val = builtin_cd(env, splited_line);
+		// if (find_var_env(*env, "PWD") == -1)
+		// {
+		// 	tmp = get_pwd();
+		// 	set_env("PWD", tmp, env);
+		// 	free(tmp);
+		// }
+		// if (splited_line[1] == NULL)
+		// {
+		// 	if (find_var_env(*env, "HOME") == -1)
+		// 	{
+		// 		ft_putstr("minishell: cd: HOME not set\n");
+		// 		return ;
+		// 	}
+		// 	if (chdir((*env)[find_var_env(*env, "HOME")] + 5) != 0)
+		// 		return ;
+		// 	change_pwd(env);
+		// 	return ;
+		// }
+		// if (splited_line[2] != NULL)
+		// {
+		// 	return_val = 1;
+		// 	ft_putstr("cd: trop d'arguments\n");
+		// 	return ;
+		// }
+		// else if (chdir(splited_line[1]) != 0)
+		// {
+		// 	printf("cd: %s: Aucun fichier ou dossier de ce type\n",
+		// 		splited_line[1]);
+		// 	return ;
+		// }
+		// change_pwd(env);
 	}
 	else if (ft_strcmp(splited_line[0], "env") == 0
 		&& splited_line[1] == NULL)
@@ -56,7 +72,7 @@ static void	parse_splited_line(char **splited_line, char ***env, int pipe)
 		return_val = unset_env(splited_line[1], env);
 	else if (ft_strcmp(splited_line[0], "export") == 0
 		&& splited_line[1] != NULL)
-			return_val = set_env(splited_line[1] , "", env);
+			return_val = set_env(splited_line[1] , NULL, env);
 	else if (ft_strcmp(splited_line[0], "export") == 0 && splited_line[1] == NULL)
 		return_val = export_without_argument(*env);
 	else

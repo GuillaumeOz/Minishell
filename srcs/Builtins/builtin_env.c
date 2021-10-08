@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:18:47 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/05 17:01:17 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/05 17:45:22 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static int	find_line(char **env, char *to_find)
 {
 	int	i;
 
+	if (env == NULL)
+		return (-1);
 	i = 0;
 	while (env[i] != NULL)
 	{

@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 16:09:58 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/05 16:50:57 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/06 16:44:26 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int	unset_env(char *name, char ***env)
 	int		env_index;
 	char	**tmp;
 
-	if (name == NULL || name[0] == '=' || ft_is_digit(name[0]) == true)
+	if (name == NULL || ft_strstr(name, "=") != NULL || ft_strlen(name) == 0
+		|| ft_is_digit(name[0]) == true)
 	{
 		printf("minishell: unset: « %s » : identifiant non valable\n", name);
 		return (EXIT_FAILURE);

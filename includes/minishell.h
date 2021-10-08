@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 17:04:53 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/30 17:33:54 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/08 12:57:36 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ int		print_echo(char **splited_line, t_bool n_flag);
 void	quit(char **env, t_bool print_exit);
 void	builtin_exit(char **line, char **env);
 int		export_without_argument(char **env);
+int		builtin_cd(char ***env, char **splited_line);
+
 
 int		g_exit_code;// its usefull ?
 

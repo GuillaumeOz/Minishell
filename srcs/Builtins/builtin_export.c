@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 15:43:51 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/05 15:42:10 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/06 16:44:16 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,30 +79,42 @@ int	export_without_argument(char **env)
 	return (EXIT_SUCCESS);
 }
 
-int	set_env(char *name, char *value, char ***env)
+static int	replace_variable(int env_index, char ***env, char *value, char *tmp)
 {
-	char	*variable;
-	int		env_index;
-
-	if (name == NULL || name[0] == '=' || ft_is_digit(name[0]) == true)
-	{
-		printf("minishell: unset: « %s » : identifiant non valable\n", name);
-		return (EXIT_FAILURE);
-	}
-	env_index = find_var_env(*env, name);
 	if (env_index >= 0)
 	{
 		if (value != NULL)
 		{
 			free((*env)[env_index]);
-			(*env)[env_index] = ft_strjoin(ft_strjoin(name, "="), value);
+			(*env)[env_index] = ft_strjoin(tmp, value);
+			free(tmp);
 		}
 		return (EXIT_SUCCESS);
 	}
+	return (EXIT_FAILURE);
+}
+
+int	set_env(char *name, char *value, char ***env)
+{
+	char	*variable;
+	int		env_index;
+	char	*tmp;
+
+	if (name == NULL || ft_strstr(name, "=") != NULL || ft_strlen(name) == 0
+		|| ft_is_digit(name[0]) == true)
+	{
+		printf("minishell: export: « %s » : identifiant non valable\n", name);
+		return (EXIT_FAILURE);
+	}
+	tmp = ft_strjoin(name, "=");
+	env_index = find_var_env(*env, name);
+	if (replace_variable(env_index, env, value, tmp) == EXIT_SUCCESS)
+		return (EXIT_SUCCESS);
 	if (value == NULL)
 		variable = ft_strdup(name);
 	else
-		variable = ft_strjoin(name, value);
+		variable = ft_strjoin(tmp, value);
+	free(tmp);
 	ft_add_to_tab((void *)variable, (void ***)env);
 	return (EXIT_SUCCESS);
 }

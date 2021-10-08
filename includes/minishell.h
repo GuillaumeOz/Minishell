@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 17:04:53 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/08 12:57:36 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/08 15:55:41 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # include "minishell_prompt.h"
 # include "minishell_tokenizer.h"
 # include "minishell_parsing.h"
+# include "minishell_builtins.h"
 
 #define debug		write(1, "ICI\n", 4);
 #define info		printf("line -> %d, fonction -> %s\n", __LINE__, __func__);
@@ -45,20 +46,9 @@ void	pipe_fork(char **env, char *line);
 void	fork_minishell(char **env, char *line);
 void	parse_line(char *line, char ***env, int pipe);
 void	launch_fork(char **splited_line, char **env, char *path);
-char	**take_path(char **env);
 char	*find_cmd(char **env, char *param);
-int		set_env(char *name, char *value, char ***env);
-int		find_var_env(char **env, char *find);
-int		unset_env(char *name, char ***env);
-int		print_env(char **env);
-void	change_pwd(char ***env);
-char	*get_pwd(void);
-int		print_pwd(void);
-int		print_echo(char **splited_line, t_bool n_flag);
+
 void	quit(char **env, t_bool print_exit);
-void	builtin_exit(char **line, char **env);
-int		export_without_argument(char **env);
-int		builtin_cd(char ***env, char **splited_line);
 
 
 int		g_exit_code;// its usefull ?

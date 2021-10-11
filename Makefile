@@ -1,9 +1,9 @@
-NAME        =   minishell
+NAME		=	minishell
 
-CC          =   gcc
+CC			=	gcc
 
-SRC_DIR		= 	$(shell find srcs -type d)
-INC_DIR		= 	$(shell find includes -type d) \
+SRC_DIR		=	$(shell find srcs -type d)
+INC_DIR		=	$(shell find includes -type d) \
 					$(shell find libft/includes -type d)
 LIB_DIR		=	libft
 OBJ_DIR		=	obj
@@ -17,7 +17,7 @@ OBJ			=	$(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 
 # Compilation flags
 
-CFLAGS      =	-Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -g3 -fsanitize=address
 
 IFLAGS		=	$(foreach dir, $(INC_DIR), -I $(dir))
 

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:57:07 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/08 19:43:32 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/11 17:03:11 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,14 @@ t_cmd	create_cmd(char ***env, t_cmd_postion pos)
 	cmd.pos = pos;
 	cmd.env = env;
 	create_in_out_file_cmd(&cmd);
-	cmd.here_doc = false;
+	cmd.cmd_stdin = 0;
+	cmd.cmd_stdout = 1;
 	cmd.pipe = NULL;
+	cmd.here_doc = false;
+	cmd.here_doc_pipe = NULL;
+	cmd.limiter = NULL;
 	cmd.cmd = NULL;
 	cmd.args = NULL;
-	cmd.limiter = NULL;
 	cmd.error = false;
 	return (cmd);
 }

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:21:39 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/08 20:00:07 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/11 18:39:20 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 # define MINISHELL_CMD_EXEC_H
 
 // t_bool	is_builtin_case(t_lexer *lexer, t_lexer *limiter, t_lexer **reader);
+
+// void	run_last_cmd();
+
+// void	run_middle_cmd();
+
+void	run_first_cmd(t_cmd *cmd);
+
+void	cmd_executer(t_cmd *cmd);
 
 t_bool	is_cmd_null_case(t_cmd *cmd);
 t_bool	is_cmd_builtin_case(t_cmd *cmd);

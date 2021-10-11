@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:38:10 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/08 18:25:44 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/11 18:03:42 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ t_bool	is_cmd_null_case(t_cmd *cmd)
 
 t_bool	is_cmd_builtin_case(t_cmd *cmd)
 {
-	if (cmd->cmd == "echo"
-		|| cmd->cmd == "cd"
-		|| cmd->cmd == "pwd"
-		|| cmd->cmd == "export"
-		|| cmd->cmd == "unset"
-		|| cmd->cmd == "env"
-		|| cmd->cmd == "exit")
+	if (ft_strcmp(cmd->cmd, "echo") == true
+		|| ft_strcmp(cmd->cmd, "cd") == true
+		|| ft_strcmp(cmd->cmd, "pwd") == true
+		|| ft_strcmp(cmd->cmd, "export") == true
+		|| ft_strcmp(cmd->cmd, "unset") == true
+		|| ft_strcmp(cmd->cmd, "env") == true
+		|| ft_strcmp(cmd->cmd, "exit") == true)
 		return (true);
 	else
 		return (false);

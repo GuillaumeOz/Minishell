@@ -6,13 +6,13 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:28:05 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/08 20:00:37 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/11 18:33:43 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	launch_fork(char **splited_line, char **env, char *path)
+void	launch_fork(char **splited_line, char **env, char *path)//suppr this ?
 {
 	pid_t	pid;
 	int		status;
@@ -78,11 +78,8 @@ char	*find_cmd(char **env, char *param)
 		cmd = NULL;
 		i++;
 	}
-	ft_putstr_fd(2, param);
-	ft_putstr_fd(2, ": command not found\n");
 	if (path != NULL)
 		ft_free_tab((void **)path);
-	return_val = 127;
 	return (NULL);
 }
 
@@ -94,5 +91,8 @@ void	cmd_builder(t_cmd *cmd)
 	if (is_cmd_builtin_case(cmd) == true)
 		return ;
 	tmp = find_cmd(*(cmd->env), cmd->cmd);
-	cmd->cmd = tmp;
+	if (tmp == NULL)
+		minishell_command_error(cmd, cmd->cmd);
+	else
+		cmd->cmd = tmp;
 }

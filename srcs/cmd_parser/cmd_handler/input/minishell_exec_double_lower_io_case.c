@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 21:28:50 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/05 14:43:42 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/11 16:22:47 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	exec_double_lower_io_case(t_cmd *cmd, t_lexer *lexer,
 	t_lexer *limiter, t_lexer **reader)
 {
-	// PRINTS("DOUBLE LOWER")
 	cmd->here_doc = true;
 	if (cmd->limiter == NULL)
 	{
@@ -24,5 +23,5 @@ void	exec_double_lower_io_case(t_cmd *cmd, t_lexer *lexer,
 	}
 	else
 		ft_add_to_tab((*reader)->args, (void ***)&(cmd->limiter));
-	cmd_input_gestion(lexer, limiter, cmd);
+	cmd_limiter_handler(lexer, limiter, cmd);
 }

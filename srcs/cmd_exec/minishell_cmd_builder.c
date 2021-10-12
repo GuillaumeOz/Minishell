@@ -6,36 +6,11 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:28:05 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/11 18:33:43 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/12 20:04:06 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	launch_fork(char **splited_line, char **env, char *path)//suppr this ?
-{
-	pid_t	pid;
-	int		status;
-
-	status = 0;
-	pid = fork();
-	if (pid < 0)
-		// Error forking
-		exit(EXIT_FAILURE);
-	else if (pid == 0)
-	{
-		// Child process
-		if (execve(path, splited_line, env) == -1)
-			exit(EXIT_FAILURE);
-	}
-	else
-	{
-		// Parent process
-		waitpid(pid, &status, WUNTRACED);
-		while (!WIFEXITED(status) && !WIFSIGNALED(status))
-			waitpid(pid, &status, WUNTRACED);
-	}
-}
 
 char	**take_path(char **env)
 {
@@ -89,10 +64,13 @@ void	cmd_builder(t_cmd *cmd)
 
 	tmp = NULL;
 	if (is_cmd_builtin_case(cmd) == true)
-		return ;
+		return ;//add builtin gestion here
 	tmp = find_cmd(*(cmd->env), cmd->cmd);
 	if (tmp == NULL)
 		minishell_command_error(cmd, cmd->cmd);
 	else
+	{
+		free(cmd->cmd);
 		cmd->cmd = tmp;
+	}
 }

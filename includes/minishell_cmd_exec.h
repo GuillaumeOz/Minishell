@@ -6,22 +6,24 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:21:39 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/11 18:39:20 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/12 14:36:26 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_CMD_EXEC_H
 # define MINISHELL_CMD_EXEC_H
 
+t_bool	is_cmd_null_case(t_cmd *cmd);
+t_bool	is_here_doc_case(t_cmd *cmd);
+t_bool	is_cmd_builtin_case(t_cmd *cmd);
+
 // t_bool	is_builtin_case(t_lexer *lexer, t_lexer *limiter, t_lexer **reader);
 
-// void	run_last_cmd();
+// void	run_multiple_cmd(t_cmd *cmd);
 
-// void	run_middle_cmd();
+void	run_single_cmd(t_cmd *cmd);
 
-void	run_first_cmd(t_cmd *cmd);
-
-void	cmd_executer(t_cmd *cmd);
+void	cmd_executer(t_cmd *cmd, int nb_cmd);
 
 t_bool	is_cmd_null_case(t_cmd *cmd);
 t_bool	is_cmd_builtin_case(t_cmd *cmd);

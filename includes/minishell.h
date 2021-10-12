@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 17:04:53 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/08 19:50:07 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/12 17:43:21 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,21 @@
 # include "minishell_cmd_exec.h"
 # include "minishell_builtins.h"
 
-#define debug		write(1, "ICI\n", 4);
+#define debug		write(2, "ICI\n", 4);
 #define info		printf("line -> %d, fonction -> %s\n", __LINE__, __func__);
-#define PRINTD(x)	printf("%d\n", x);
-#define PRINTC(x)	printf("%c\n", x);
-#define PRINTS(x)	printf("%s\n", x);
+#define PRINTD(x)	fprintf(stderr, "%d\n", x);
+#define PRINTC(x)	fprintf(stderr, "%c\n", x);
+#define PRINTS(x)	fprintf(stderr, "%s\n", x);
+#define PRINTP(x)	fprintf(stderr, "%p\n", x);
 
-int		return_val;
+// int		return_val;
 
-void	pipe_fork(char **env, char *line);
-void	fork_minishell(char **env, char *line);
-void	parse_line(char *line, char ***env, int pipe);
-void	launch_fork(char **splited_line, char **env, char *path);
+// void	pipe_fork(char **env, char *line);
+// void	fork_minishell(char **env, char *line);
+// void	parse_line(char *line, char ***env, int pipe);
 
 void	quit(char **env, t_bool print_exit);
 
-int		g_exit_code;// its usefull ?
+int		g_exit_code;
 
 #endif

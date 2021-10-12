@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:38:10 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/11 18:03:42 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/12 15:56:31 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,21 @@ t_bool	is_cmd_null_case(t_cmd *cmd)
 
 t_bool	is_cmd_builtin_case(t_cmd *cmd)
 {
-	if (ft_strcmp(cmd->cmd, "echo") == true
-		|| ft_strcmp(cmd->cmd, "cd") == true
-		|| ft_strcmp(cmd->cmd, "pwd") == true
-		|| ft_strcmp(cmd->cmd, "export") == true
-		|| ft_strcmp(cmd->cmd, "unset") == true
-		|| ft_strcmp(cmd->cmd, "env") == true
-		|| ft_strcmp(cmd->cmd, "exit") == true)
+	if (ft_strcmp(cmd->cmd, "echo") == 0
+		|| ft_strcmp(cmd->cmd, "cd") == 0
+		|| ft_strcmp(cmd->cmd, "pwd") == 0
+		|| ft_strcmp(cmd->cmd, "export") == 0
+		|| ft_strcmp(cmd->cmd, "unset") == 0
+		|| ft_strcmp(cmd->cmd, "env") == 0
+		|| ft_strcmp(cmd->cmd, "exit") == 0)
+		return (true);
+	else
+		return (false);
+}
+
+t_bool	is_here_doc_case(t_cmd *cmd)
+{
+	if (cmd->here_doc == true)
 		return (true);
 	else
 		return (false);

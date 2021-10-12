@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 16:02:51 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/11 14:19:25 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/12 20:00:18 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	quit(char **env, t_bool print_exit)
 	if (env != NULL)
 		ft_free_tab((void **)env);
 	clear_history();
-	exit(return_val);
+	exit(g_exit_code);
 }
 
 void	prompt(char ***env)
@@ -36,9 +36,7 @@ void	prompt(char ***env)
 			lexer = tokenizer(line);
 			parser(lexer);
 			cmd_gestion(lexer, env);
-			// lexer = tokenizer(line);
-			// parser(lexer);
-			// parse_line(line, env, 0);
+			// parse_line(line, env, 0);//suppr
 			add_history(line);
 			free_lexer(lexer);
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_unset.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 16:09:58 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/13 13:36:52 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/13 14:15:44 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,19 @@ int	unset_env(char *name, char ***env)
 	*env = (char **)ft_tab_new(ft_tab_len((void **)tmp));
 	realloc_env(env, tmp, env_index);
 	ft_free_tab((void **)tmp);
+	return (EXIT_SUCCESS);
+}
+
+int	builtin_unset(char **args, char ***env)
+{
+	int	i;
+
+	i = 1;
+	while (args[i] != NULL)
+	{
+		if (unset_env(args[i], env) == EXIT_FAILURE)
+			return (EXIT_FAILURE);
+		i++;
+	}
 	return (EXIT_SUCCESS);
 }

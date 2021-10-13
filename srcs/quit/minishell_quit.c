@@ -6,14 +6,19 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 00:26:04 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/08 16:33:32 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/13 18:00:43 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	minishell_quit(t_lexer *lexer, int exit_code)
+void	quit(char **env, t_bool print_exit, t_lexer *lexer)
 {
+	if (print_exit == true)
+		ft_putstr("exit\n");
+	if (env != NULL)
+		ft_free_tab((void **)env);
+	clear_history();
 	free_lexer(lexer);
-	exit(exit_code);
+	exit(g_exit_code);
 }

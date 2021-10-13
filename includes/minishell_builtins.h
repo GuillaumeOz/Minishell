@@ -6,11 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:49:30 by chdespon          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/10/13 14:18:57 by gozsertt         ###   ########.fr       */
-=======
-/*   Updated: 2021/10/13 14:16:15 by chdespon         ###   ########.fr       */
->>>>>>> e1a883084f303a51426be2bf7b4fec914f5d406e
+/*   Updated: 2021/10/13 18:03:01 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +25,7 @@ int		builtin_cd(char ***env, char **args);
 ** builtin echo
 */
 
-int		print_echo(char **splited_line, t_bool n_flag, char ***env);
+int		print_echo(char **args, t_bool n_flag, char ***env);
 
 /*
 ** builtin env
@@ -41,7 +37,7 @@ int		print_env(char **env);
 ** builtin exit
 */
 
-void	builtin_exit(char **line, char **env);
+void	builtin_exit(char **line, char **env, t_lexer *lexer, t_cmd *cmd);
 
 /*
 ** builtin export

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_t_lexer.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 14:00:05 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/07 19:31:51 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/13 18:00:05 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_lexer	*malloc_lexer(t_token_type type, t_token_format format)
 
 	lexer = (t_lexer *)malloc(sizeof(t_lexer));
 	if (lexer == NULL)
-		minishell_error("t_lexer can't be allocate");	
+		minishell_error("t_lexer can't be allocate");
 	*lexer = create_lexer(type, format);
 	return (lexer);
 }
@@ -63,7 +63,7 @@ void	free_lexer(t_lexer *to_free)
 	}
 }
 
-t_lexer *init_lexer(t_lexer *lexer, t_token_type type, t_token_format format)
+t_lexer	*init_lexer(t_lexer *lexer, t_token_type type, t_token_format format)
 {
 	t_lexer *new_lexer;
 

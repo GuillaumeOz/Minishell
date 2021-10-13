@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_prompt.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 16:02:51 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/13 14:09:32 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/13 18:00:32 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	quit(char **env, t_bool print_exit)
-{
-	if (print_exit == true)
-		ft_putstr("exit\n");
-	if (env != NULL)
-		ft_free_tab((void **)env);
-	clear_history();
-	exit(g_exit_code);
-}
 
 void	prompt(char ***env)
 {
@@ -30,19 +20,19 @@ void	prompt(char ***env)
 	while (1)
 	{
 		line = readline(_BLUE"("_RED"Minishell" _BLUE") "_GREEN"➜"_WHITE" ");
+		lexer = tokenizer(line);
 		if (line != NULL && ft_strcmp(line, "\n") > 0
 			&& ft_str_is_only_whitespaces(line) == false)
 		{
-			lexer = tokenizer(line);
 			parser(lexer);
 			cmd_gestion(lexer, env);
 			add_history(line);
-			free_lexer(lexer);
 		}
 		if (line == NULL)
 			break ;
 		free(line);
+		free_lexer(lexer);
 	}
 	free(line);
-	quit(*env, true);
+	quit(*env, true, lexer);
 }

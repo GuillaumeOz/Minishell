@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 13:22:37 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/11 13:52:11 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/13 19:59:56 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	cmd_pipe_setter(t_lexer *lexer, t_list2 *cmd_list)
 		cmd->pipe = (int *)malloc(sizeof(int) * 2);
 		if (cmd->pipe == NULL)
 			minishell_error("int * can't be allocated");
+		pipe(cmd->pipe);
 		i++;
 	}
 }

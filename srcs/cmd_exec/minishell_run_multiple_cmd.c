@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 16:45:08 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/13 19:46:18 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/13 21:11:32 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	run_multiple_cmd(t_cmd *cmd, t_lexer *lexer)
 	close_cmd_stdin(cmd);
 	close_cmd_stdout(cmd);
 	if (is_cmd_builtin_case(cmd) == true)
-		cmd_builtin_executer(cmd);
+		cmd_builtin_executer(cmd, lexer);
 	else
 		execve(cmd->cmd, cmd->args, *cmd->env);
 	free_cmd((void *)cmd);

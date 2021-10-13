@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 22:21:13 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/12 20:01:34 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/13 14:20:22 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	cmd_handler(t_lexer *lexer, t_list2 *cmd_list, char ***env)
 	reader = lexer;
 	if (is_cmd_pipe_case(lexer, &reader) == true)
 	{
-		cmd = malloc_cmd(env, NO_POSITION);// handle the case "< file << end | < file2 << end1" as same as bash
+		cmd = malloc_cmd(env, NO_POSITION);
 		cmd_input_gestion(lexer, reader, cmd);
 		cmd_output_gestion(lexer, reader, cmd);
 		cmd_exec_args_handler(lexer, reader, cmd);

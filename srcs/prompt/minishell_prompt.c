@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 16:02:51 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/13 14:02:02 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/13 14:09:32 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,8 @@ void	prompt(char ***env)
 			lexer = tokenizer(line);
 			parser(lexer);
 			cmd_gestion(lexer, env);
-			// parse_line(line, env, 0);//suppr
 			add_history(line);
-			// free_lexer(lexer);
+			free_lexer(lexer);
 		}
 		if (line == NULL)
 			break ;

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:57:36 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/12 16:56:15 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/13 11:51:43 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void	free_cmd(void *p_cmd)
 	t_cmd *cmd;
 
 	cmd = (t_cmd *)p_cmd;
-	if (cmd != NULL)
-		destroy_cmd(*cmd);
-	if (cmd != NULL)
-		free(cmd);
+	destroy_cmd(*cmd);
+	free(cmd);
 }

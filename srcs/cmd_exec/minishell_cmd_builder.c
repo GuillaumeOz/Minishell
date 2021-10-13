@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:28:05 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/12 20:04:06 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/13 14:05:49 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,3 +74,28 @@ void	cmd_builder(t_cmd *cmd)
 		cmd->cmd = tmp;
 	}
 }
+
+
+	// else if (ft_strcmp(cmd[0], "echo") == 0)
+	// {
+	// 	if (cmd[1] != NULL && ft_strcmp(cmd[1], "-n") == 0)
+	// 		g_exit_code = print_echo(cmd, true);
+	// 	else
+	// 		g_exit_code = print_echo(cmd, false);
+	// }
+	// else if (ft_strcmp(cmd[0], "cd") == 0)
+	// 	g_exit_code = builtin_cd(env, cmd);
+	// else if (ft_strcmp(cmd[0], "env") == 0
+	// 	&& cmd[1] == NULL)
+	// 	g_exit_code = print_env(*env);
+	// else if (ft_strcmp(cmd[0], "pwd") == 0
+	// 	&& cmd[1] == NULL)
+	// 	g_exit_code = print_pwd();
+	// else if (ft_strcmp(cmd[0], "unset") == 0
+	// 	&& cmd[1] != NULL)
+	// 	g_exit_code = unset_env(cmd[1], env);
+	// else if (ft_strcmp(cmd[0], "export") == 0
+	// 	&& cmd[1] != NULL)
+	// 		g_exit_code = set_env(cmd[1] , NULL, env);
+	// else if (ft_strcmp(cmd[0], "export") == 0 && cmd[1] == NULL)
+	// 	g_exit_code = export_without_argument(*env);

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:49:30 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/13 13:38:38 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/13 14:01:47 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		builtin_cd(char ***env, char **args);
 ** builtin echo
 */
 
-int		print_echo(char **splited_line, t_bool n_flag);
+int		print_echo(char **splited_line, t_bool n_flag, char ***env);
 
 /*
 ** builtin env

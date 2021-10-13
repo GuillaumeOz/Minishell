@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:12:52 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/08 13:00:11 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/08 18:35:26 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ static void	parse_splited_line(char **splited_line, char ***env, int pipe)
 	else if (ft_strcmp(splited_line[0], "echo") == 0)
 	{
 		if (splited_line[1] != NULL && ft_strcmp(splited_line[1], "-n") == 0)
-			return_val = print_echo(splited_line, true);
+			return_val = print_echo(splited_line, true, env);
 		else
-			return_val = print_echo(splited_line, false);
+			return_val = print_echo(splited_line, false, env);
 	}
 	else if (ft_strcmp(splited_line[0], "cd") == 0)
 	{
@@ -70,9 +70,24 @@ static void	parse_splited_line(char **splited_line, char ***env, int pipe)
 	else if (ft_strcmp(splited_line[0], "unset") == 0
 		&& splited_line[1] != NULL)
 		return_val = unset_env(splited_line[1], env);
-	else if (ft_strcmp(splited_line[0], "export") == 0
-		&& splited_line[1] != NULL)
-			return_val = set_env(splited_line[1] , NULL, env);
+	else if (ft_strcmp(splited_line[0], "export") == 0 && splited_line[1] != NULL)
+	{
+		int i = 1;
+		while (splited_line[i] != NULL)
+		{
+			if (ft_strstr(splited_line[i], "=") == 0)
+				return_val = set_env(splited_line[i] , NULL, env);
+			else
+			{
+				char **line;
+				line = NULL;
+				line = ft_split(splited_line[i], '=');
+				return_val = set_env(line[0] , line[1], env);
+				ft_free_tab((void **)line);
+			}
+			i++;
+		}
+	}
 	else if (ft_strcmp(splited_line[0], "export") == 0 && splited_line[1] == NULL)
 		return_val = export_without_argument(*env);
 	else

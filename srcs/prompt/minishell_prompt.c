@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 16:02:51 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/08 16:35:44 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/08 17:11:11 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	quit(char **env, t_bool print_exit)
 
 void	prompt(char ***env)
 {
-	t_lexer	*lexer;
+	// t_lexer	*lexer;
 	char	*line;
 
 	while (1)
@@ -33,15 +33,15 @@ void	prompt(char ***env)
 		if (line != NULL && ft_strcmp(line, "\n") > 0
 			&& ft_str_is_only_whitespaces(line) == false)
 		{
-			lexer = tokenizer(line);
-			parser(lexer);
-			cmd_gestion(lexer, env);
+			// lexer = tokenizer(line);
+			// parser(lexer);
+			// cmd_gestion(lexer, env);
 			// lexer = tokenizer(line);
 			// parser(lexer);
 			// print_token(lexer);
 			parse_line(line, env, 0);
 			add_history(line);
-			free_lexer(lexer);
+			// free_lexer(lexer);
 		}
 		if (line == NULL)
 			break ;

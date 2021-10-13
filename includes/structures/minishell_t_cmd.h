@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 18:15:51 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/13 14:00:16 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/13 14:40:16 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_cmd
 	int					cmd_stdin;
 	int					cmd_stdout;
 	int					*pipe;
+	int					*previous_pipe;
 	t_bool				here_doc;
 	int					*here_doc_pipe;
 	char				**limiter;

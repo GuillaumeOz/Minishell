@@ -6,23 +6,23 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 21:29:11 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/05 14:55:55 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/11 18:06:06 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 void	exec_double_greater_io_case(t_cmd *cmd, t_lexer *lexer,
-	t_lexer *limiter, t_lexer **reader)
+	t_lexer *limiter, t_lexer *reader)
 {
 	int *fd;
 
 	fd = (int *)malloc(sizeof(int));
 		if (fd == NULL)
 			minishell_error("int * cannot be allocated");
-	*fd = open((*reader)->args, O_CREAT | O_RDWR | O_APPEND, 0644);
+	*fd = open(reader->args, O_CREAT | O_RDWR | O_APPEND, 0644);
 	if (*fd == -1)
-		minishell_fork_greater_fd_error(lexer, limiter, (*reader)->args);
+		minishell_greater_fd_error(lexer, limiter, reader->args);
 	list2_push_back(cmd->out_fd, fd);
-	cmd_output_gestion(lexer, limiter, cmd);
+	cmd->cmd_stdout = *fd;
 }

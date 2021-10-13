@@ -6,42 +6,30 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 16:18:07 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/05 16:19:38 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/11 17:55:04 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_bool	is_exec_double_greater_io_case(t_lexer *lexer,
-	t_lexer *limiter, t_lexer **reader)
+t_bool	is_exec_double_greater_io_case(t_lexer *reader)
 {
-	while (lexer != limiter)
+	if (reader->type == DOUBLE_GREATER && reader->over == false)
 	{
-		if (lexer->type == DOUBLE_GREATER && lexer->over == false)
-		{
-			lexer->over = true;
-			lexer->next->over = true;
-			(*reader) = lexer->next;
-			return (true);
-		}
-		lexer = lexer->next;
+		reader->over = true;
+		reader->next->over = true;
+		return (true);
 	}
 	return (false);
 }
 
-t_bool	is_exec_greater_io_case(t_lexer *lexer,
-	t_lexer *limiter, t_lexer **reader)
+t_bool	is_exec_greater_io_case(t_lexer *reader)
 {
-	while (lexer != limiter)
+	if (reader->type == GREATER && reader->over == false)
 	{
-		if (lexer->type == GREATER && lexer->over == false)
-		{
-			lexer->over = true;
-			lexer->next->over = true;
-			(*reader) = lexer->next;
-			return (true);
-		}
-		lexer = lexer->next;
+		reader->over = true;
+		reader->next->over = true;
+		return (true);
 	}
 	return (false);
 }

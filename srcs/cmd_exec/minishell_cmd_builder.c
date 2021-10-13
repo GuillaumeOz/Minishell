@@ -1,41 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_utils.c                                      :+:      :+:    :+:   */
+/*   minishell_cmd_builder.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:28:05 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/05 17:29:50 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/12 20:04:06 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	launch_fork(char **splited_line, char **env, char *path)
-{
-	pid_t	pid;
-	int		status;
-
-	status = 0;
-	pid = fork();
-	if (pid < 0)
-		// Error forking
-		exit(EXIT_FAILURE);
-	else if (pid == 0)
-	{
-		// Child process
-		if (execve(path, splited_line, env) == -1)
-			exit(EXIT_FAILURE);
-	}
-	else
-	{
-		// Parent process
-		waitpid(pid, &status, WUNTRACED);
-		while (!WIFEXITED(status) && !WIFSIGNALED(status))
-			waitpid(pid, &status, WUNTRACED);
-	}
-}
 
 char	**take_path(char **env)
 {
@@ -78,10 +53,24 @@ char	*find_cmd(char **env, char *param)
 		cmd = NULL;
 		i++;
 	}
-	ft_putstr_fd(2, param);
-	ft_putstr_fd(2, ": command not found\n");
 	if (path != NULL)
 		ft_free_tab((void **)path);
-	return_val = 127;
 	return (NULL);
+}
+
+void	cmd_builder(t_cmd *cmd)
+{
+	char *tmp;
+
+	tmp = NULL;
+	if (is_cmd_builtin_case(cmd) == true)
+		return ;//add builtin gestion here
+	tmp = find_cmd(*(cmd->env), cmd->cmd);
+	if (tmp == NULL)
+		minishell_command_error(cmd, cmd->cmd);
+	else
+	{
+		free(cmd->cmd);
+		cmd->cmd = tmp;
+	}
 }

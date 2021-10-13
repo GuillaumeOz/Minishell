@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_exec_double_lower_io_case.c              :+:      :+:    :+:   */
+/*   minishell_cmd_output_gestion.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/28 21:28:50 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/12 19:56:24 by gozsertt         ###   ########.fr       */
+/*   Created: 2021/10/11 17:26:31 by gozsertt          #+#    #+#             */
+/*   Updated: 2021/10/11 17:57:57 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exec_double_lower_io_case(t_cmd *cmd, t_lexer *lexer,
-	t_lexer *limiter, t_lexer **reader)
+void	cmd_output_gestion(t_lexer *lexer, t_lexer *limiter, t_cmd *cmd)
 {
-	cmd->here_doc = true;
-	if (cmd->limiter == NULL)
+	t_lexer *reader;
+
+	reader = lexer;
+	while (reader != limiter)
 	{
-		cmd->limiter = (char **)ft_tab_new(1);
-		ft_add_to_tab((*reader)->args, (void ***)&(cmd->limiter));
+		if (lexer->error == true)
+			return ;
+		if (is_exec_double_greater_io_case(reader) == true)
+			exec_double_greater_io_case(cmd, lexer, limiter, reader->next);
+		else if (is_exec_greater_io_case(reader) == true)
+			exec_greater_io_case(cmd, lexer, limiter, reader->next);
+		reader = reader->next;
 	}
-	else
-		ft_add_to_tab((*reader)->args, (void ***)&(cmd->limiter));
-	cmd_limiter_handler(lexer, limiter, cmd);
 }

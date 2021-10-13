@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:16:42 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/08 18:38:56 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/13 10:55:35 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	print_echo(char **splited_line, t_bool n_flag, char ***env)
 	i = 1 + n_flag;
 	if (ft_strcmp(splited_line[i], "$?") == 0)
 	{
-		ft_putnbr(return_val);
+		ft_putnbr(g_exit_code);
 		ft_putchar('\n');
 		return (EXIT_SUCCESS);
 	}

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 16:27:33 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/07 16:27:41 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/11 18:05:27 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,19 @@ static int	here_doc_get_next_line(int fd, char **line)
 	return (ret);
 }
 
-static void	exec_here_doc_routine(t_cmd *cmd)
+static void	exec_here_doc_routine(t_cmd *cmd, int *i)
 {
 	char	*line;
 	size_t	len;
-	int		i;
 
-	i = 0;
 	while (here_doc_get_next_line(0, &line) > 0)
 	{
-		if (ft_strcmp(line, cmd->limiter[i]) == 0)
+		if (ft_strcmp(line, cmd->limiter[*i]) == 0)
 		{
 			// write(1, "\n", 1);
 			free(line);
-			i++;
-			if (cmd->limiter[i] == NULL)
-				break ;
+			*i += 1;
+			break ;
 		}
 		else
 		{
@@ -75,14 +72,25 @@ static void	exec_here_doc_routine(t_cmd *cmd)
 	}
 }
 
-void	exec_here_doc(t_cmd *cmd, t_lexer *lexer, t_lexer *limiter)
+static void	here_doc_pipe_setter(t_cmd *cmd)
 {
-	pipe(cmd->here_doc_pipe);//test signal in heredoc
-	write(1, "> ", 2);
-	exec_here_doc_routine(cmd);
-	close(cmd->here_doc_pipe[1]);
-	ft_free_tab((void **)cmd->limiter);
+	if (cmd->here_doc_pipe == NULL)
+	{
+		cmd->here_doc_pipe = (int *)malloc(sizeof(int) * 2);
+		if (cmd->here_doc_pipe == NULL)
+			minishell_error("int * can't be allocated");
+	}
+	else
+		close(cmd->here_doc_pipe[0]);
+	pipe(cmd->here_doc_pipe);
+}
+
+void	exec_here_doc(t_cmd *cmd, int *i)//test signal here_doc
+{
 	cmd->here_doc = true;
-	cmd->limiter = NULL;
-	cmd_input_gestion(lexer, limiter, cmd);// change this later for handle < file << end | < file1 << end2
+	here_doc_pipe_setter(cmd);
+	write(1, "> ", 2);
+	exec_here_doc_routine(cmd, i);
+	close(cmd->here_doc_pipe[1]);
+	cmd->cmd_stdin = cmd->here_doc_pipe[0];
 }

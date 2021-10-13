@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 17:16:54 by chdespon          #+#    #+#             */
-/*   Updated: 2021/09/23 17:15:15 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/12 17:44:43 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void	builtin_exit(char **line, char **env)
 	{
 		if (line[1] == NULL)
 		{
-			return_val = ft_atoi(line[0]);
+			g_exit_code = ft_atoi(line[0]);
 			quit(env, true);
 		}
 		else
 		{
-			return_val = 1;
+			g_exit_code = 1;
 			ft_putstr("exit\nminishell : exit: trop d'arguments\n");
 		}
 	}
@@ -33,7 +33,7 @@ void	builtin_exit(char **line, char **env)
 	{
 		printf("exit\nminishell: exit: %s : argument numerique necessaire\n",
 			line[0]);
-		return_val = 2;
+		g_exit_code = 2;
 		quit(env, false);
 	}
 }

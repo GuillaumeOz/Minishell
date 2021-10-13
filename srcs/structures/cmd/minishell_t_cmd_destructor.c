@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:57:36 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/13 11:51:43 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/13 18:09:43 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	destroy_cmd(t_cmd cmd)
 		free(cmd.pipe);
 	if (cmd.cmd != NULL)
 		free(cmd.cmd);
-	// if (cmd.args != NULL)
-	// 	ft_free_tab((void **)cmd.args);
+	if (cmd.args != NULL)
+		ft_free_tab((void **)cmd.args);
 }
 
 void	free_cmd(void *p_cmd)

@@ -6,16 +6,16 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 20:56:38 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/12 20:06:42 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/13 18:06:21 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	cmd_executer(t_cmd *cmd, int nb_cmd)
+void	cmd_executer(t_cmd *cmd, t_lexer *lexer)
 {
-	if (nb_cmd == 1)
-		run_single_cmd(cmd);
-	// else
-	// 	run_multiple_cmd();
+	if (lexer->nb_cmd == 1)
+		run_single_cmd(cmd, lexer);
+	else
+		run_multiple_cmd(cmd, lexer);
 }

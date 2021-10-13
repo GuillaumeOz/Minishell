@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 21:26:04 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/13 15:30:46 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/13 16:34:56 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void args_gestion(t_cmd *cmd, t_lexer **reader)
 	// else
 	// {
 		to_add = ft_strdup((*reader)->args);
-		ft_add_to_tab((*reader)->args, (void ***)&(cmd->args));
+		ft_add_to_tab(to_add, (void ***)&(cmd->args));
 	// }
 }
 

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:21:39 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/13 15:21:54 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/13 16:46:06 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ t_bool	is_cmd_builtin_case(t_cmd *cmd);
 
 // t_bool	is_builtin_case(t_lexer *lexer, t_lexer *limiter, t_lexer **reader);
 
-// void	run_multiple_cmd(t_cmd *cmd);
+void	run_multiple_cmd(t_cmd *cmd, t_lexer *lexer);
 
-void	run_single_cmd(t_cmd *cmd);
+void	run_single_cmd(t_cmd *cmd, t_lexer *lexer);
 
-void	cmd_executer(t_cmd *cmd, int nb_cmd);
+void	cmd_executer(t_cmd *cmd, t_lexer *lexer);
 
 t_bool	is_cmd_null_case(t_cmd *cmd);
 t_bool	is_cmd_builtin_case(t_cmd *cmd);

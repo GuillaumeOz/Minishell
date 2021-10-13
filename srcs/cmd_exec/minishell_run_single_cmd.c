@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:38:58 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/13 11:54:07 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/13 16:44:25 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,18 @@ static void	single_cmd_stdin_gestion(t_cmd *cmd)
 		dup2(cmd->cmd_stdin, STDIN_FILENO);
 }
 
-void	run_single_cmd(t_cmd *cmd)
+void	run_single_cmd(t_cmd *cmd, t_lexer *lexer)
 {
 	single_cmd_stdin_gestion(cmd);
 	single_cmd_stdout_gestion(cmd);
 	close_cmd_stdin(cmd);
 	close_cmd_stdout(cmd);
-	execve(cmd->cmd, cmd->args, *cmd->env);
+	if (is_cmd_builtin_case(cmd) == true)
+		cmd_builtin_executer(cmd);
+	else
+		execve(cmd->cmd, cmd->args, *cmd->env);
 	free_cmd((void *)cmd);
-	//free lexer ?
+	free_lexer(lexer);
 }
 		// close(pipex->pipe[0][0]);
 		// it_is_here_doc_child(pipex);

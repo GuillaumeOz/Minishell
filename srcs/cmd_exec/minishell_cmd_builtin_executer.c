@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:11:03 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/13 15:26:30 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/13 17:52:19 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ void	cmd_builtin_executer(t_cmd *cmd)
 	else if (ft_strcmp(cmd->cmd, "env") == 0
 		&& cmd->args[1] == NULL)
 		g_exit_code = print_env(*(cmd->env));
-	else if (ft_strcmp(cmd->cmd, "pwd") == 0
-		&& cmd->args[1] == NULL)
+	else if (ft_strcmp(cmd->cmd, "pwd") == 0 && cmd->args[1] == NULL)
 		g_exit_code = print_pwd();
 	else if (ft_strcmp(cmd->cmd, "unset") == 0
 		&& cmd->args[1] != NULL)

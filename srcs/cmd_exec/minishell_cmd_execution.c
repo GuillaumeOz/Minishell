@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 19:31:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/13 15:21:45 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/13 18:08:02 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ static void	cmd_exec_routine(t_lexer *lexer, t_cmd *cmd, pid_t *pid, int i)
 		else if (pid[i] == 0)
 		{
 			
-			cmd_executer(cmd, lexer->nb_cmd);
+			cmd_executer(cmd, lexer);
+			
 		}
 		else
 		{

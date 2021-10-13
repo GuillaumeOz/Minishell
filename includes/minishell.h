@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 17:04:53 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/13 17:26:58 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/13 19:51:46 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@
 #define PRINTS(x)	fprintf(stderr, "%s\n", x);
 #define PRINTP(x)	fprintf(stderr, "%p\n", x);
 
-void	quit(char **env, t_bool print_exit);
+// void	pipe_fork(char **env, char *line);
+// void	fork_minishell(char **env, char *line);
+// void	parse_line(char *line, char ***env, int pipe);
 
 int		g_exit_code;
 

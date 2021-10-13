@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_tokenizer.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 16:32:24 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/07 16:30:14 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/13 17:47:46 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 t_lexer	*tokenizer(char *line)
 {
-	t_lexer *lexer;
-	int i;
+	t_lexer	*lexer;
+	int		i;
 
 	i = 0;
 	lexer = NULL;
-	while (line[i] != '\0')
+	while (line != NULL && line[i] != '\0')
 	{
 		if (lexer != NULL && lexer->error == true)
 			return (lexer);

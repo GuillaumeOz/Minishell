@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 15:43:51 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/13 12:34:34 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/13 18:23:48 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,21 @@
 static void	print_env_ascii(char **env)
 {
 	int		i;
-	int		j;
-	t_bool	find_equal;
+	char	**tmp;
 
 	i = 0;
 	while (env[i] != NULL)
 	{
-		find_equal = false;
 		ft_putstr("declare -x ");
-		j = 0;
-		while (env[i][j])
+		if (ft_strstr(env[i], "=") == 0)
+			printf("%s\n", env[i]);
+		else
 		{
-			ft_putchar(env[i][j]);
-			if (env[i][j] == '=')
-			{
-				ft_putchar('"');
-				find_equal = true;
-			}
-			j++;
+			tmp = NULL;
+			tmp = ft_split(env[i], '=');
+			printf("%s=\"%s\"\n", tmp[0], ft_strstr(env[i], "=") + 1);
+			ft_free_tab((void **)tmp);
 		}
-		if (find_equal == true)
-			ft_putchar('"');
-		ft_putchar('\n');
 		i++;
 	}
 }
@@ -91,7 +84,7 @@ int	set_env(char *name, char *value, char ***env)
 	if (name == NULL || ft_strstr(name, "=") != NULL || ft_strlen(name) == 0
 		|| ft_is_digit(name[0]) == true)
 	{
-		printf("minishell: export: « %s » : identifiant non valable\n", name);
+		printf("minishell: export: « %s » : not a valid identifier\n", name);
 		return (EXIT_FAILURE);
 	}
 	tmp = ft_strjoin(name, "=");
@@ -110,19 +103,24 @@ int	set_env(char *name, char *value, char ***env)
 int	builtin_export(char **args, char ***env)
 {
 	int		i;
-	char	**line;
+	char	**name;
 
 	i = 1;
 	while (args[i] != NULL)
 	{
 		if (ft_strstr(args[i], "=") == 0)
-			g_exit_code = set_env(args[i] , NULL, env);
+			g_exit_code = set_env(args[i], NULL, env);
 		else
 		{
-			line = NULL;
-			line = ft_split(args[i], '=');
-			g_exit_code = set_env(line[0] , line[1], env);
-			ft_free_tab((void **)line);
+			name = NULL;
+			name = ft_split(args[i], '=');
+			if (name[0] == NULL)
+				g_exit_code = set_env(args[i], ft_strstr(args[i], "=") + 1,
+						env);
+			else
+				g_exit_code = set_env(name[0], ft_strstr(args[i], "=") + 1,
+						env);
+			ft_free_tab((void **)name);
 		}
 		i++;
 	}

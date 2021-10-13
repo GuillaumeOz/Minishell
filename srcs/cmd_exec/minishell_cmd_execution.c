@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 19:31:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/13 18:08:02 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/13 19:51:12 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,8 @@ static void	cmd_exec_routine(t_lexer *lexer, t_cmd *cmd, pid_t *pid, int i)
 			return ;// improve later ?
 		else if (pid[i] == 0)
 		{
-			
-			cmd_executer(cmd, lexer);
-			
+
+			cmd_executer(cmd, lexer->nb_cmd);
 		}
 		else
 		{
@@ -65,11 +64,11 @@ static void	cmd_exec_routine(t_lexer *lexer, t_cmd *cmd, pid_t *pid, int i)
 	}
 	else if (cmd->error == false)
 	{
-		cmd_builtin_executer(cmd);
+		cmd_builtin_executer(cmd, lexer);
 		close_father_cmd_stdin(cmd);
 		close_father_cmd_stdout(cmd);
 	}
-	
+
 	// test case << end cat > file1 | cat --> close entré pipe cat affiche rien
 	//test file without autorization chmod 000 < file1 cat
 	// handle the case "< file << end | < file2 << end1" as same as bash

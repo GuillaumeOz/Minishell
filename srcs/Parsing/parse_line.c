@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:12:52 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/08 18:35:26 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/13 12:39:48 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,81 +15,49 @@
 static void	parse_splited_line(char **splited_line, char ***env, int pipe)
 {
 	char	*cmd;
-	// char	*tmp;
 
 	if (splited_line[0] == NULL)
 		return ;
 	else if (ft_strcmp(splited_line[0], "echo") == 0)
 	{
 		if (splited_line[1] != NULL && ft_strcmp(splited_line[1], "-n") == 0)
-			return_val = print_echo(splited_line, true, env);
+			g_exit_code = print_echo(splited_line, true, env);
 		else
-			return_val = print_echo(splited_line, false, env);
+			g_exit_code = print_echo(splited_line, false, env);
 	}
 	else if (ft_strcmp(splited_line[0], "cd") == 0)
 	{
-		return_val = builtin_cd(env, splited_line);
-		// if (find_var_env(*env, "PWD") == -1)
-		// {
-		// 	tmp = get_pwd();
-		// 	set_env("PWD", tmp, env);
-		// 	free(tmp);
-		// }
-		// if (splited_line[1] == NULL)
-		// {
-		// 	if (find_var_env(*env, "HOME") == -1)
-		// 	{
-		// 		ft_putstr("minishell: cd: HOME not set\n");
-		// 		return ;
-		// 	}
-		// 	if (chdir((*env)[find_var_env(*env, "HOME")] + 5) != 0)
-		// 		return ;
-		// 	change_pwd(env);
-		// 	return ;
-		// }
-		// if (splited_line[2] != NULL)
-		// {
-		// 	return_val = 1;
-		// 	ft_putstr("cd: trop d'arguments\n");
-		// 	return ;
-		// }
-		// else if (chdir(splited_line[1]) != 0)
-		// {
-		// 	printf("cd: %s: Aucun fichier ou dossier de ce type\n",
-		// 		splited_line[1]);
-		// 	return ;
-		// }
-		// change_pwd(env);
+		g_exit_code = builtin_cd(env, splited_line);
 	}
 	else if (ft_strcmp(splited_line[0], "env") == 0
 		&& splited_line[1] == NULL)
-		return_val = print_env(*env);
+		g_exit_code = print_env(*env);
 	else if (ft_strcmp(splited_line[0], "pwd") == 0
 		&& splited_line[1] == NULL)
-		return_val = print_pwd();
+		g_exit_code = print_pwd();
 	else if (ft_strcmp(splited_line[0], "unset") == 0
 		&& splited_line[1] != NULL)
-		return_val = unset_env(splited_line[1], env);
+		g_exit_code = builtin_unset(splited_line, env);
 	else if (ft_strcmp(splited_line[0], "export") == 0 && splited_line[1] != NULL)
 	{
 		int i = 1;
 		while (splited_line[i] != NULL)
 		{
 			if (ft_strstr(splited_line[i], "=") == 0)
-				return_val = set_env(splited_line[i] , NULL, env);
+				g_exit_code = set_env(splited_line[i] , NULL, env);
 			else
 			{
 				char **line;
 				line = NULL;
 				line = ft_split(splited_line[i], '=');
-				return_val = set_env(line[0] , line[1], env);
+				g_exit_code = set_env(line[0] , line[1], env);
 				ft_free_tab((void **)line);
 			}
 			i++;
 		}
 	}
 	else if (ft_strcmp(splited_line[0], "export") == 0 && splited_line[1] == NULL)
-		return_val = export_without_argument(*env);
+		g_exit_code = export_without_argument(*env);
 	else
 	{
 		cmd = find_cmd(*env, splited_line[0]);

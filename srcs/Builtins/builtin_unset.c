@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 16:09:58 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/06 16:44:26 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/13 12:34:06 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,19 @@ int	unset_env(char *name, char ***env)
 	*env = (char **)ft_tab_new(ft_tab_len((void **)tmp));
 	realloc_env(env, tmp, env_index);
 	ft_free_tab((void **)tmp);
+	return (EXIT_SUCCESS);
+}
+
+int	builtin_unset(char **args, char ***env)
+{
+	int	i;
+
+	i = 1;
+	while (args[i] != NULL)
+	{
+		if (unset_env(args[i], env) == EXIT_FAILURE)
+			return (EXIT_FAILURE);
+		i++;
+	}
 	return (EXIT_SUCCESS);
 }

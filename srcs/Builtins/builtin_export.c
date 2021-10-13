@@ -6,23 +6,11 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 15:43:51 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/06 16:44:16 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/13 12:34:34 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	ft_swap(char **x, char **y)
-{
-	char	*tmp;
-
-	tmp = NULL;
-	if (x == NULL || y == NULL)
-		return ;
-	tmp = *x;
-	*x = *y;
-	*y = tmp;
-}
 
 static void	print_env_ascii(char **env)
 {
@@ -117,4 +105,26 @@ int	set_env(char *name, char *value, char ***env)
 	free(tmp);
 	ft_add_to_tab((void *)variable, (void ***)env);
 	return (EXIT_SUCCESS);
+}
+
+int	builtin_export(char **args, char ***env)
+{
+	int		i;
+	char	**line;
+
+	i = 1;
+	while (args[i] != NULL)
+	{
+		if (ft_strstr(args[i], "=") == 0)
+			g_exit_code = set_env(args[i] , NULL, env);
+		else
+		{
+			line = NULL;
+			line = ft_split(args[i], '=');
+			g_exit_code = set_env(line[0] , line[1], env);
+			ft_free_tab((void **)line);
+		}
+		i++;
+	}
+	return (g_exit_code);
 }

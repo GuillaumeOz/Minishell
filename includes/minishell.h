@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 17:04:53 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/12 17:43:21 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/13 12:44:49 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@
 
 // int		return_val;
 
-// void	pipe_fork(char **env, char *line);
-// void	fork_minishell(char **env, char *line);
-// void	parse_line(char *line, char ***env, int pipe);
+void	pipe_fork(char **env, char *line);
+void	fork_minishell(char **env, char *line);
+void	parse_line(char *line, char ***env, int pipe);
 
 void	quit(char **env, t_bool print_exit);
 

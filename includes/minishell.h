@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 17:04:53 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/13 12:44:49 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/13 14:30:50 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,9 @@
 #define PRINTS(x)	fprintf(stderr, "%s\n", x);
 #define PRINTP(x)	fprintf(stderr, "%p\n", x);
 
-// int		return_val;
-
-void	pipe_fork(char **env, char *line);
-void	fork_minishell(char **env, char *line);
-void	parse_line(char *line, char ***env, int pipe);
+// void	pipe_fork(char **env, char *line);
+// void	fork_minishell(char **env, char *line);
+// void	parse_line(char *line, char ***env, int pipe);
 
 void	quit(char **env, t_bool print_exit);
 

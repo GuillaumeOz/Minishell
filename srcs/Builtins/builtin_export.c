@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 15:43:51 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/13 12:34:34 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/13 14:54:57 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	set_env(char *name, char *value, char ***env)
 int	builtin_export(char **args, char ***env)
 {
 	int		i;
-	char	**line;
+	char	**name;
 
 	i = 1;
 	while (args[i] != NULL)
@@ -119,10 +119,10 @@ int	builtin_export(char **args, char ***env)
 			g_exit_code = set_env(args[i] , NULL, env);
 		else
 		{
-			line = NULL;
-			line = ft_split(args[i], '=');
-			g_exit_code = set_env(line[0] , line[1], env);
-			ft_free_tab((void **)line);
+			name = NULL;
+			name = ft_split(args[i], '=');
+			g_exit_code = set_env(name[0] , ft_strstr(args[i], "=") + 1, env);
+			ft_free_tab((void **)name);
 		}
 		i++;
 	}

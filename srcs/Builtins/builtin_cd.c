@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 12:47:23 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/13 12:33:33 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/13 14:42:47 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	handling_case_tilde(char ***env)
 	}
 	else if (chdir((*env)[find_var_env(*env, "HOME")] + 5) != 0)
 	{
-		printf("cd: %s: Aucun fichier ou dossier de ce type\n",
+		printf("cd: %s: No such file or directory\n",
 			(*env)[find_var_env(*env, "HOME")] + 5);
 		return (EXIT_FAILURE);
 	}
@@ -51,7 +51,7 @@ static int	handling_case_minuses(char ***env)
 	}
 	if (chdir((*env)[find_var_env(*env, "HOME")] + 5) != 0)
 	{
-		printf("cd: %s: Aucun fichier ou dossier de ce type\n",
+		printf("cd: %s: No such file or directory\n",
 			(*env)[find_var_env(*env, "HOME")] + 5);
 		return (EXIT_FAILURE);
 	}
@@ -79,7 +79,7 @@ int	builtin_cd(char ***env, char **args)
 	// 	}
 	// 	if (chdir((*env)[find_var_env(*env, "HOME")] + 5) != 0)
 	// 	{
-	// 		printf("cd: %s: Aucun fichier ou dossier de ce type\n", (*env)[find_var_env(*env, "HOME")] + 5);
+	// 		printf("cd: %s: No such file or directory\n", (*env)[find_var_env(*env, "HOME")] + 5);
 	// 		return (EXIT_FAILURE);
 	// 	}
 	// 	change_pwd(env);
@@ -94,7 +94,7 @@ int	builtin_cd(char ***env, char **args)
 		// }
 		// else if (chdir((*env)[find_var_env(*env, "HOME")] + 5) != 0)
 		// {
-		// 	printf("cd: %s: Aucun fichier ou dossier de ce type\n", (*env)[find_var_env(*env, "HOME")] + 5);
+		// 	printf("cd: %s: No such file or directory\n", (*env)[find_var_env(*env, "HOME")] + 5);
 		// 	return (EXIT_FAILURE);
 		// }
 		// change_pwd(env);
@@ -117,7 +117,7 @@ int	builtin_cd(char ***env, char **args)
 	}
 	else if (chdir(args[1]) != 0)
 	{
-		printf("cd: %s: Aucun fichier ou dossier de ce type\n", args[1]);
+		printf("cd: %s: No such file or directory\n", args[1]);
 		return (EXIT_FAILURE);
 	}
 	change_pwd(env);

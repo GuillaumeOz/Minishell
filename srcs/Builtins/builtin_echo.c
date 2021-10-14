@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_echo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:16:42 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/13 19:52:35 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/14 12:13:52 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ int	print_echo(char **args, t_bool n_flag, char ***env)
 	int	i;
 
 	i = 1 + n_flag;
-	if (ft_strcmp(args[i], "$?") == 0)
+	if (args[i] != NULL && ft_strcmp(args[i], "$?") == 0)
 	{
 		ft_putnbr(g_exit_code);
 		ft_putchar('\n');
 		return (EXIT_SUCCESS);
 	}
-	if (ft_strcmp(args[i], "~") == 0)
+	if (args[i] != NULL && ft_strcmp(args[i], "~") == 0)
 		return (handling_case_tilde(env, n_flag));
 	while (args[i] != NULL)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 17:16:54 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/13 19:55:25 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/14 11:53:40 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	exit_only_digit(char **env, char **args, t_cmd *cmd, t_lexer *lexer)
 	else
 	{
 		g_exit_code = 1;
-		ft_putstr("exit\nminishell : exit: too many arguments\n");
+		ft_putstr_fd(2, "exit\nminishell : exit: too many arguments\n");
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 15:43:51 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/13 18:23:48 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/14 16:56:28 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,9 @@ int	set_env(char *name, char *value, char ***env)
 	if (name == NULL || ft_strstr(name, "=") != NULL || ft_strlen(name) == 0
 		|| ft_is_digit(name[0]) == true)
 	{
-		printf("minishell: export: « %s » : not a valid identifier\n", name);
+		ft_putstr_fd(2, "minishell: export: « ");
+		ft_putstr_fd(2, name);
+		ft_putstr_fd(2, " » : not a valid identifier\n");
 		return (EXIT_FAILURE);
 	}
 	tmp = ft_strjoin(name, "=");

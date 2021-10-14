@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmd_builtin_executer.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:11:03 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/13 19:56:08 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/14 15:56:58 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,7 @@
 void	cmd_builtin_executer(t_cmd *cmd, t_lexer *lexer)
 {
 	if (ft_strcmp(cmd->cmd, "echo") == 0)
-	{
-		if (cmd->args[1] != NULL && ft_strcmp(cmd->args[1], "-n") == 0)
-			g_exit_code = print_echo(cmd->args, true, cmd->env);
-		else
-			g_exit_code = print_echo(cmd->args, false, cmd->env);
-	}
+		g_exit_code = print_echo(cmd->args, cmd->env);
 	else if (ft_strcmp(cmd->cmd, "cd") == 0)
 		g_exit_code = builtin_cd(cmd->env, cmd->args);
 	else if (ft_strcmp(cmd->cmd, "env") == 0 && cmd->args[1] == NULL)

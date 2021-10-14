@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 12:47:23 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/14 11:55:33 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/14 17:02:20 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ static int	handling_case_tilde(char ***env)
 	}
 	else if (chdir((*env)[find_var_env(*env, "HOME")] + 5) != 0)
 	{
-		printf("cd: %s: No such file or directory\n",
-			(*env)[find_var_env(*env, "HOME")] + 5);
+		ft_putstr_fd(2, "cd: HOME: No such file or directory\n");
 		return (EXIT_FAILURE);
 	}
 	change_pwd(env);
@@ -51,8 +50,7 @@ static int	handling_case_minuses(char ***env)
 	}
 	if (chdir((*env)[find_var_env(*env, "HOME")] + 5) != 0)
 	{
-		printf("cd: %s: No such file or directory\n",
-			(*env)[find_var_env(*env, "HOME")] + 5);
+		ft_putstr_fd(2, "cd: HOME: No such file or directory\n");
 		return (EXIT_FAILURE);
 	}
 	change_pwd(env);
@@ -85,7 +83,9 @@ int	builtin_cd(char ***env, char **args)
 		return (handling_case_minus(env));
 	else if (chdir(args[1]) != 0)
 	{
-		printf("cd: %s: No such file or directory\n", args[1]);
+		ft_putstr_fd(2, "cd: ");
+		ft_putstr_fd(2, args[1]);
+		ft_putstr_fd(2, ": No such file or directory\n");
 		return (EXIT_FAILURE);
 	}
 	change_pwd(env);

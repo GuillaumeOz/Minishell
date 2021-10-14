@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:49:30 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/14 15:06:42 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/14 15:55:41 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		builtin_cd(char ***env, char **args);
 ** builtin echo
 */
 
-int		print_echo(char **args, t_bool n_flag, char ***env);
+int		print_echo(char **args, char ***env);
 
 /*
 ** builtin env

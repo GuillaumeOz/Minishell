@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_pipe_is_case.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 02:03:30 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/05 16:19:35 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/14 14:40:36 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_bool is_cmd_pipe_case(t_lexer *lexer, t_lexer **reader)
+t_bool	is_cmd_pipe_case(t_lexer *lexer, t_lexer **reader)
 {
 	while (lexer != NULL)
 	{

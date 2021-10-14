@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_mix_quote_transformation.c               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 19:09:18 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/21 16:25:23 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/14 14:31:57 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	mix_quote_transformation(t_lexer *lexer)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (lexer->args[i] != '\0')

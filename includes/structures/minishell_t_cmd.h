@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_t_cmd.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 18:15:51 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/13 21:02:35 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/14 14:28:32 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,20 @@ typedef enum e_cmd_position
 
 typedef struct s_cmd
 {
-	t_cmd_postion		pos;
-	char				***env;
-	t_list2				*in_fd;
-	t_list2				*out_fd;
-	int					cmd_stdin;
-	int					cmd_stdout;
-	int					*pipe;
-	int					*previous_pipe;
-	t_bool				here_doc;
-	int					*here_doc_pipe;
-	char				**limiter;
-	char				*cmd;
-	char				**args;
-	t_bool				error;
+	t_cmd_postion	pos;
+	char			***env;
+	t_list2			*in_fd;
+	t_list2			*out_fd;
+	int				cmd_stdin;
+	int				cmd_stdout;
+	int				*pipe;
+	int				*previous_pipe;
+	t_bool			here_doc;
+	int				*here_doc_pipe;
+	char			**limiter;
+	char			*cmd;
+	char			**args;
+	t_bool			error;
 }				t_cmd;
 
 t_cmd	*malloc_cmd(char ***env, t_cmd_postion pos);
@@ -59,7 +59,7 @@ void	destroy_fd_list_cmd(void *to_destroy);
 void	destroy_cmd(t_cmd cmd);
 void	free_cmd(void *cmd);
 
-void	cmd_pipe_setter(t_lexer *lexer,t_list2 *cmd_list);
-void	cmd_pos_setter(t_lexer *lexer,t_list2 *cmd_list);
+void	cmd_pipe_setter(t_lexer *lexer, t_list2 *cmd_list);
+void	cmd_pos_setter(t_lexer *lexer, t_list2 *cmd_list);
 
 #endif

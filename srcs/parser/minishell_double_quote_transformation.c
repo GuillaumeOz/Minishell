@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_double_quote_transformation.c            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 19:09:35 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/23 23:50:00 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/14 15:26:30 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    compute_double_quote(t_lexer *lexer, int *i)
+void	compute_double_quote(t_lexer *lexer, int *i)
 {
 	char	*before;
 	char	*inside;
@@ -43,7 +43,7 @@ void    compute_double_quote(t_lexer *lexer, int *i)
 
 void	double_quote_transformation(t_lexer *lexer)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (lexer->args[i] != '\0')

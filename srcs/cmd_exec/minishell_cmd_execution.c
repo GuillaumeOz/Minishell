@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmd_execution.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 19:31:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/13 21:07:00 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/14 14:46:06 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	close_father_cmd_stdout(t_cmd *cmd)
 
 static void	close_father_cmd_stdin(t_cmd *cmd)
 {
-	free_list2(cmd->in_fd, destroy_fd_list_cmd);;
+	free_list2(cmd->in_fd, destroy_fd_list_cmd);
 	cmd->in_fd = NULL;
 }
 

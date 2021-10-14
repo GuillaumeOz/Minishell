@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_fork_setter.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 21:24:02 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/08 18:25:26 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/14 14:32:16 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static t_bool	builtin_checker(t_lexer *lexer)
 
 void	fork_setter(t_lexer *lexer)
 {
-	t_lexer *tmp;
+	t_lexer	*tmp;
 
 	tmp = lexer;
 	while (tmp != NULL)

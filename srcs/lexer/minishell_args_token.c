@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_args_token.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 23:10:52 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/22 14:08:10 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/14 14:39:41 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void token_format_setter(t_lexer *lexer, t_token_format format)
+static void	token_format_setter(t_lexer *lexer, t_token_format format)
 {
 	if (lexer->format == SIMPLE_QUOTE || lexer->format == DOUBLE_QUOTE)
 		lexer->format = MIX_QUOTE;
@@ -20,7 +20,7 @@ static void token_format_setter(t_lexer *lexer, t_token_format format)
 		lexer->format = format;
 }
 
-static void simple_quote_control(t_lexer *lexer, char *line, int *i)
+static void	simple_quote_control(t_lexer *lexer, char *line, int *i)
 {
 	token_format_setter(lexer, SIMPLE_QUOTE);
 	(*i) += 1;
@@ -70,7 +70,7 @@ static void	fill_args(t_lexer *lexer, char *line, int *i)
 
 t_lexer	*args_token(t_lexer *lexer, char *line, int *i)
 {
-	t_lexer *new_lexer;
+	t_lexer	*new_lexer;
 
 	new_lexer = init_lexer(lexer, ARGS, DEFAULT);
 	fill_args(new_lexer, line, i);

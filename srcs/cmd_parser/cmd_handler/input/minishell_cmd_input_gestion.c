@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmd_input_gestion.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 15:54:22 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/12 15:51:47 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/14 14:42:39 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	cmd_limiter_handler(t_lexer *lexer, t_lexer *limiter, t_cmd *cmd)
 {
-	t_lexer *reader;
+	t_lexer	*reader;
 
 	reader = lexer;
 	if (is_exec_double_lower_io_case(lexer, limiter, &reader) == true)

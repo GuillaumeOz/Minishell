@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmd_builder.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:28:05 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/13 14:40:27 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/14 14:46:54 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	*find_cmd(char **env, char *param)
 
 void	cmd_builder(t_cmd *cmd)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = NULL;
 	if (is_cmd_builtin_case(cmd) == true)

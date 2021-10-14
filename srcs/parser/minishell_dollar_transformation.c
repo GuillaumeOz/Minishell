@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_dollar_transformation.c                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 15:51:13 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/24 01:46:24 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/14 15:26:05 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	compute_dollar(t_lexer *lexer, int *i)
 	while (is_dollar_limit(lexer, i, j) == false)
 		j++;
 	env = ft_strndup(lexer->args + (*i) + 1, j);
-	converted_env = getenv(env);
-	free(env);
+	converted_env = getenv(env);// dont use getenv find_var_env *env[find_var_env(to_find)] + len lexer->arg + 1
+	free(env);// recuperer l'env
 	after = ft_strdup(lexer->args + (*i) + 1 + j);
 	free(lexer->args);
 	if (converted_env != NULL)
@@ -68,7 +68,7 @@ void	compute_dollar(t_lexer *lexer, int *i)
 
 void	dollar_transformation(t_lexer *lexer)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (lexer->args[i] != '\0')

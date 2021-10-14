@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_builtins.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:49:30 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/13 19:50:53 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/14 15:06:42 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int		set_env(char *name, char *value, char ***env);
 int		find_var_env(char **env, char *find);
 void	ft_swap(char **x, char **y);
 int		builtin_export(char **args, char ***env);
-
 
 /*
 ** builtin pwd

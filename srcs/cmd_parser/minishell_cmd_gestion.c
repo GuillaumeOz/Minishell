@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmd_gestion.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 16:24:18 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/13 20:01:19 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/14 14:43:52 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	cmd_cleaner(pid_t *pid, t_list2 *cmd_list)
 
 void	cmd_gestion(t_lexer *lexer, char ***env)
 {
-	t_list2 *cmd_list;
+	t_list2	*cmd_list;
 	pid_t	*pid;
 
 	pid = NULL;

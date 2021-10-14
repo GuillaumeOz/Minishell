@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_t_cmd_destructor.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:57:36 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/13 18:09:43 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/14 14:29:46 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	destroy_fd_list_cmd(void *to_destroy)
 {
-	int *fd;
+	int	*fd;
 
 	fd = (int *)(to_destroy);
 	if (*fd != 0 && *fd != 1)
@@ -55,7 +55,7 @@ void	destroy_cmd(t_cmd cmd)
 
 void	free_cmd(void *p_cmd)
 {
-	t_cmd *cmd;
+	t_cmd	*cmd;
 
 	cmd = (t_cmd *)p_cmd;
 	destroy_cmd(*cmd);

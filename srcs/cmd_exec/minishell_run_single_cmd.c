@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_run_single_cmd.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:38:58 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/13 20:09:43 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/14 14:44:43 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	close_cmd_stdout(t_cmd *cmd)
 
 static void	close_cmd_stdin(t_cmd *cmd)
 {
-	free_list2(cmd->in_fd, destroy_fd_list_cmd);;
+	free_list2(cmd->in_fd, destroy_fd_list_cmd);
 	cmd->in_fd = NULL;
 }
 
@@ -65,7 +65,7 @@ void	run_single_cmd(t_cmd *cmd, t_lexer *lexer)
 		// execve(pipex->cmds[0], pipex->args[0], env);
 		// free_pipex(pipex);
 		// pipex_error();
-	
+
 	// 	close(pipex->pipe[i][0]);
 	// 	dup2(pipex->pipe[i - 1][0], STDIN_FILENO);
 	// 	dup2(pipex->pipe[i][1], STDOUT_FILENO);

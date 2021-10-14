@@ -6,13 +6,13 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 21:26:04 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/13 15:48:53 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/14 14:43:14 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void args_gestion(t_cmd *cmd, t_lexer **reader)
+static void	args_gestion(t_cmd *cmd, t_lexer **reader)
 {
 	char	*to_add;
 

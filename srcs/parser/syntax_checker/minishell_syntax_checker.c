@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_syntax_checker.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 21:14:42 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/24 00:13:20 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/14 14:30:32 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	syntax_checker(t_lexer *lexer)
 {
-	t_lexer *tmp;
+	t_lexer	*tmp;
 
 	tmp = lexer;
 	while (tmp != NULL && lexer->error == false)

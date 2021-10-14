@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmd_handler.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 22:21:13 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/13 14:20:22 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/14 14:43:45 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	cmd_exec_args_handler(t_lexer *lexer, t_lexer *limiter, t_cmd *cmd)
 {
-	t_lexer *reader;
+	t_lexer	*reader;
 
 	reader = lexer;
 	if (lexer->error == true)
@@ -25,7 +25,7 @@ void	cmd_exec_args_handler(t_lexer *lexer, t_lexer *limiter, t_cmd *cmd)
 
 void	cmd_handler(t_lexer *lexer, t_list2 *cmd_list, char ***env)
 {
-	t_lexer *reader;
+	t_lexer	*reader;
 	t_cmd	*cmd;
 
 	reader = lexer;

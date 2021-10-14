@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_t_cmd_constructor.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:57:07 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/13 14:40:26 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/14 14:30:10 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_cmd	*malloc_cmd(char ***env, t_cmd_postion pos)
 	return (cmd);
 }
 
-static void create_in_out_file_cmd(t_cmd *cmd)
+static void	create_in_out_file_cmd(t_cmd *cmd)
 {
 	int	*in_std;
 	int	*out_std;

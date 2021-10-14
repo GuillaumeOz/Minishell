@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_run_multiple_cmd.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 16:45:08 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/13 21:11:32 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/14 14:45:19 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	close_cmd_stdin(t_cmd *cmd)
 {
-	free_list2(cmd->in_fd, destroy_fd_list_cmd);;
+	free_list2(cmd->in_fd, destroy_fd_list_cmd);
 	cmd->in_fd = NULL;
 }
 

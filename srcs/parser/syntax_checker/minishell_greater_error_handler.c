@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_greater_error_handler.c                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 18:45:53 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/09/30 17:09:38 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/14 14:31:23 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static t_bool next_is_redirection(t_lexer *lexer, char **token)
+static t_bool	next_is_redirection(t_lexer *lexer, char **token)
 {
 	if (next_is_double_greater_checker(lexer) == true)
 	{
@@ -39,7 +39,7 @@ static t_bool next_is_redirection(t_lexer *lexer, char **token)
 
 t_bool	greater_error_handler(t_lexer *lexer)
 {
-	char *token;
+	char	*token;
 
 	if (next_is_null_checker(lexer) == true)
 	{

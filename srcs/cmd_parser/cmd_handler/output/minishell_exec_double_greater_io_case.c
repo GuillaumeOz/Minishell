@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_exec_double_greater_io_case.c            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 21:29:11 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/11 18:06:06 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/14 14:40:28 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	exec_double_greater_io_case(t_cmd *cmd, t_lexer *lexer,
 	t_lexer *limiter, t_lexer *reader)
 {
-	int *fd;
+	int	*fd;
 
 	fd = (int *)malloc(sizeof(int));
 		if (fd == NULL)

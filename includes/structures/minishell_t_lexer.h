@@ -46,6 +46,7 @@ typedef struct s_lexer
 	int				nb_cmd;
 	char			*args;
 	t_bool			over;
+	char			***env;
 	struct s_lexer	*previous;
 	struct s_lexer	*next;
 }					t_lexer;

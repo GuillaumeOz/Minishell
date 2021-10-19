@@ -39,15 +39,15 @@ int	find_var_env(char **env, char *find)
 	to_find = ft_strdup(find);
 	ft_str_add_suffix(&to_find, "=");
 	line = find_line(env, to_find);
-	free(to_find);
 	if (line >= 0)
 		return (line);
+	free(to_find);
 	to_find = ft_strdup(find);
 	ft_str_add_suffix(&to_find, "\0");
 	line = find_line(env, to_find);
-	free(to_find);
 	if (line >= 0)
 		return (line);
+	free(to_find);
 	return (-1);
 }
 

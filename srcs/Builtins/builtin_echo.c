@@ -35,10 +35,10 @@ static t_bool	check_nflag(char **args)
 			n_flag = true;
 		else
 			n_flag = false;
+		free(tmp);
 	}
 	else
 		n_flag = false;
-	free(tmp);
 	return (n_flag);
 }
 

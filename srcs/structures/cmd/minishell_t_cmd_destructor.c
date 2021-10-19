@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_t_cmd_destructor.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:57:36 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/14 14:29:46 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/19 18:14:01 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,6 @@ void	destroy_fd_list_cmd(void *to_destroy)
 		close(*fd);
 	free(to_destroy);
 }
-
-	// t_cmd_postion		pos;
-	// char				***env;
-	// t_list2				*in_fd;
-	// t_list2				*out_fd;
-	// int					cmd_stdin;
-	// int					cmd_stdout;
-	// int					*pipe;
-	// t_bool				here_doc;
-	// int					*here_doc_pipe;
-	// char				**limiter;
-	// char				*cmd;
-	// char				**args;
-	// t_bool				error;
 
 void	destroy_cmd(t_cmd cmd)
 {

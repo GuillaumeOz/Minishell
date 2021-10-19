@@ -3,30 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_t_lexer.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 14:00:05 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/13 18:00:05 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/19 17:41:34 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_lexer	*malloc_lexer(t_token_type type, t_token_format format)
+t_lexer	*malloc_lexer(char ***env, t_token_type type, t_token_format format)
 {
 	t_lexer *lexer;
 
 	lexer = (t_lexer *)malloc(sizeof(t_lexer));
 	if (lexer == NULL)
 		minishell_error("t_lexer can't be allocate");
-	*lexer = create_lexer(type, format);
+	*lexer = create_lexer(env, type, format);
 	return (lexer);
 }
 
-t_lexer	create_lexer(t_token_type type, t_token_format format)
+t_lexer	create_lexer(char ***env, t_token_type type, t_token_format format)
 {
 	t_lexer lexer;
 
+	lexer.env = env;
 	lexer.type = type;
 	lexer.format = format;
 	lexer.fork = true;
@@ -41,9 +42,8 @@ t_lexer	create_lexer(t_token_type type, t_token_format format)
 
 void	destroy_lexer(t_lexer to_destroy)
 {
-	(void)to_destroy;//check leaks later
-	// if (to_destroy.args != NULL)
-	// 	free(to_destroy.args);
+	if (to_destroy.args != NULL)
+		free(to_destroy.args);
 }
 
 void	free_lexer(t_lexer *to_free)
@@ -63,15 +63,16 @@ void	free_lexer(t_lexer *to_free)
 	}
 }
 
-t_lexer	*init_lexer(t_lexer *lexer, t_token_type type, t_token_format format)
+t_lexer	*init_lexer(t_lexer *lexer, char ***env,
+	t_token_type type, t_token_format format)
 {
 	t_lexer *new_lexer;
 
 	if (lexer == NULL)
-		new_lexer = malloc_lexer(type, format);
+		new_lexer = malloc_lexer(env, type, format);
 	else
 	{
-		new_lexer = malloc_lexer(type, format);
+		new_lexer = malloc_lexer(env, type, format);
 		new_lexer->previous = lexer;
 		lexer->next = new_lexer;
 	}

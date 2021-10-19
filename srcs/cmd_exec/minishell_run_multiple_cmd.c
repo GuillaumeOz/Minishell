@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_run_multiple_cmd.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 16:45:08 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/14 14:45:19 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/19 17:46:56 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

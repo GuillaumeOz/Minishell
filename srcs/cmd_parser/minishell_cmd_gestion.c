@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmd_gestion.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 16:24:18 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/14 14:43:52 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/19 18:13:17 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	cmd_gestion(t_lexer *lexer, char ***env)
 	lexer = set_first_lexer(lexer);
 	cmd_list = malloc_list2(1);
 	cmd_handler(lexer, cmd_list, env);
+	cmd_pos_setter(lexer, cmd_list);
+	cmd_pipe_setter(lexer, cmd_list);
 	cmd_execution(lexer, cmd_list, pid);
 	cmd_cleaner(pid, cmd_list);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmd_builder.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:28:05 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/14 14:46:54 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/19 15:54:41 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	cmd_builder(t_cmd *cmd)
 
 	tmp = NULL;
 	if (is_cmd_builtin_case(cmd) == true)
-		return ;//add builtin gestion here
+		return ;
 	tmp = find_cmd(*(cmd->env), cmd->cmd);
 	if (tmp == NULL)
 		minishell_command_error(cmd, cmd->cmd);

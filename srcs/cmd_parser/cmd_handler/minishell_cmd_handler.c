@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmd_handler.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 22:21:13 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/14 14:43:45 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/19 18:12:51 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,4 @@ void	cmd_handler(t_lexer *lexer, t_list2 *cmd_list, char ***env)
 		cmd_exec_args_handler(lexer, NULL, cmd);
 		list2_push_back(cmd_list, cmd);
 	}
-	cmd_pos_setter(lexer, cmd_list);
-	cmd_pipe_setter(lexer, cmd_list);
 }

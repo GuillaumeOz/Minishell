@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_args_token.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 23:10:52 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/14 14:39:41 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/19 15:29:58 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,11 @@ static void	fill_args(t_lexer *lexer, char *line, int *i)
 		lexer->args = ft_strndup(line + start, (*i) - start);
 }
 
-t_lexer	*args_token(t_lexer *lexer, char *line, int *i)
+t_lexer	*args_token(t_lexer *lexer, char *line, int *i, char ***env)
 {
 	t_lexer	*new_lexer;
 
-	new_lexer = init_lexer(lexer, ARGS, DEFAULT);
+	new_lexer = init_lexer(lexer, env, ARGS, DEFAULT);
 	fill_args(new_lexer, line, i);
 	return (new_lexer);
 }

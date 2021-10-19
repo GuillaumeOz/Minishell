@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_builtins.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:49:30 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/14 15:55:41 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/19 14:18:15 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_BUILTINS_H
 # define MINISHELL_BUILTINS_H
-
-# include "libft.h"
 
 /*
 ** builtin cd

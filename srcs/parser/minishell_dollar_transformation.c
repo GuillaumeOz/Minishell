@@ -49,7 +49,7 @@ static char	*get_key_env(t_lexer *lexer, char *key)
 	index = find_var_env(env, key);
 	if (index == -1)
 		return (value);
-	value = ft_strdup(env[index] + ft_strlen(key));
+	value = ft_strdup(env[index] + ft_strlen(key) + 1);
 	return (value);
 }
 

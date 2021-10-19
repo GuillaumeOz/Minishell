@@ -1,0 +1,816 @@
+==26125== Memcheck, a memory error detector
+==26125== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==26125== Using Valgrind-3.17.0-07f0cdcbb4-20210319X and LibVEX; rerun with -h for copyright info
+==26125== Command: ./minishell
+==26125== Parent PID: 25681
+==26125== 
+--26125-- 
+--26125-- Valgrind options:
+--26125--    --leak-check=full
+--26125--    --show-leak-kinds=all
+--26125--    --track-origins=yes
+--26125--    --verbose
+--26125--    --log-file=valgrind-out.txt
+--26125-- Contents of /proc/version:
+--26125--   Linux version 5.4.0-80-generic (buildd@lcy01-amd64-030) (gcc version 9.3.0 (Ubuntu 9.3.0-17ubuntu1~20.04)) #90-Ubuntu SMP Fri Jul 9 22:49:44 UTC 2021
+--26125-- 
+--26125-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand
+--26125-- Page sizes: currently 4096, max supported 4096
+--26125-- Valgrind library directory: /usr/local/libexec/valgrind
+--26125-- Reading syms from /home/guillaumeoz/Desktop/workingdir/Minishell/minishell
+--26125-- Reading syms from /lib/x86_64-linux-gnu/ld-2.31.so
+--26125--   Considering /lib/x86_64-linux-gnu/ld-2.31.so ..
+--26125--   .. CRC mismatch (computed 975d0390 wanted 30bd717f)
+--26125--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.31.so ..
+--26125--   .. CRC is valid
+--26125-- Reading syms from /usr/local/libexec/valgrind/memcheck-amd64-linux
+--26125--    object doesn't have a dynamic symbol table
+--26125-- Scheduler: using generic scheduler lock implementation.
+--26125-- Reading suppressions file: /usr/local/libexec/valgrind/default.supp
+==26125== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-26125-by-guillaumeoz-on-???
+==26125== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-26125-by-guillaumeoz-on-???
+==26125== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-26125-by-guillaumeoz-on-???
+==26125== 
+==26125== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==26125== don't want to do, unless you know exactly what you're doing,
+==26125== or are doing some strange experiment):
+==26125==   /usr/local/libexec/valgrind/../../bin/vgdb --pid=26125 ...command...
+==26125== 
+==26125== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==26125==   /path/to/gdb ./minishell
+==26125== and then give GDB the following command
+==26125==   target remote | /usr/local/libexec/valgrind/../../bin/vgdb --pid=26125
+==26125== --pid is optional if only one valgrind process is running
+==26125== 
+--26125-- REDIR: 0x4022e10 (ld-linux-x86-64.so.2:strlen) redirected to 0x580cef52 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--26125-- REDIR: 0x4022be0 (ld-linux-x86-64.so.2:index) redirected to 0x580cef6c (vgPlain_amd64_linux_REDIR_FOR_index)
+--26125-- Reading syms from /usr/local/libexec/valgrind/vgpreload_core-amd64-linux.so
+--26125-- Reading syms from /usr/local/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
+==26125== WARNING: new redirection conflicts with existing -- ignoring it
+--26125--     old: 0x04022e10 (strlen              ) R-> (0000.0) 0x580cef52 vgPlain_amd64_linux_REDIR_FOR_strlen
+--26125--     new: 0x04022e10 (strlen              ) R-> (2007.0) 0x04842700 strlen
+--26125-- REDIR: 0x401f5f0 (ld-linux-x86-64.so.2:strcmp) redirected to 0x4843670 (strcmp)
+--26125-- REDIR: 0x4023370 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4847570 (mempcpy)
+--26125-- Reading syms from /lib/x86_64-linux-gnu/libreadline.so.8.0
+--26125--    object doesn't have a symbol table
+--26125-- Reading syms from /lib/x86_64-linux-gnu/libc-2.31.so
+--26125--   Considering /lib/x86_64-linux-gnu/libc-2.31.so ..
+--26125--   .. CRC mismatch (computed 86b78530 wanted e380f01c)
+--26125--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.31.so ..
+--26125--   .. CRC is valid
+--26125-- Reading syms from /lib/x86_64-linux-gnu/libtinfo.so.6.2
+--26125--    object doesn't have a symbol table
+--26125-- REDIR: 0x4961600 (libc.so.6:memmove) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+==26125== Preferring higher priority redirection:
+--26125--     old: 0x04a4c670 (__memcpy_avx_unalign) R-> (2018.0) 0x04844aa0 __memcpy_avx_unaligned_erms
+--26125--     new: 0x04a4c670 (__memcpy_avx_unalign) R-> (2018.1) 0x04846540 memmove
+--26125-- REDIR: 0x4960900 (libc.so.6:strncpy) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x4961930 (libc.so.6:strcasecmp) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x4960220 (libc.so.6:strcat) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x4960960 (libc.so.6:rindex) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x4962dd0 (libc.so.6:rawmemchr) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x497de60 (libc.so.6:wmemchr) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x497d9a0 (libc.so.6:wcscmp) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x4961760 (libc.so.6:mempcpy) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x4961590 (libc.so.6:bcmp) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x4960890 (libc.so.6:strncmp) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x49602d0 (libc.so.6:strcmp) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x49616c0 (libc.so.6:memset) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x497d960 (libc.so.6:wcschr) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x49607f0 (libc.so.6:strnlen) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x49603b0 (libc.so.6:strcspn) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x4961980 (libc.so.6:strncasecmp) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x4960350 (libc.so.6:strcpy) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x4961ad0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x497f0d0 (libc.so.6:wcsnlen) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x497d9e0 (libc.so.6:wcscpy) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x49609a0 (libc.so.6:strpbrk) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x4960280 (libc.so.6:index) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x49607b0 (libc.so.6:strlen) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x4969d20 (libc.so.6:memrchr) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x49619d0 (libc.so.6:strcasecmp_l) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x4961550 (libc.so.6:memchr) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x497dab0 (libc.so.6:wcslen) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x4960c60 (libc.so.6:strspn) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x49618d0 (libc.so.6:stpncpy) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x4961870 (libc.so.6:stpcpy) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x4962e10 (libc.so.6:strchrnul) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x4961a20 (libc.so.6:strncasecmp_l) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x4960830 (libc.so.6:strncat) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x49ee8e0 (libc.so.6:__memcpy_chk) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x4961470 (libc.so.6:strstr) redirected to 0x48311bb (_vgnU_ifunc_wrapper)
+--26125-- REDIR: 0x4a49490 (libc.so.6:__strrchr_avx2) redirected to 0x48420b0 (rindex)
+--26125-- REDIR: 0x495b260 (libc.so.6:malloc) redirected to 0x483c7df (malloc)
+--26125-- REDIR: 0x4a49660 (libc.so.6:__strlen_avx2) redirected to 0x48425e0 (strlen)
+--26125-- REDIR: 0x4a4aba0 (libc.so.6:__strcpy_avx2) redirected to 0x4842730 (strcpy)
+--26125-- REDIR: 0x4a492a0 (libc.so.6:__strchrnul_avx2) redirected to 0x4847090 (strchrnul)
+--26125-- REDIR: 0x4907670 (libc.so.6:setenv) redirected to 0x4847fd0 (setenv)
+--26125-- REDIR: 0x4a49070 (libc.so.6:__strchr_avx2) redirected to 0x4842290 (index)
+--26125-- REDIR: 0x4a44fa0 (libc.so.6:__strncmp_avx2) redirected to 0x4842d10 (strncmp)
+--26125-- REDIR: 0x495c000 (libc.so.6:realloc) redirected to 0x484163e (realloc)
+--26125-- REDIR: 0x4a4c670 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x4846540 (memmove)
+--26125-- REDIR: 0x4a4c650 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x48471b0 (mempcpy)
+--26125-- REDIR: 0x4a44b60 (libc.so.6:__strcmp_avx2) redirected to 0x4843570 (strcmp)
+--26125-- REDIR: 0x495cc90 (libc.so.6:calloc) redirected to 0x48413f1 (calloc)
+--26125-- REDIR: 0x4a49800 (libc.so.6:__strnlen_avx2) redirected to 0x4842580 (strnlen)
+--26125-- REDIR: 0x495b850 (libc.so.6:free) redirected to 0x483f051 (free)
+--26125-- REDIR: 0x4961120 (libc.so.6:__GI_strstr) redirected to 0x48477f0 (__strstr_sse2)
+--26125-- REDIR: 0x4a4c660 (libc.so.6:__memcpy_chk_avx_unaligned_erms) redirected to 0x4847660 (__memcpy_chk)
+--26125-- REDIR: 0x4a4af30 (libc.so.6:__strncpy_avx2) redirected to 0x48428d0 (strncpy)
+--26125-- REDIR: 0x4a454c0 (libc.so.6:__memchr_avx2) redirected to 0x48436f0 (memchr)
+--26125-- REDIR: 0x4a4b890 (libc.so.6:__stpcpy_avx2) redirected to 0x4845d80 (stpcpy)
+--26125-- REDIR: 0x4a46030 (libc.so.6:__strcasecmp_avx) redirected to 0x4842ed0 (strcasecmp)
+--26125-- REDIR: 0x4a476b0 (libc.so.6:__strncasecmp_avx) redirected to 0x4842fb0 (strncasecmp)
+--26125-- REDIR: 0x4a4caf0 (libc.so.6:__memset_avx2_unaligned_erms) redirected to 0x4846430 (memset)
+--26125-- REDIR: 0x4a45c50 (libc.so.6:__memcmp_avx2_movbe) redirected to 0x4845c60 (bcmp)
+==26125== 
+==26125== HEAP SUMMARY:
+==26125==     in use at exit: 204,688 bytes in 216 blocks
+==26125==   total heap usage: 633 allocs, 417 frees, 232,459 bytes allocated
+==26125== 
+==26125== Searching for pointers to 216 not-freed blocks
+==26125== Checked 212,528 bytes
+==26125== 
+==26125== 8 bytes in 1 blocks are still reachable in loss record 1 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x496050E: strdup (strdup.c:42)
+==26125==    by 0x4ACB4F7: _nc_trim_sgr0 (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC4538: tgetent_sp (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x489F75B: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 8 bytes in 1 blocks are still reachable in loss record 2 of 59
+==26125==    at 0x48416C6: realloc (vg_replace_malloc.c:1192)
+==26125==    by 0x48AA041: xrealloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4895063: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48957D5: rl_expand_prompt (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4882FE5: rl_set_prompt (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AA: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 8 bytes in 1 blocks are definitely lost in loss record 3 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x10CA75: cmd_pipe_setter (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x10AACC: cmd_handler (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x10AA3D: cmd_handler (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x10A8B7: cmd_gestion (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x10B717: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 13 bytes in 1 blocks are still reachable in loss record 4 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4891CF2: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4884228: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 14 bytes in 1 blocks are still reachable in loss record 5 of 59
+==26125==    at 0x48416C6: realloc (vg_replace_malloc.c:1192)
+==26125==    by 0x4AC12C7: _nc_doalloc (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC5C3E: tparm (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACB274: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACB4E9: _nc_trim_sgr0 (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC4538: tgetent_sp (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x489F75B: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 15 bytes in 1 blocks are still reachable in loss record 6 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x496050E: strdup (strdup.c:42)
+==26125==    by 0x4AC3E4F: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC4359: tgetent_sp (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x489F75B: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 16 bytes in 1 blocks are still reachable in loss record 7 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x4884317: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 18 bytes in 1 blocks are still reachable in loss record 8 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x496050E: strdup (strdup.c:42)
+==26125==    by 0x4AC0AA7: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC0D9B: _nc_first_db (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACAE1E: _nc_read_entry2 (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC39F5: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC3E04: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC4359: tgetent_sp (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x489F75B: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 20 bytes in 1 blocks are still reachable in loss record 9 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48929D3: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4891818: rl_parse_and_bind (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4891C6C: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4884228: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 30 bytes in 1 blocks are still reachable in loss record 10 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x4AC168C: _nc_home_terminfo (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC0D85: _nc_first_db (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACAE1E: _nc_read_entry2 (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC39F5: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC3E04: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC4359: tgetent_sp (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x489F75B: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 46 bytes in 1 blocks are still reachable in loss record 11 of 59
+==26125==    at 0x48416C6: realloc (vg_replace_malloc.c:1192)
+==26125==    by 0x4AC12C7: _nc_doalloc (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACA504: _nc_read_termtype (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACA91C: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACAD13: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACAE44: _nc_read_entry2 (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC39F5: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC3E04: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC4359: tgetent_sp (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x489F75B: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125== 
+==26125== 46 bytes in 1 blocks are still reachable in loss record 12 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x4ABF18E: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC3E1B: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC4359: tgetent_sp (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x489F75B: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 48 bytes in 1 blocks are still reachable in loss record 13 of 59
+==26125==    at 0x484147B: calloc (vg_replace_malloc.c:1117)
+==26125==    by 0x4AC0E9B: _nc_first_db (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACAE1E: _nc_read_entry2 (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC39F5: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC3E04: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC4359: tgetent_sp (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x489F75B: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 50 bytes in 1 blocks are still reachable in loss record 14 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4883010: rl_set_prompt (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AA: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 50 bytes in 1 blocks are still reachable in loss record 15 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x489502F: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48957D5: rl_expand_prompt (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4882FE5: rl_set_prompt (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AA: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 78 bytes in 1 blocks are still reachable in loss record 16 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x4ABF1FF: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC3E1B: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC4359: tgetent_sp (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x489F75B: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 94 bytes in 1 blocks are still reachable in loss record 17 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x4AC5542: _nc_tparm_analyze (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC57CB: tparm (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACB274: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACB4E9: _nc_trim_sgr0 (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC4538: tgetent_sp (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x489F75B: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 99 bytes in 1 blocks are still reachable in loss record 18 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x4AC0E04: _nc_first_db (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACAE1E: _nc_read_entry2 (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC39F5: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC3E04: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC4359: tgetent_sp (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x489F75B: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 156 bytes in 1 blocks are still reachable in loss record 19 of 59
+==26125==    at 0x48416C6: realloc (vg_replace_malloc.c:1192)
+==26125==    by 0x4AC12C7: _nc_doalloc (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACA522: _nc_read_termtype (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACA91C: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACAD13: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACAE44: _nc_read_entry2 (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC39F5: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC3E04: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC4359: tgetent_sp (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x489F75B: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125== 
+==26125== 256 bytes in 1 blocks are still reachable in loss record 20 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4884466: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 280 bytes in 1 blocks are still reachable in loss record 21 of 59
+==26125==    at 0x484147B: calloc (vg_replace_malloc.c:1117)
+==26125==    by 0x4AC3DB7: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC4359: tgetent_sp (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x489F75B: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 496 bytes in 1 blocks are still reachable in loss record 22 of 59
+==26125==    at 0x484147B: calloc (vg_replace_malloc.c:1117)
+==26125==    by 0x4ACA78B: _nc_read_termtype (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACA91C: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACAD13: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACAE44: _nc_read_entry2 (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC39F5: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC3E04: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC4359: tgetent_sp (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x489F75B: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 496 bytes in 1 blocks are still reachable in loss record 23 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x4ABF2D9: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC3E1B: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC4359: tgetent_sp (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x489F75B: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 755 bytes in 1 blocks are still reachable in loss record 24 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x4ACA80B: _nc_read_termtype (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACA91C: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACAD13: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACAE44: _nc_read_entry2 (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC39F5: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC3E04: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC4359: tgetent_sp (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x489F75B: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 1,024 bytes in 1 blocks are still reachable in loss record 25 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4894B8A: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x489A0E6: rl_redisplay (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48830F6: readline_internal_setup (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844D3: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 1,024 bytes in 1 blocks are still reachable in loss record 26 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4894BA0: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x489A0E6: rl_redisplay (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48830F6: readline_internal_setup (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844D3: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 1,024 bytes in 1 blocks are still reachable in loss record 27 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4894BE8: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x489A0E6: rl_redisplay (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48830F6: readline_internal_setup (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844D3: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 1,024 bytes in 1 blocks are still reachable in loss record 28 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4894C07: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x489A0E6: rl_redisplay (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48830F6: readline_internal_setup (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844D3: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 1,024 bytes in 1 blocks are still reachable in loss record 29 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4894C1F: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x489A0E6: rl_redisplay (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48830F6: readline_internal_setup (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844D3: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 1,024 bytes in 1 blocks are still reachable in loss record 30 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4894C37: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x489A0E6: rl_redisplay (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48830F6: readline_internal_setup (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844D3: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 1,536 bytes in 1 blocks are still reachable in loss record 31 of 59
+==26125==    at 0x48416C6: realloc (vg_replace_malloc.c:1192)
+==26125==    by 0x48AA041: xrealloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4888944: rl_add_funmap_entry (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4888998: rl_initialize_funmap (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x488421C: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 1,556 bytes in 1 blocks are still reachable in loss record 32 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x4AC9E82: _nc_read_termtype (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACA91C: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACAD13: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACAE44: _nc_read_entry2 (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC39F5: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC3E04: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC4359: tgetent_sp (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x489F75B: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 2,032 bytes in 1 blocks are still reachable in loss record 33 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x489F999: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 2,208 bytes in 138 blocks are still reachable in loss record 34 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48888F0: rl_add_funmap_entry (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4888998: rl_initialize_funmap (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x488421C: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 3,792 bytes in 1 blocks are still reachable in loss record 35 of 59
+==26125==    at 0x48416C6: realloc (vg_replace_malloc.c:1192)
+==26125==    by 0x4AC12C7: _nc_doalloc (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACA540: _nc_read_termtype (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACA91C: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACAD13: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4ACAE44: _nc_read_entry2 (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC39F5: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC3E04: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC4359: tgetent_sp (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x489F75B: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125== 
+==26125== 3,792 bytes in 1 blocks are still reachable in loss record 36 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x4ABF1AF: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC3E1B: _nc_setupterm (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC4359: tgetent_sp (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x489F75B: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 4,016 bytes in 1 blocks are still reachable in loss record 37 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48A3A5B: add_history (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B723: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 4,080 bytes in 1 blocks are still reachable in loss record 38 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x489F9B9: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 4,112 bytes in 1 blocks are still reachable in loss record 39 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4888A91: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x488FD79: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4890F1D: rl_bind_keyseq_if_unbound_in_map (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x489EF45: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x489F897: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 4,112 bytes in 1 blocks are still reachable in loss record 40 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4888A91: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x488FD79: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4890F1D: rl_bind_keyseq_if_unbound_in_map (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x489EFCA: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x489F897: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 4,112 bytes in 1 blocks are still reachable in loss record 41 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4888A91: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x488FD79: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4890F1D: rl_bind_keyseq_if_unbound_in_map (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x489EFCA: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x489F8A3: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 4,112 bytes in 1 blocks are still reachable in loss record 42 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4888A91: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x488FD79: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4890F1D: rl_bind_keyseq_if_unbound_in_map (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x489EFCA: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x489F8AF: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 4,112 bytes in 1 blocks are still reachable in loss record 43 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4888A91: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x488FD79: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4890F1D: rl_bind_keyseq_if_unbound_in_map (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4882F72: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4884274: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 4,112 bytes in 1 blocks are still reachable in loss record 44 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4888A91: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x488FD79: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4890F1D: rl_bind_keyseq_if_unbound_in_map (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4882F72: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4884283: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 4,112 bytes in 1 blocks are still reachable in loss record 45 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4888A91: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x488FD79: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4890F1D: rl_bind_keyseq_if_unbound_in_map (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4882F72: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48842A1: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 7,952 bytes in 1 blocks are still reachable in loss record 46 of 59
+==26125==    at 0x484147B: calloc (vg_replace_malloc.c:1117)
+==26125==    by 0x4ABFFA7: ??? (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC079F: _nc_find_type_entry (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x4AC4C9C: tgetstr_sp (in /lib/x86_64-linux-gnu/libtinfo.so.6.2)
+==26125==    by 0x489F79B: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 8,224 bytes in 2 blocks are still reachable in loss record 47 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4888A91: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x488FD79: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4890F1D: rl_bind_keyseq_if_unbound_in_map (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x489EFB7: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x489F897: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 8,224 bytes in 2 blocks are still reachable in loss record 48 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4888A91: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x488FD79: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4890F1D: rl_bind_keyseq_if_unbound_in_map (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x489EF45: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x489F8A3: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 8,224 bytes in 2 blocks are still reachable in loss record 49 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4888A91: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x488FD79: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4890F1D: rl_bind_keyseq_if_unbound_in_map (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x489EFB7: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x489F8A3: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 8,224 bytes in 2 blocks are still reachable in loss record 50 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4888A91: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x488FD79: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4890F1D: rl_bind_keyseq_if_unbound_in_map (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x489EF45: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x489F8AF: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 8,224 bytes in 2 blocks are still reachable in loss record 51 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4888A91: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x488FD79: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4890F1D: rl_bind_keyseq_if_unbound_in_map (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x489EFB7: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x489F8AF: _rl_init_terminal_io (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48841FF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 8,224 bytes in 2 blocks are still reachable in loss record 52 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4888A91: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x488FD79: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4890F1D: rl_bind_keyseq_if_unbound_in_map (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4882F63: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4884274: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 8,224 bytes in 2 blocks are still reachable in loss record 53 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4888A91: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x488FD79: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4890F1D: rl_bind_keyseq_if_unbound_in_map (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4882F63: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4884283: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 8,224 bytes in 2 blocks are still reachable in loss record 54 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4888A91: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x488FD79: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4890F1D: rl_bind_keyseq_if_unbound_in_map (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4882F63: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48842A1: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 8,224 bytes in 2 blocks are still reachable in loss record 55 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4888A91: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x488FD79: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4890F1D: rl_bind_keyseq_if_unbound_in_map (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48842BF: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 8,224 bytes in 2 blocks are still reachable in loss record 56 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4888A91: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x488FD79: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4890F1D: rl_bind_keyseq_if_unbound_in_map (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48842D2: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 12,336 bytes in 3 blocks are still reachable in loss record 57 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4888A91: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x488FD79: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4890F1D: rl_bind_keyseq_if_unbound_in_map (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4882F3A: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4884283: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 12,336 bytes in 3 blocks are still reachable in loss record 58 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4888A91: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x488FD79: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4890F1D: rl_bind_keyseq_if_unbound_in_map (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4882F3A: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48842A1: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== 28,784 bytes in 7 blocks are still reachable in loss record 59 of 59
+==26125==    at 0x483C855: malloc (vg_replace_malloc.c:380)
+==26125==    by 0x48AA00C: xmalloc (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4888A91: rl_make_bare_keymap (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x488FD79: rl_generic_bind (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4891A92: rl_parse_and_bind (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4891C6C: ??? (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x4884228: rl_initialize (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x48844AF: readline (in /lib/x86_64-linux-gnu/libreadline.so.8.0)
+==26125==    by 0x10B6AF: prompt (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125==    by 0x1094E4: main (in /home/guillaumeoz/Desktop/workingdir/Minishell/minishell)
+==26125== 
+==26125== LEAK SUMMARY:
+==26125==    definitely lost: 8 bytes in 1 blocks
+==26125==    indirectly lost: 0 bytes in 0 blocks
+==26125==      possibly lost: 0 bytes in 0 blocks
+==26125==    still reachable: 204,680 bytes in 215 blocks
+==26125==         suppressed: 0 bytes in 0 blocks
+==26125== 
+==26125== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)

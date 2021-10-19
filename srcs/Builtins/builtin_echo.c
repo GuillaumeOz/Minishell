@@ -23,18 +23,31 @@ static int	handling_case_tilde(char ***env, t_bool n_flag)
 	return (EXIT_SUCCESS);
 }
 
+static t_bool	check_nflag(char **args)
+{
+	char	*tmp;
+	t_bool	n_flag;
+
+	if (args[1] != NULL && ft_strncmp(args[1], "-n", 2) == 0)
+	{
+		tmp = ft_rm_charset(args[1], "-n");
+		if (tmp[0] == '\0')
+			n_flag = true;
+		else
+			n_flag = false;
+		free(tmp);
+	}
+	else
+		n_flag = false;
+	return (n_flag);
+}
+
 int	print_echo(char **args, char ***env)
 {
 	int		i;
 	t_bool	n_flag;
 
-	if (args[1] != NULL && ft_strncmp(args[1], "-n", 2) == 0)
-	{
-		args[1] = ft_rm_charset(args[1] + 2, "n");
-		n_flag = true;
-	}
-	else
-		n_flag = false;
+	n_flag = check_nflag(args);
 	i = 1 + n_flag;
 	if (args[i] != NULL && ft_strcmp(args[i], "~") == 0)
 		return (handling_case_tilde(env, n_flag));

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 15:56:18 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/13 17:28:00 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/20 11:46:02 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	minishell_greater_fd_error(t_lexer *lexer,
 	g_exit_code = errno;
 }
 
-void	minishell_command_error(t_cmd *cmd, char *token)
+void	minishell_command_error(t_cmd *cmd, char *token)//suppr this ?
 {
 	cmd->error = true;
 	ft_putstr_fd(2, "Minishell: ");

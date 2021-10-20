@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_run_single_cmd.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:38:58 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/14 14:44:43 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/20 11:54:42 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,33 +50,13 @@ void	run_single_cmd(t_cmd *cmd, t_lexer *lexer)
 	close_cmd_stdin(cmd);
 	close_cmd_stdout(cmd);
 	if (is_cmd_builtin_case(cmd) == true)
+	{
 		cmd_builtin_executer(cmd, lexer);
+		quit_builtin(cmd, lexer);
+	}
 	else
+	{
 		execve(cmd->cmd, cmd->args, *cmd->env);
-	free_cmd((void *)cmd);
-	free_lexer(lexer);
+		quit_execve(cmd, lexer);
+	}
 }
-		// close(pipex->pipe[0][0]);
-		// it_is_here_doc_child(pipex);
-		// dup2(pipex->pipe[0][1], STDOUT_FILENO);
-		// if (pipex->here_doc == false)
-		// 	close(pipex->fd_file1);
-		// close(pipex->pipe[0][1]);
-		// execve(pipex->cmds[0], pipex->args[0], env);
-		// free_pipex(pipex);
-		// pipex_error();
-
-	// 	close(pipex->pipe[i][0]);
-	// 	dup2(pipex->pipe[i - 1][0], STDIN_FILENO);
-	// 	dup2(pipex->pipe[i][1], STDOUT_FILENO);
-	// 	close(pipex->pipe[i - 1][0]);
-	// 	close(pipex->pipe[i][1]);
-	// 	execve(pipex->cmds[i], pipex->args[i], env);
-	// 	free_pipex(pipex);
-	// 	pipex_error();
-	// }
-	// else
-	// {
-	// 	close(pipex->pipe[i - 1][0]);
-	// 	close(pipex->pipe[i][1]);
-	// }

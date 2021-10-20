@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:38:10 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/13 15:15:48 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/20 11:32:09 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ t_bool	is_cmd_null_case(t_cmd *cmd)
 
 t_bool	is_cmd_builtin_case(t_cmd *cmd)
 {
+	if (cmd->cmd == NULL)
+		return (false);
 	if (ft_strcmp(cmd->cmd, "echo") == 0
 		|| ft_strcmp(cmd->cmd, "cd") == 0
 		|| ft_strcmp(cmd->cmd, "pwd") == 0

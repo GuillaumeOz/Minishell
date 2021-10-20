@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:57:36 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/19 18:14:01 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/20 14:58:58 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	destroy_cmd(t_cmd cmd)
 		free_list2(cmd.out_fd, destroy_fd_list_cmd);
 	if (cmd.pipe != NULL)
 		free(cmd.pipe);
+	if (cmd.here_doc_pipe != NULL)
+		free(cmd.here_doc_pipe);
 	if (cmd.cmd != NULL)
 		free(cmd.cmd);
 	if (cmd.args != NULL)

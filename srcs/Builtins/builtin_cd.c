@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 12:47:23 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/14 17:02:20 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/20 16:26:19 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static int	handling_case_minus(char ***env)
 	}
 	if (chdir((*env)[find_var_env(*env, "OLDPWD")] + 7) != 0)
 		return (EXIT_FAILURE);
+	ft_putstr((*env)[find_var_env(*env, "OLDPWD")] + 7);
+	ft_putchar('\n');
 	change_pwd(env);
 	return (EXIT_SUCCESS);
 }
@@ -68,15 +70,15 @@ static void	set_pwd(char ***env)
 
 int	builtin_cd(char ***env, char **args)
 {
+	if (find_var_env(*env, "PWD") == -1)
+		set_pwd(env);
+	if (args[1] == NULL || ft_strcmp(args[1], "--") == 0)
+		return (handling_case_minuses(env));
 	if (args[2] != NULL)
 	{
 		ft_putstr_fd(2, "cd: too many arguments\n");
 		return (EXIT_FAILURE);
 	}
-	if (find_var_env(*env, "PWD") == -1)
-		set_pwd(env);
-	if (args[1] == NULL || ft_strcmp(args[1], "--") == 0)
-		return (handling_case_minuses(env));
 	if (ft_strcmp(args[1], "~") == 0)
 		return (handling_case_tilde(env));
 	if (ft_strcmp(args[1], "-") == 0)

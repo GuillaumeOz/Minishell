@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 15:43:51 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/14 16:56:28 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/20 13:04:33 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ static int	replace_variable(int env_index, char ***env, char *value, char *tmp)
 		{
 			free((*env)[env_index]);
 			(*env)[env_index] = ft_strjoin(tmp, value);
-			free(tmp);
 		}
+		free(tmp);
 		return (EXIT_SUCCESS);
 	}
 	return (EXIT_FAILURE);

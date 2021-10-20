@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 17:04:53 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/19 14:44:27 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/20 16:20:54 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define _BLUE "\033[1;34m"
 # define _WHITE "\033[0;37m"
 # define _GREEN "\033[32m"
+# define _YELLOW "\033[33m"
 # define _PURPLE "\033[1;35m"
 # define _RED "\033[1;31m"
 

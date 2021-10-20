@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_double_quote_transformation.c            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 19:09:35 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/14 15:26:30 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/20 17:21:01 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

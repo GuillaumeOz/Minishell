@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 16:45:08 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/20 11:53:39 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/20 18:02:11 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	run_multiple_cmd(t_cmd *cmd, t_lexer *lexer)
 	}
 	else
 	{
-		execve(cmd->cmd, cmd->args, *cmd->env);
+		execve(cmd->cmd, cmd->args, *cmd->env);		
 		quit_execve(cmd, lexer);
 	}
 }

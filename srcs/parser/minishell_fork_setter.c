@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 21:24:02 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/14 14:32:16 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/21 14:55:19 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,13 @@ void	fork_setter(t_lexer *lexer)
 	while (tmp != NULL)
 	{
 		if (tmp->type == ARGS)
+		{
 			if (builtin_checker(tmp) == true)
 			{
 				set_lexer_fork(lexer);
 				return ;
 			}
+		}
 		tmp = tmp->next;
 	}
 }

@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_run_multiple_cmd.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 16:45:08 by gozsertt          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/10/21 13:50:33 by gozsertt         ###   ########.fr       */
+=======
+/*   Updated: 2021/10/21 13:02:35 by chdespon         ###   ########.fr       */
+>>>>>>> 2a23804e6ddbff4bd9f2717b59d69c2dd6bf5153
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +76,7 @@ void	run_multiple_cmd(t_cmd *cmd, t_lexer *lexer)
 	}
 	else
 	{
-		execve(cmd->cmd, cmd->args, *cmd->env);		
+		execve(cmd->cmd, cmd->args, *cmd->env);
 		quit_execve(cmd, lexer);
 	}
 }

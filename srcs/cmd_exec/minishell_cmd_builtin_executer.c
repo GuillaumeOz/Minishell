@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmd_builtin_executer.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:11:03 by gozsertt          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/10/21 17:16:27 by gozsertt         ###   ########.fr       */
+=======
+/*   Updated: 2021/10/21 15:41:48 by chdespon         ###   ########.fr       */
+>>>>>>> 2a23804e6ddbff4bd9f2717b59d69c2dd6bf5153
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +25,7 @@ void	cmd_builtin_executer(t_cmd *cmd, t_lexer *lexer)
 	else if (ft_strcmp(cmd->cmd, "env") == 0 && cmd->args[1] == NULL)
 		g_exit_code = print_env(*(cmd->env));
 	else if (ft_strcmp(cmd->cmd, "pwd") == 0 && cmd->args[1] == NULL)
-		g_exit_code = print_pwd();
+		g_exit_code = print_pwd(cmd->env);
 	else if (ft_strcmp(cmd->cmd, "unset") == 0 && cmd->args[1] != NULL)
 		g_exit_code = builtin_unset(cmd->args, cmd->env);
 	else if (ft_strcmp(cmd->cmd, "export") == 0 && cmd->args[1] != NULL)

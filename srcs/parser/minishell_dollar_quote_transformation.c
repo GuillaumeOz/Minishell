@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_dollar_quote_transformation.c            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:03:19 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/20 17:32:41 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/21 13:04:21 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	quote_dollar_transformation(t_lexer *lexer)
 		{
 			// debug
 			double_quote_transformation(lexer);
-			
 		}
 		else if (lexer->format == SIMPLE_QUOTE)
 			simple_quote_transformation(lexer);

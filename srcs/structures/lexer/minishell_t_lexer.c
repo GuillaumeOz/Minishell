@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_t_lexer.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 14:00:05 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/20 12:36:41 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/21 13:01:56 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_lexer	*malloc_lexer(char ***env, t_token_type type, t_token_format format)
 {
-	t_lexer *lexer;
+	t_lexer	*lexer;
 
 	lexer = (t_lexer *)malloc(sizeof(t_lexer));
 	if (lexer == NULL)
@@ -25,7 +25,7 @@ t_lexer	*malloc_lexer(char ***env, t_token_type type, t_token_format format)
 
 t_lexer	create_lexer(char ***env, t_token_type type, t_token_format format)
 {
-	t_lexer lexer;
+	t_lexer	lexer;
 
 	lexer.env = env;
 	lexer.type = type;
@@ -48,7 +48,7 @@ void	destroy_lexer(t_lexer to_destroy)
 
 void	free_lexer(t_lexer *to_free)
 {
-	t_lexer *tmp;
+	t_lexer	*tmp;
 
 	if (to_free == NULL)
 		return ;
@@ -66,7 +66,7 @@ void	free_lexer(t_lexer *to_free)
 t_lexer	*init_lexer(t_lexer *lexer, char ***env,
 	t_token_type type, t_token_format format)
 {
-	t_lexer *new_lexer;
+	t_lexer	*new_lexer;
 
 	if (lexer == NULL)
 		new_lexer = malloc_lexer(env, type, format);

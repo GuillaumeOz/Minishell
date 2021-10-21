@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 21:29:11 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/14 14:40:28 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/21 14:51:58 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	exec_double_greater_io_case(t_cmd *cmd, t_lexer *lexer,
 	int	*fd;
 
 	fd = (int *)malloc(sizeof(int));
-		if (fd == NULL)
-			minishell_error("int * cannot be allocated");
+	if (fd == NULL)
+		minishell_error("int * cannot be allocated");
 	*fd = open(reader->args, O_CREAT | O_RDWR | O_APPEND, 0644);
 	if (*fd == -1)
 		minishell_greater_fd_error(lexer, limiter, reader->args);

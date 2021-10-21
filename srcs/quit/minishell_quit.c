@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_quit.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 00:26:04 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/20 18:00:30 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/21 13:04:46 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,5 @@ void	quit_builtin(t_cmd *cmd, t_lexer *lexer)
 {
 	free_cmd((void *)cmd);
 	free_lexer(lexer);
-	exit(g_exit_code);	
+	exit(g_exit_code);
 }
-

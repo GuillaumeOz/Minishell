@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 12:47:23 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/20 16:26:19 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/21 18:24:03 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,26 +70,36 @@ static void	set_pwd(char ***env)
 
 int	builtin_cd(char ***env, char **args)
 {
+	char	*pwd;
+
 	if (find_var_env(*env, "PWD") == -1)
 		set_pwd(env);
 	if (args[1] == NULL || ft_strcmp(args[1], "--") == 0)
 		return (handling_case_minuses(env));
-	if (args[2] != NULL)
+	else if (args[2] != NULL)
 	{
 		ft_putstr_fd(2, "cd: too many arguments\n");
 		return (EXIT_FAILURE);
 	}
-	if (ft_strcmp(args[1], "~") == 0)
+	else if (ft_strcmp(args[1], "~") == 0)
 		return (handling_case_tilde(env));
-	if (ft_strcmp(args[1], "-") == 0)
+	else if (ft_strcmp(args[1], "-") == 0)
 		return (handling_case_minus(env));
-	else if (chdir(args[1]) != 0)
+	if (chdir(args[1]) != 0)
 	{
 		ft_putstr_fd(2, "cd: ");
 		ft_putstr_fd(2, args[1]);
 		ft_putstr_fd(2, ": No such file or directory\n");
 		return (EXIT_FAILURE);
 	}
+	pwd = get_pwd();
+	if (pwd == NULL)
+	{
+		(*env)[find_var_env(*env, "PWD")] = ft_strappend((*env)[find_var_env(*env, "PWD")], "/..", 1, 0);
+		ft_putstr_fd(2, "cd : erreur de détermination du répertoire actuel : getcwd : ne peut accéder aux répertoires parents : Aucun fichier ou dossier de ce type\n");
+		set_env("PWD", (*env)[find_var_env(*env, "PWD")] + 4, env);
+	}
+	free(pwd);
 	change_pwd(env);
 	return (EXIT_SUCCESS);
 }

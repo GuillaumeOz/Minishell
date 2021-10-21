@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_builtins.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:49:30 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/19 14:18:15 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/21 15:41:15 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		builtin_export(char **args, char ***env);
 
 void	change_pwd(char ***env);
 char	*get_pwd(void);
-int		print_pwd(void);
+int		print_pwd(char ***env);
 
 /*
 ** builtin unset

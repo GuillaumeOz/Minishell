@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_t_lexer.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 18:50:00 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/20 11:50:17 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/21 14:48:48 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ t_lexer	create_lexer(char ***env, t_token_type type, t_token_format format);
 void	destroy_lexer(t_lexer to_destroy);
 void	free_lexer(t_lexer *to_free);
 
-t_lexer	*init_lexer(t_lexer *lexer, char ***env, t_token_type type, t_token_format format);
+t_lexer	*init_lexer(t_lexer *lexer, char ***env,
+			t_token_type type, t_token_format format);
 t_lexer	*set_first_lexer(t_lexer *lexer);
 
 #endif

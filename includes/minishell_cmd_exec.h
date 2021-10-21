@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmd_exec.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:21:39 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/14 15:06:52 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/21 17:38:27 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	run_multiple_cmd(t_cmd *cmd, t_lexer *lexer);
 
 void	run_single_cmd(t_cmd *cmd, t_lexer *lexer);
 
+void    cmd_out_fork_executer(t_cmd *cmd, t_lexer *lexer);
 void	cmd_executer(t_cmd *cmd, t_lexer *lexer);
 
 t_bool	is_cmd_null_case(t_cmd *cmd);

@@ -6,22 +6,18 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 19:31:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/20 20:22:15 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/21 18:06:58 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	close_father_cmd_stdout(t_cmd *cmd)
-{
-	free_list2(cmd->out_fd, destroy_fd_list_cmd);
-	cmd->out_fd = NULL;
-}
-
-static void	close_father_cmd_stdin(t_cmd *cmd)
+static void	close_father_cmd_stdin_stdout(t_cmd *cmd)
 {
 	free_list2(cmd->in_fd, destroy_fd_list_cmd);
 	cmd->in_fd = NULL;
+	free_list2(cmd->out_fd, destroy_fd_list_cmd);
+	cmd->out_fd = NULL;
 }
 
 static void	close_father_pipe_cmd(t_cmd *cmd)
@@ -75,17 +71,15 @@ static void	cmd_exec_routine(t_lexer *lexer, t_cmd *cmd, pid_t *pid, int i)
 			cmd_executer(cmd, lexer);
 		else
 		{
-			close_father_cmd_stdin(cmd);
-			close_father_cmd_stdout(cmd);
+			close_father_cmd_stdin_stdout(cmd);
 			close_father_pipe_cmd(cmd);
 		}
 	}
 	else if (cmd->error == false)
 	{
-		cmd_builtin_executer(cmd, lexer);
-		close_father_cmd_stdin(cmd);
-		close_father_cmd_stdout(cmd);
-		close_father_pipe_cmd(cmd);
+		cmd_out_fork_executer(cmd, lexer);
+		// close_father_cmd_stdin_stdout(cmd);
+		// close_father_pipe_cmd(cmd);
 	}
 }
 	// test case << end cat > file1 | cat --> close entré pipe cat affiche rien

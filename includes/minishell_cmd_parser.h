@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmd_parser.h                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 16:09:39 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/14 15:07:31 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/21 14:49:05 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_bool	is_exec_double_lower_io_case(t_lexer *lexer,
 			t_lexer *limiter, t_lexer **reader);
 void	exec_double_lower_io_case(t_cmd *cmd, t_lexer *lexer,
 			t_lexer *limiter, t_lexer **reader);
+void	here_doc_dollar_transformation(t_cmd *cmd, char **line);
 void	exec_here_doc(t_cmd *cmd, int *i);
 void	cmd_limiter_handler(t_lexer *lexer, t_lexer *limiter, t_cmd *cmd);
 

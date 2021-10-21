@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_t_cmd_constructor.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:57:07 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/14 14:30:10 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/21 14:21:18 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

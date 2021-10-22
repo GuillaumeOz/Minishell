@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_signals.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 15:56:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/19 14:47:19 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/22 17:56:48 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	handle_sigint(int sig)
 {
 	if (sig == SIGINT)
 	{
+		close(0);
 		ft_putchar('\n');
 		rl_on_new_line();
 		rl_replace_line("", 0);

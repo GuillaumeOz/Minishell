@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_exec_here_doc.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 16:27:33 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/21 17:13:38 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/22 17:33:43 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void	exec_here_doc_routine(t_cmd *cmd, int *i, int weight)
 		if (ft_strcmp(line, (cmd->limiter[*i] + weight)) == 0)
 		{
 			free(line);
+			line = NULL;
 			*i += 1;
 			break ;
 		}
@@ -68,8 +69,15 @@ static void	exec_here_doc_routine(t_cmd *cmd, int *i, int weight)
 			write(cmd->here_doc_pipe[1], line, len);
 			write(cmd->here_doc_pipe[1], "\n", 1);
 			free(line);
+			line = NULL;
 		}
 		write(1, "> ", 2);
+	}
+	if (line != NULL)
+	{
+		free(line);
+		ft_putstr_fd(2, "bash: avertissement : « here-document » à la ligne 1 "
+			"délimité par la fin du fichier (au lieu de « end »)\n");
 	}
 }
 

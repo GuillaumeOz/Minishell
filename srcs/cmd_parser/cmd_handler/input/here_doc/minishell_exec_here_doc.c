@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 16:27:33 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/21 17:13:38 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/23 21:19:16 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,24 +52,26 @@ static void	exec_here_doc_routine(t_cmd *cmd, int *i, int weight)
 	char	*line;
 	size_t	len;
 
-	while (here_doc_get_next_line(0, &line) > 0)//remplace by readline ?
+	while (here_doc_get_next_line(0, &line) >= 0)
 	{
-		if (ft_strcmp(line, (cmd->limiter[*i] + weight)) == 0)
+		if (ft_strlen(line) == 0)
+			return (here_doc_warning(cmd, line, i, weight));
+		else if (ft_strcmp(line, (cmd->limiter[*i] + weight)) == 0)
 		{
 			free(line);
 			*i += 1;
 			break ;
 		}
-		else
+		else if (ft_strlen(line) != 0)
 		{
 			if (cmd->limiter[*i][0] == 1)
 				here_doc_dollar_transformation(cmd, &line);
 			len = ft_strlen(line);
 			write(cmd->here_doc_pipe[1], line, len);
 			write(cmd->here_doc_pipe[1], "\n", 1);
+			write(1, "> ", 2);
 			free(line);
 		}
-		write(1, "> ", 2);
 	}
 }
 
@@ -86,9 +88,9 @@ static void	here_doc_pipe_setter(t_cmd *cmd)
 	pipe(cmd->here_doc_pipe);
 }
 
-void	exec_here_doc(t_cmd *cmd, int *i)//test signal here_doc
+void	exec_here_doc(t_cmd *cmd, int *i)
 {
-	int weight;
+	int		weight;
 
 	weight = 0;
 	if (cmd->limiter[*i][0] == 1)

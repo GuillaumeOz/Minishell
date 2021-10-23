@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 18:50:00 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/21 20:32:55 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/21 20:38:21 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ typedef enum e_token_type
 {
 	NONE,
 	ARGS,
-	space, //use this ? Maybe use undercase
-	tab, //use this ? Maybe use undercase
+	space, //use this ? Maybe use undercase //suppr this
+	tab, //use this ? Maybe use undercase //suppr this
 	PIPE = '|',
 	QUOTE = '\'',
 	QUOTES = '\"',

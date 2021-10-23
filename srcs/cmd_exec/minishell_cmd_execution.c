@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 19:31:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/21 18:06:58 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/23 14:59:28 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,9 @@ static void	cmd_exec_routine(t_lexer *lexer, t_cmd *cmd, pid_t *pid, int i)
 		}
 	}
 	else if (cmd->error == false)
-	{
 		cmd_out_fork_executer(cmd, lexer);
-		// close_father_cmd_stdin_stdout(cmd);
-		// close_father_pipe_cmd(cmd);
-	}
 }
-	// test case << end cat > file1 | cat --> close entré pipe cat affiche rien
-	//test file without autorization chmod 000 < file1 cat
+	// test file without autorization chmod 000 < file1 cat
 	// handle the case "< file << end | < file2 << end1" as same as bash
 
 void	cmd_execution(t_lexer *lexer, t_list2 *cmd_list, pid_t *pid)

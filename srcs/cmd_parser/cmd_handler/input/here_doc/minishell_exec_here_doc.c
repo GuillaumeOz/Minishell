@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 16:27:33 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/23 21:19:16 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/23 21:43:00 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,10 @@ static void	exec_here_doc_routine(t_cmd *cmd, int *i, int weight)
 	{
 		if (ft_strlen(line) == 0)
 			return (here_doc_warning(cmd, line, i, weight));
-		else if (ft_strcmp(line, (cmd->limiter[*i] + weight)) == 0)
+		if (ft_strcmp(line, (cmd->limiter[*i] + weight)) == 0)
 		{
 			free(line);
+			line = NULL;
 			*i += 1;
 			break ;
 		}
@@ -71,8 +72,15 @@ static void	exec_here_doc_routine(t_cmd *cmd, int *i, int weight)
 			write(cmd->here_doc_pipe[1], "\n", 1);
 			write(1, "> ", 2);
 			free(line);
+			line = NULL;
 		}
 	}
+	// if (line != NULL)
+	// {
+	// 	free(line);
+	// 	ft_putstr_fd(2, "bash: avertissement : « here-document » à la ligne 1 "
+	// 		"délimité par la fin du fichier (au lieu de « end »)\n");
+	// }
 }
 
 static void	here_doc_pipe_setter(t_cmd *cmd)

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 15:56:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/23 21:41:07 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/24 19:34:49 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,15 @@
 
 void	handle_sigint(int sig)
 {
+	if (g_exit_code == -1)
+	{
+		ft_putchar('\n');
+		exit(130);
+	}
+	if (g_exit_code == -2)
+		return ;
 	if (sig == SIGINT)
 	{
-		// close(0);
 		ft_putchar('\n');
 		rl_on_new_line();
 		rl_replace_line("", 0);

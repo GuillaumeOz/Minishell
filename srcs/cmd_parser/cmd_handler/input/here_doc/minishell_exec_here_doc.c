@@ -6,53 +6,29 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 16:27:33 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/24 15:34:10 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/24 19:44:31 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	here_doc_gnl_recursive(int fd, char **line, int index)
+static void	compute_here_doc_line(t_cmd *cmd, char *line, int *i)
 {
-	char	buffer;
-	int		ret;
+	size_t	len;
 
-	ret = read(fd, &buffer, 1);
-	if (ret == -1)
-		return (-1);
-	if (ret == 1 && buffer != '\n')
-	{
-		ret = here_doc_gnl_recursive(fd, line, index + 1);
-		if (ret == -1)
-			return (-1);
-		(*line)[index] = buffer;
-	}
-	else
-	{
-		(*line) = (char *)malloc(sizeof(char) * (index + 1));
-		if ((*line) == NULL)
-			return (-1);
-		(*line)[index] = '\0';
-	}
-	return (ret);
-}
-
-static int	here_doc_get_next_line(int fd, char **line)
-{
-	int	ret;
-
-	ret = here_doc_gnl_recursive(fd, line, 0);
-	if (line == NULL || ret == -1)
-		return (-1);
-	return (ret);
+	if (cmd->limiter[*i][0] == 1)
+		here_doc_dollar_transformation(cmd, &line);
+	len = ft_strlen(line);
+	write(cmd->here_doc_pipe[1], line, len);
+	write(cmd->here_doc_pipe[1], "\n", 1);
+	free(line);
 }
 
 static void	exec_here_doc_routine(t_cmd *cmd, int *i, int weight)
 {
 	char	*line;
-	size_t	len;
 
-	while (here_doc_get_next_line(0, &line) > 0)
+	while (get_next_line(0, &line) > 0)
 	{
 		if (ft_strcmp(line, (cmd->limiter[*i] + weight)) == 0)
 		{
@@ -63,12 +39,7 @@ static void	exec_here_doc_routine(t_cmd *cmd, int *i, int weight)
 		}
 		else if (ft_strlen(line) != 0)
 		{
-			if (cmd->limiter[*i][0] == 1)
-				here_doc_dollar_transformation(cmd, &line);
-			len = ft_strlen(line);
-			write(cmd->here_doc_pipe[1], line, len);
-			write(cmd->here_doc_pipe[1], "\n", 1);
-			free(line);
+			compute_here_doc_line(cmd, line, i);
 			line = NULL;
 		}
 		else
@@ -77,6 +48,8 @@ static void	exec_here_doc_routine(t_cmd *cmd, int *i, int weight)
 	}
 	if (line != NULL)
 		here_doc_warning(cmd, line, i, weight);
+	close(cmd->here_doc_pipe[1]);
+	exit(0);
 }
 
 static void	here_doc_pipe_setter(t_cmd *cmd)
@@ -92,17 +65,44 @@ static void	here_doc_pipe_setter(t_cmd *cmd)
 	pipe(cmd->here_doc_pipe);
 }
 
+static void	here_doc_case_gestion(t_cmd *cmd, pid_t child_status)
+{
+	if (child_status == 33280)
+	{
+		g_exit_code = 130;
+		cmd->error = true;
+		close(cmd->here_doc_pipe[1]);
+		close(cmd->here_doc_pipe[0]);
+	}
+	else
+	{
+		close(cmd->here_doc_pipe[1]);
+		cmd->cmd_stdin = cmd->here_doc_pipe[0];
+	}
+}
+
 void	exec_here_doc(t_cmd *cmd, int *i)
 {
-	int	weight;
+	pid_t	child_pid;
+	int		child_status;
+	int		weight;
 
 	weight = 0;
+	child_status = 0;
 	if (cmd->limiter[*i][0] == 1)
 		weight = 1;
 	cmd->here_doc = true;
 	here_doc_pipe_setter(cmd);
 	write(1, "> ", 2);
-	exec_here_doc_routine(cmd, i, weight);
-	close(cmd->here_doc_pipe[1]);
-	cmd->cmd_stdin = cmd->here_doc_pipe[0];
+	child_pid = fork();
+	g_exit_code = -2;
+	if (child_pid == 0)
+	{
+		g_exit_code = -1;
+		exec_here_doc_routine(cmd, i, weight);
+	}
+	else
+		waitpid(child_pid, &child_status, 0);
+	g_exit_code = 0;
+	here_doc_case_gestion(cmd, child_status);
 }

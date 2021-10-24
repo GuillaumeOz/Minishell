@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 15:56:18 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/23 17:42:56 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/24 19:25:52 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ void	set_lexer_limiter_error(t_lexer *lexer, t_lexer *limiter)
 void	minishell_lower_fd_error(t_lexer *lexer,
 	t_lexer *limiter, char *token)
 {
+	if (g_exit_code == 130)
+	{
+		set_lexer_limiter_error(lexer, NULL);
+		return ;
+	}
 	set_lexer_limiter_error(lexer, limiter);
 	ft_putstr_fd(2, "Minishell: ");
 	ft_putstr_fd(2, token);

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 15:54:22 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/24 15:17:55 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/24 19:23:11 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	cmd_input_handler(t_lexer *lexer, t_lexer *limiter, t_cmd *cmd)
 	i = 0;
 	error_token = NULL;
 	reader = lexer;
-	while (reader != limiter)
+	while (reader != limiter && g_exit_code != 130)
 	{
 		if (is_exec_lower_io_case(reader) == true)
 			exec_lower_io_case(cmd, reader->next);

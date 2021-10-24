@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 19:31:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/23 14:59:28 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/24 19:32:20 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,19 @@ static void	close_father_pipe_cmd(t_cmd *cmd)
 
 static void	wait_childs(pid_t *pid, int nb_cmd)
 {
+	int	status;
 	int	i;
 
 	i = 0;
 	while (i < nb_cmd)
 	{
-		waitpid(pid[i], &g_exit_code, 0);
-		if (WIFEXITED(g_exit_code) == true)
-			g_exit_code = WEXITSTATUS(g_exit_code);
-		if (WIFSIGNALED(g_exit_code) == true)
-			g_exit_code = WTERMSIG(g_exit_code);
+		waitpid(pid[i], &status, 0);
+		if (g_exit_code == 130)
+			;
+		else if (WIFEXITED(status) == true)
+			g_exit_code = WEXITSTATUS(status);
+		else if (WIFSIGNALED(status) == true)
+			g_exit_code = WTERMSIG(status);
 		i++;
 	}
 }

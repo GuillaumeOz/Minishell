@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 20:57:36 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/20 14:58:58 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/24 22:32:56 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,8 @@ void	destroy_fd_list_cmd(void *to_destroy)
 
 void	destroy_cmd(t_cmd cmd)
 {
-	// PRINTD(*((int*)list2_at(cmd.in_fd, 0)))
-	// PRINTD(*((int*)list2_at(cmd.out_fd, 0)))
-	// exit(0);
 	if (cmd.in_fd != NULL)
-		free_list2(cmd.in_fd, destroy_fd_list_cmd);// case when there are no in out fd
+		free_list2(cmd.in_fd, destroy_fd_list_cmd);
 	if (cmd.out_fd != NULL)
 		free_list2(cmd.out_fd, destroy_fd_list_cmd);
 	if (cmd.pipe != NULL)

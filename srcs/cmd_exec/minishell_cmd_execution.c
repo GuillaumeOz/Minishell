@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 19:31:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/24 21:26:24 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/24 22:15:23 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	close_father_pipe_cmd(t_cmd *cmd)
 
 static void	wait_childs(pid_t *pid, int nb_cmd)
 {
-	int		intsig;
+	int	intsig;
 	int	i;
 
 	i = 0;
@@ -82,8 +82,6 @@ static void	cmd_exec_routine(t_lexer *lexer, t_cmd *cmd, pid_t *pid, int i)
 	else if (cmd->error == false)
 		cmd_out_fork_executer(cmd, lexer);
 }
-	// test file without autorization chmod 000 < file1 cat
-	// handle the case "< file << end | < file2 << end1" as same as bash
 
 void	cmd_execution(t_lexer *lexer, t_list2 *cmd_list, pid_t *pid)
 {
@@ -100,10 +98,7 @@ void	cmd_execution(t_lexer *lexer, t_list2 *cmd_list, pid_t *pid)
 			cmd->previous_pipe = previous_pipe;
 		previous_pipe = cmd->pipe;
 		if (is_cmd_null_case(cmd) == false)
-		{
 			cmd_exec_routine(lexer, cmd, pid, i);
-			//add close father fd if necessary
-		}
 		i++;
 	}
 	if (pid != NULL)

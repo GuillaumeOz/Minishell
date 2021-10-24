@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_syntax_checker.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 21:14:42 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/14 14:30:32 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/24 22:23:22 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

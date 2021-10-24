@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:28:05 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/21 13:55:27 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/24 22:11:49 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,4 @@ void	cmd_builder(t_cmd *cmd)
 		free(cmd->cmd);
 		cmd->cmd = tmp;
 	}
-	// free(cmd->cmd);
-	// cmd->cmd = tmp;
 }

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 19:09:03 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/21 20:33:55 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/24 22:31:38 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	compute_simple_quote(t_lexer *lexer, int *i)
 	after = ft_strndup(lexer->args + (*i), j);
 	free(lexer->args);
 	(*i) -= 2;
-	// (*i) += ft_strlen(inside);
 	lexer->args = ft_strappend(inside, after, true, true);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 17:35:33 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/21 20:26:52 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/24 22:16:53 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	close_cmd_stdin(t_cmd *cmd)
 
 static int	single_cmd_stdout_gestion(t_cmd *cmd, int *stdout_dup)
 {
-	int stdout_ret;
+	int	stdout_ret;
 
 	stdout_ret = 1;
 	if (cmd->cmd_stdout != STDOUT_FILENO)
@@ -40,7 +40,7 @@ static int	single_cmd_stdout_gestion(t_cmd *cmd, int *stdout_dup)
 
 static int	single_cmd_stdin_gestion(t_cmd *cmd, int *stdin_dup)
 {
-	int stdin_ret;
+	int	stdin_ret;
 
 	stdin_ret = 0;
 	if (cmd->here_doc == true && cmd->here_doc_pipe[0] == cmd->cmd_stdin)
@@ -63,10 +63,10 @@ static int	single_cmd_stdin_gestion(t_cmd *cmd, int *stdin_dup)
 
 void	cmd_out_fork_executer(t_cmd *cmd, t_lexer *lexer)
 {
-	int stdin_ret;
-	int stdout_ret;
-	int stdin_dup;
-	int stdout_dup;
+	int	stdin_ret;
+	int	stdout_ret;
+	int	stdin_dup;
+	int	stdout_dup;
 
 	stdin_ret = 0;
 	stdout_ret = 1;
@@ -86,20 +86,3 @@ void	cmd_out_fork_executer(t_cmd *cmd, t_lexer *lexer)
 		close(stdout_dup);
 	}
 }
-
-
-// ...
-
-// int saved_stdout;
-
-// ...
-
-// /* Save current stdout for use later */
-// saved_stdout = dup(1);
-// dup2(my_temporary_stdout_fd, 1);
-
-// ... do some work on your new stdout ...
-
-// /* Restore stdout */
-// dup2(saved_stdout, 1);
-// close(saved_stdout);

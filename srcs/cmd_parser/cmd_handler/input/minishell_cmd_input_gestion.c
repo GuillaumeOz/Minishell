@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 15:54:22 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/24 19:23:11 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/24 22:17:57 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	cmd_input_handler(t_lexer *lexer, t_lexer *limiter, t_cmd *cmd)
 	{
 		if (is_exec_lower_io_case(reader) == true)
 			exec_lower_io_case(cmd, reader->next);
-		else if (is_exec_here_doc_io_case(reader) == true)//if (cmd->limiter != NULL)
+		else if (is_exec_here_doc_io_case(reader) == true)
 			exec_here_doc(cmd, &i);
 		if (error_token == NULL && cmd->error == true)
 			error_token = reader->args;

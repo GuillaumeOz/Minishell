@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 16:27:33 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/23 21:43:00 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/24 15:34:10 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,8 @@ static void	exec_here_doc_routine(t_cmd *cmd, int *i, int weight)
 	char	*line;
 	size_t	len;
 
-	while (here_doc_get_next_line(0, &line) >= 0)
+	while (here_doc_get_next_line(0, &line) > 0)
 	{
-		if (ft_strlen(line) == 0)
-			return (here_doc_warning(cmd, line, i, weight));
 		if (ft_strcmp(line, (cmd->limiter[*i] + weight)) == 0)
 		{
 			free(line);
@@ -70,17 +68,15 @@ static void	exec_here_doc_routine(t_cmd *cmd, int *i, int weight)
 			len = ft_strlen(line);
 			write(cmd->here_doc_pipe[1], line, len);
 			write(cmd->here_doc_pipe[1], "\n", 1);
-			write(1, "> ", 2);
 			free(line);
 			line = NULL;
 		}
+		else
+			free(line);
+		write(1, "> ", 2);
 	}
-	// if (line != NULL)
-	// {
-	// 	free(line);
-	// 	ft_putstr_fd(2, "bash: avertissement : « here-document » à la ligne 1 "
-	// 		"délimité par la fin du fichier (au lieu de « end »)\n");
-	// }
+	if (line != NULL)
+		here_doc_warning(cmd, line, i, weight);
 }
 
 static void	here_doc_pipe_setter(t_cmd *cmd)
@@ -98,7 +94,7 @@ static void	here_doc_pipe_setter(t_cmd *cmd)
 
 void	exec_here_doc(t_cmd *cmd, int *i)
 {
-	int		weight;
+	int	weight;
 
 	weight = 0;
 	if (cmd->limiter[*i][0] == 1)

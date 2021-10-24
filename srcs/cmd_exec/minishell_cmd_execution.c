@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 19:31:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/24 19:32:20 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/24 21:00:25 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,20 @@ static void	close_father_pipe_cmd(t_cmd *cmd)
 
 static void	wait_childs(pid_t *pid, int nb_cmd)
 {
-	int	status;
+	int		intsig;
 	int	i;
 
 	i = 0;
+	intsig = g_exit_code;
 	while (i < nb_cmd)
 	{
-		waitpid(pid[i], &status, 0);
-		if (g_exit_code == 130)
-			;
-		else if (WIFEXITED(status) == true)
-			g_exit_code = WEXITSTATUS(status);
-		else if (WIFSIGNALED(status) == true)
-			g_exit_code = WTERMSIG(status);
+		waitpid(pid[i], &g_exit_code, 0);
+		if (WIFEXITED(g_exit_code) == true)
+			g_exit_code = WEXITSTATUS(g_exit_code);
+		if (WIFSIGNALED(g_exit_code) == true)
+			g_exit_code = WTERMSIG(g_exit_code);
+		if (intsig == 130)
+			g_exit_code = 130;
 		i++;
 	}
 }
@@ -69,7 +70,7 @@ static void	cmd_exec_routine(t_lexer *lexer, t_cmd *cmd, pid_t *pid, int i)
 	{
 		pid[i] = fork();
 		if (pid[i] < 0)
-			return ;// improve later ?
+			return ;
 		else if (pid[i] == 0)
 			cmd_executer(cmd, lexer);
 		else

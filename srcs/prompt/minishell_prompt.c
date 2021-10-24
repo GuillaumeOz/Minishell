@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 16:02:51 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/24 15:41:26 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/24 22:04:10 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	prompt(char ***env)
 		}
 		if (line == NULL)
 			break ;
+		if (ft_strlen(line) == 0 && g_exit_code != 0)
+			g_exit_code = 0;
 		free(line);
 		free_lexer(lexer);
 	}

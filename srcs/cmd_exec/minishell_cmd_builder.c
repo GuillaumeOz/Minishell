@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmd_builder.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:28:05 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/24 22:11:49 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/25 17:54:08 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,22 @@ char	**take_path(char **env)
 	return (path);
 }
 
+static char	*check_path(char **path, char *param, int i, char *cmd)
+{
+	ft_str_add_suffix(&(path[i]), "/");
+	ft_str_add_suffix(&(path[i]), param);
+	cmd = ft_strdup(path[i]);
+	if (open(cmd, O_RDONLY) > 0)
+	{
+		ft_free_tab((void **)path);
+		path = NULL;
+		return (cmd);
+	}
+	free(cmd);
+	cmd = NULL;
+	return (cmd);
+}
+
 char	*find_cmd(char **env, char *param)
 {
 	char	**path;
@@ -40,19 +56,14 @@ char	*find_cmd(char **env, char *param)
 	cmd = param;
 	while (path && path[i])
 	{
-		ft_str_add_suffix(&(path[i]), "/");
-		ft_str_add_suffix(&(path[i]), param);
-		cmd = ft_strdup(path[i]);
-		if (open(cmd, O_RDONLY) > 0)
-		{
-			ft_free_tab((void **)path);
-			path = NULL;
+		cmd = check_path(path, param, i, cmd);
+		if (cmd != NULL)
 			return (cmd);
-		}
-		free(cmd);
-		cmd = NULL;
 		i++;
 	}
+	if (path == NULL)
+		if (open(cmd, O_RDONLY) > 0)
+			return (ft_strdup(param));
 	if (path != NULL)
 		ft_free_tab((void **)path);
 	return (NULL);

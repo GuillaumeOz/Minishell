@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:15:15 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/25 15:36:17 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/25 16:43:10 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ int	print_pwd(char ***env)
 		ft_putstr_fd(1, pwd);
 		free(pwd);
 	}
-	ft_putstr_fd(1, (*env)[find_var_env(*env, "PWD")] + 4);
-	ft_putchar_fd(1, '\n');
+	else
+	{
+		ft_putstr_fd(1, (*env)[find_var_env(*env, "PWD")] + 4);
+		ft_putchar_fd(1, '\n');
+	}
 	return (EXIT_SUCCESS);
 }

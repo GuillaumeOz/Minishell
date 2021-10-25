@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmd_builtin_executer.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:11:03 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/23 21:31:20 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/25 15:56:41 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,51 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_exec_here_doc.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 16:27:33 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/24 20:10:07 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/25 15:58:16 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	compute_here_doc_line(t_cmd *cmd, char *line, int *i)
+static void	compute_here_doc_line(t_cmd *cmd, char **line, int *i)
 {
 	size_t	len;
 
 	if (cmd->limiter[*i][0] == 1)
-		here_doc_dollar_transformation(cmd, &line);
-	len = ft_strlen(line);
-	write(cmd->here_doc_pipe[1], line, len);
+		here_doc_dollar_transformation(cmd, line);
+	len = ft_strlen(*line);
+	write(cmd->here_doc_pipe[1], *line, len);
 	write(cmd->here_doc_pipe[1], "\n", 1);
-	free(line);
+	free(*line);
+	*line = NULL;
 }
 
 static void	exec_here_doc_routine(t_cmd *cmd, int *i, int weight)
 {
 	char	*line;
 
-	while (get_next_line(0, &line) > 0)
+	while (1)
 	{
-		if (ft_strcmp(line, (cmd->limiter[*i] + weight)) == 0)
+		line = readline("> ");
+		if (line != NULL && ft_strcmp(line, (cmd->limiter[*i] + weight)) == 0)
 		{
 			free(line);
 			line = NULL;
 			*i += 1;
 			break ;
 		}
-		else if (ft_strlen(line) != 0)
+		if (line == NULL)
 		{
-			compute_here_doc_line(cmd, line, i);
-			line = NULL;
+			here_doc_warning(cmd, line, i, weight);
+			break ;
 		}
+		if (line != NULL && ft_strlen(line) != 0)
+			compute_here_doc_line(cmd, &line, i);
 		else
 			free(line);
-		write(1, "> ", 2);
 	}
-	if (line != NULL)
-		here_doc_warning(cmd, line, i, weight);
+	free(line);
 	close(cmd->here_doc_pipe[1]);
 	exit(0);
 }
@@ -93,7 +95,6 @@ void	exec_here_doc(t_cmd *cmd, int *i)
 		weight = 1;
 	cmd->here_doc = true;
 	here_doc_pipe_setter(cmd);
-	write(1, "> ", 2);
 	child_pid = fork();
 	g_exit_code = -2;
 	if (child_pid == 0)

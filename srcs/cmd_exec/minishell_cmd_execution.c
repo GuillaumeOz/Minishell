@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmd_execution.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 19:31:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/24 22:15:23 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/25 15:56:33 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,14 @@ static void	close_father_pipe_cmd(t_cmd *cmd)
 
 static void	wait_childs(pid_t *pid, int nb_cmd)
 {
-	int	intsig;
-	int	i;
+	static int	intsig = 0;
+	int			i;
 
 	i = 0;
-	intsig = g_exit_code;
+	if (intsig == 0 && g_exit_code == 130)
+		intsig = 130;
+	else if (g_exit_code != 130)
+		intsig = 0;
 	while (i < nb_cmd)
 	{
 		waitpid(pid[i], &g_exit_code, 0);

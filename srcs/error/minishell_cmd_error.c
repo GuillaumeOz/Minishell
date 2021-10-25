@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmd_error.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 15:56:18 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/24 22:18:49 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/25 12:35:59 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	minishell_lower_fd_error(t_lexer *lexer,
 }
 
 void	minishell_greater_fd_error(t_lexer *lexer,
-	t_lexer *limiter, char *token)//rename ?
+	t_lexer *limiter, char *token)
 {
 	set_lexer_limiter_error(lexer, limiter);
 	ft_putstr_fd(2, "Minishell: file descriptor error at file opening ");

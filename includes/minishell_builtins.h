@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:49:30 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/21 15:41:15 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/25 14:23:13 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int		set_env(char *name, char *value, char ***env);
 int		find_var_env(char **env, char *find);
 void	ft_swap(char **x, char **y);
 int		builtin_export(char **args, char ***env);
+int		error_message(char *name, char *builtin);
 
 /*
 ** builtin pwd

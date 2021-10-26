@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_exec_here_doc.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 16:27:33 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/25 15:58:16 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/26 14:11:56 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ static void	exec_here_doc_routine(t_cmd *cmd, int *i, int weight)
 	while (1)
 	{
 		line = readline("> ");
-		if (line != NULL && ft_strcmp(line, (cmd->limiter[*i] + weight)) == 0)
+		if (line != NULL && limitercmp(line, cmd->limiter[*i], weight) == true)
 		{
 			free(line);
 			line = NULL;
-			*i += 1;
+			// *i += 1;
 			break ;
 		}
 		if (line == NULL)
@@ -67,23 +67,26 @@ static void	here_doc_pipe_setter(t_cmd *cmd)
 	pipe(cmd->here_doc_pipe);
 }
 
-static void	here_doc_case_gestion(t_cmd *cmd, pid_t child_status)
+static void	here_doc_case_gestion(t_lexer *lexer,
+	t_cmd *cmd, pid_t child_status, int *i)
 {
 	if (child_status == 33280)
 	{
 		g_exit_code = 130;
 		cmd->error = true;
+		set_lexer_error(lexer);
 		close(cmd->here_doc_pipe[1]);
 		close(cmd->here_doc_pipe[0]);
 	}
 	else
 	{
+		*i += 1;
 		close(cmd->here_doc_pipe[1]);
 		cmd->cmd_stdin = cmd->here_doc_pipe[0];
 	}
 }
 
-void	exec_here_doc(t_cmd *cmd, int *i)
+void	exec_here_doc(t_lexer *lexer, t_cmd *cmd, int *i)
 {
 	pid_t	child_pid;
 	int		child_status;
@@ -105,5 +108,5 @@ void	exec_here_doc(t_cmd *cmd, int *i)
 	else
 		waitpid(child_pid, &child_status, 0);
 	g_exit_code = 0;
-	here_doc_case_gestion(cmd, child_status);
+	here_doc_case_gestion(lexer, cmd, child_status, i);//set lexer to error ?
 }

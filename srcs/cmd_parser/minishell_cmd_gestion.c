@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 16:24:18 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/24 21:41:29 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/26 14:41:54 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,11 @@ void	cmd_gestion(t_lexer *lexer, char ***env)
 	lexer = set_first_lexer(lexer);
 	cmd_list = malloc_list2(1);
 	cmd_handler(lexer, cmd_list, env);
-	cmd_pos_setter(lexer, cmd_list);
-	cmd_pipe_setter(lexer, cmd_list);
-	cmd_execution(lexer, cmd_list, pid);
+	if (lexer->error == false)
+	{
+		cmd_pos_setter(lexer, cmd_list);
+		cmd_pipe_setter(lexer, cmd_list);
+		cmd_execution(lexer, cmd_list, pid);
+	}
 	cmd_cleaner(pid, cmd_list);
 }

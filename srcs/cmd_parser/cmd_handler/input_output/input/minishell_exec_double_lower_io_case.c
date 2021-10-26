@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_exec_double_lower_io_case.c              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 21:28:50 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/25 12:07:21 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/26 11:26:05 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@ void	exec_double_lower_io_case(t_cmd *cmd, t_lexer *lexer,
 	t_lexer *limiter, t_lexer **reader)
 {
 	char	*to_add;
-	char	heading[1];
+	char	heading[2];
 
 	cmd->here_doc = true;
 	heading[0] = 1;
+	heading[1] = '\0';
 	if (cmd->limiter == NULL)
 	{
 		cmd->limiter = (char **)ft_tab_new(1);

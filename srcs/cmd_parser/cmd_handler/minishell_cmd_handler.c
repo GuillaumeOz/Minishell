@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 22:21:13 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/26 15:25:08 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/26 16:56:36 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	cmd_handler(t_lexer *lexer, t_list2 *cmd_list, char ***env)
 	if (is_cmd_pipe_case(lexer, &reader) == true && lexer->error == false)
 	{
 		cmd = malloc_cmd(env, NO_POSITION);
-		// cmd_input_output_gestion();
 		cmd_input_gestion(lexer, reader, cmd);
 		if (lexer->error == true)
 			return (list2_push_back(cmd_list, cmd));
@@ -44,7 +43,6 @@ void	cmd_handler(t_lexer *lexer, t_list2 *cmd_list, char ***env)
 	else if (lexer->error == false)
 	{
 		cmd = malloc_cmd(env, NO_POSITION);
-		// cmd_input_output_gestion();
 		cmd_input_gestion(lexer, NULL, cmd);
 		if (lexer->error == true)
 			return (list2_push_back(cmd_list, cmd));

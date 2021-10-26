@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_exec_here_doc.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 16:27:33 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/26 14:11:56 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/26 19:53:13 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static void	exec_here_doc_routine(t_cmd *cmd, int *i, int weight)
 		{
 			free(line);
 			line = NULL;
-			// *i += 1;
 			break ;
 		}
 		if (line == NULL)
@@ -108,5 +107,5 @@ void	exec_here_doc(t_lexer *lexer, t_cmd *cmd, int *i)
 	else
 		waitpid(child_pid, &child_status, 0);
 	g_exit_code = 0;
-	here_doc_case_gestion(lexer, cmd, child_status, i);//set lexer to error ?
+	here_doc_case_gestion(lexer, cmd, child_status, i);
 }

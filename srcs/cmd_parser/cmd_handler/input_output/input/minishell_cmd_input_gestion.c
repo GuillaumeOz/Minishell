@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmd_input_gestion.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 15:54:22 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/26 15:15:07 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/26 19:53:46 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void cmd_limiter_cleaner(t_cmd *cmd)
+static void	cmd_limiter_cleaner(t_cmd *cmd)
 {
 	ft_free_tab((void **)cmd->limiter);
 	cmd->limiter = NULL;

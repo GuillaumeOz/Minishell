@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmd_execution.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 19:31:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/26 19:11:15 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/26 19:49:25 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,27 @@ static void	wait_childs(pid_t *pid, int nb_cmd)
 {
 	static int	intsig = 0;
 	int			i;
+	int			status;
 
 	i = 0;
 	if (intsig == 0 && g_exit_code == 130)
 		intsig = 130;
 	else if (g_exit_code != 130)
 		intsig = 0;
+	status = 0;
 	while (i < nb_cmd)
 	{
-		waitpid(pid[i], &g_exit_code, 0);
-		if (WIFEXITED(g_exit_code) == true)
-			g_exit_code = WEXITSTATUS(g_exit_code);
-		if (WIFSIGNALED(g_exit_code) == true)
-			g_exit_code = WTERMSIG(g_exit_code);
-		if (intsig == 130)
-			g_exit_code = 130;
+		g_exit_code = -3;
+		waitpid(pid[i], &status, 0);
+		if (g_exit_code != 130)
+		{
+			if (WIFEXITED(status) == true)
+				g_exit_code = WEXITSTATUS(status);
+			if (WIFSIGNALED(status) == true)
+				g_exit_code = WTERMSIG(status);
+			if (intsig == 130)
+				g_exit_code = 130;
+		}
 		i++;
 	}
 }

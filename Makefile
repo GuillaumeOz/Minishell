@@ -17,7 +17,11 @@ OBJ			=	$(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 
 # Compilation flags
 
+<<<<<<< HEAD
 CFLAGS		=	-Wall -Wextra -Werror -g3 #-fsanitize=address
+=======
+CFLAGS		=	-Wall -Wextra -Werror -g3 -fsanitize=address
+>>>>>>> b7d2adc9ea60e8e6023f10873d80bae2fdc20464
 
 IFLAGS		=	$(foreach dir, $(INC_DIR), -I $(dir))
 

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 19:31:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/27 16:08:15 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/27 18:45:27 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	wait_childs(pid_t *pid, int nb_cmd)
 		if (g_exit_code != 127)
 			g_exit_code = -3;
 		waitpid(pid[i], &status, 0);
-		if (g_exit_code != 130 && g_exit_code != 127)
+		if (g_exit_code != 130 && g_exit_code != 131 && g_exit_code != 127)
 		{
 			if (WIFEXITED(status) == true)
 				g_exit_code = WEXITSTATUS(status);
@@ -72,9 +72,7 @@ static void	wait_childs(pid_t *pid, int nb_cmd)
 		i++;
 	}
 }
-	// if (cmd->error == true)// change this
-	// 	if (cmd->pos != LAST_POSITION)
-	// 		close(cmd->pipe[1]);
+
 static void	cmd_exec_routine(t_lexer *lexer, t_cmd *cmd, pid_t *pid, int i)
 {
 	cmd_builder(cmd);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 17:16:54 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/24 19:27:42 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/27 15:34:09 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void	exit_only_digit(char **env, char **args, t_cmd *cmd, t_lexer *lexer)
 {
 	if (args[1] == NULL)
 	{
-		free_cmd(cmd);
 		g_exit_code = ft_atoi(args[0]);
+		free_cmd(cmd);
 		quit(env, true, lexer);
 	}
 	else

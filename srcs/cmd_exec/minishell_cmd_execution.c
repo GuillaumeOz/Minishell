@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 19:31:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/26 19:49:25 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/27 13:00:19 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,6 @@ static void	wait_childs(pid_t *pid, int nb_cmd)
 	}
 }
 
-	// if (cmd->error == true)// change this
-	// 	if (cmd->pos != LAST_POSITION)
-	// 		close(cmd->pipe[1]);
 static void	cmd_exec_routine(t_lexer *lexer, t_cmd *cmd, pid_t *pid, int i)
 {
 	cmd_builder(cmd);

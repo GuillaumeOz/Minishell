@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 15:56:18 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/27 15:13:24 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/27 16:12:55 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,4 @@ void	minishell_command_error(t_cmd *cmd, char *token)
 	ft_putstr_fd(2, ": command not found");
 	ft_putstr_fd(2, "\n");
 	g_exit_code = 127;
-	PRINTD(g_exit_code)
 }

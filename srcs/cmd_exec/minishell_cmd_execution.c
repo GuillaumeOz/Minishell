@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmd_execution.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 19:31:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/26 19:49:25 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/27 16:08:15 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,10 @@ static void	wait_childs(pid_t *pid, int nb_cmd)
 	status = 0;
 	while (i < nb_cmd)
 	{
-		g_exit_code = -3;
+		if (g_exit_code != 127)
+			g_exit_code = -3;
 		waitpid(pid[i], &status, 0);
-		if (g_exit_code != 130)
+		if (g_exit_code != 130 && g_exit_code != 127)
 		{
 			if (WIFEXITED(status) == true)
 				g_exit_code = WEXITSTATUS(status);
@@ -71,7 +72,6 @@ static void	wait_childs(pid_t *pid, int nb_cmd)
 		i++;
 	}
 }
-
 	// if (cmd->error == true)// change this
 	// 	if (cmd->pos != LAST_POSITION)
 	// 		close(cmd->pipe[1]);

@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 17:04:53 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/26 19:54:39 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/28 16:47:04 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,6 @@
 # include "minishell_cmd_parser.h"
 # include "minishell_cmd_exec.h"
 # include "minishell_builtins.h"
-
-#define debug		write(2, "ICI\n", 4);
-#define info		printf("line -> %d, fonction -> %s\n", __LINE__, __func__);
-#define PRINTD(x)	fprintf(stderr, "%d\n", x);
-#define PRINTC(x)	fprintf(stderr, "%c\n", x);
-#define PRINTS(x)	fprintf(stderr, "%s\n", x);
-#define PRINTP(x)	fprintf(stderr, "%p\n", x);
 
 int		g_exit_code;
 

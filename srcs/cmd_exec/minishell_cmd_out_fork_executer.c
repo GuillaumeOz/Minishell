@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 17:35:33 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/24 22:16:53 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/28 15:24:01 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static int	single_cmd_stdin_gestion(t_cmd *cmd, int *stdin_dup)
 	return (stdin_ret);
 }
 
-void	cmd_out_fork_executer(t_cmd *cmd, t_lexer *lexer)
+void	cmd_out_fork_executer(t_cmd *cmd, t_lexer *lexer, t_list2 *cmd_list)
 {
 	int	stdin_ret;
 	int	stdout_ret;
@@ -72,7 +72,7 @@ void	cmd_out_fork_executer(t_cmd *cmd, t_lexer *lexer)
 	stdout_ret = 1;
 	stdin_ret = single_cmd_stdin_gestion(cmd, &stdin_dup);
 	stdout_ret = single_cmd_stdout_gestion(cmd, &stdout_dup);
-	cmd_builtin_executer(cmd, lexer);
+	cmd_builtin_executer(cmd, lexer, cmd_list);
 	close_cmd_stdin(cmd);
 	close_cmd_stdout(cmd);
 	if (stdin_ret != 0)

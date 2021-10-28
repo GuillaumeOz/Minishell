@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 13:38:58 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/27 19:15:43 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/28 15:28:36 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	single_cmd_stdin_gestion(t_cmd *cmd)
 	}
 }
 
-void	run_single_cmd(t_cmd *cmd, t_lexer *lexer)
+void	run_single_cmd(t_cmd *cmd, t_list2 *cmd_list, t_lexer *lexer)
 {
 	single_cmd_stdin_gestion(cmd);
 	single_cmd_stdout_gestion(cmd);
@@ -58,7 +58,7 @@ void	run_single_cmd(t_cmd *cmd, t_lexer *lexer)
 	close_cmd_stdout(cmd);
 	if (is_cmd_builtin_case(cmd) == true)
 	{
-		cmd_builtin_executer(cmd, lexer);
+		cmd_builtin_executer(cmd, lexer, cmd_list);
 		quit_builtin(cmd, lexer);
 	}
 	else

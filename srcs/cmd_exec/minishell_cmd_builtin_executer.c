@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmd_builtin_executer.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:11:03 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/25 15:56:41 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/28 15:29:46 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	cmd_builtin_executer(t_cmd *cmd, t_lexer *lexer)
+void	cmd_builtin_executer(t_cmd *cmd, t_lexer *lexer, t_list2 *cmd_list)
 {
 	if (ft_strcmp(cmd->cmd, "echo") == 0)
 		g_exit_code = print_echo(cmd->args, cmd->env);
@@ -29,5 +29,5 @@ void	cmd_builtin_executer(t_cmd *cmd, t_lexer *lexer)
 	else if (ft_strcmp(cmd->cmd, "export") == 0 && cmd->args[1] == NULL)
 		g_exit_code = export_without_argument(*(cmd->env));
 	else if (ft_strcmp(cmd->cmd, "exit") == 0)
-		builtin_exit(cmd->args + 1, *(cmd->env), lexer, cmd);
+		builtin_exit(cmd->args + 1, *(cmd->env), lexer, cmd_list);
 }

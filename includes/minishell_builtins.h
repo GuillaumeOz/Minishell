@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_builtins.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:49:30 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/25 14:23:13 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/28 15:31:26 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int		print_env(char **env);
 ** builtin exit
 */
 
-void	builtin_exit(char **line, char **env, t_lexer *lexer, t_cmd *cmd);
+void	builtin_exit(char **line, char **env,
+            t_lexer *lexer, t_list2 *cmd_list);
 
 /*
 ** builtin export

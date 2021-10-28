@@ -17,7 +17,7 @@ OBJ			=	$(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 
 # Compilation flags
 
-CFLAGS		=	-Wall -Wextra -Werror -g3 #-fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror #-g3 #-fsanitize=address
 
 IFLAGS		=	$(foreach dir, $(INC_DIR), -I $(dir))
 
@@ -60,7 +60,7 @@ fclean-install:
 
 $(NAME): libft/libft.a $(OBJ)
 	@echo "-----\nCreating Binary File $(_YELLOW)$@$(_WHITE) ... \c"
-	@$(CC) $(CFLAGS) $(OBJ) $(LFLAGS) -o $(NAME) -lreadline
+	@$(CC) $(CFLAGS) $(OBJ) $(LFLAGS) -o $(NAME) -ggdb3 -lreadline
 	@echo "$(_GREEN)DONE$(_WHITE)\n-----"
 
 $(OBJ_DIR)/%.o : %.c

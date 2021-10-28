@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmd_execution.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 19:31:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/28 14:40:26 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/28 15:31:57 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,12 @@ static void	wait_childs(pid_t *pid, int nb_cmd)
 	}
 }
 
-static void	cmd_exec_routine(t_lexer *lexer, t_cmd *cmd, pid_t *pid, int i)
+static void	cmd_exec_routine(t_lexer *lexer,
+		t_list2 *cmd_list, pid_t *pid, int i)
 {
+	t_cmd *cmd;
+
+	cmd = list2_at(cmd_list, i);
 	cmd_builder(cmd);
 	if (lexer->fork == true && cmd->error == false)
 	{
@@ -81,7 +85,7 @@ static void	cmd_exec_routine(t_lexer *lexer, t_cmd *cmd, pid_t *pid, int i)
 		if (pid[i] < 0)
 			return ;
 		else if (pid[i] == 0)
-			cmd_executer(cmd, lexer);
+			cmd_executer(cmd, cmd_list, lexer);
 		else
 		{
 			close_father_cmd_stdin_stdout(cmd);
@@ -89,7 +93,7 @@ static void	cmd_exec_routine(t_lexer *lexer, t_cmd *cmd, pid_t *pid, int i)
 		}
 	}
 	else if (cmd->error == false)
-		cmd_out_fork_executer(cmd, lexer);
+		cmd_out_fork_executer(cmd, lexer, cmd_list);
 	else if (cmd->error == true)
 	{
 		close_father_cmd_stdin_stdout(cmd);
@@ -112,7 +116,7 @@ void	cmd_execution(t_lexer *lexer, t_list2 *cmd_list, pid_t *pid)
 			cmd->previous_pipe = previous_pipe;
 		previous_pipe = cmd->pipe;
 		if (is_cmd_null_case(cmd) == false)
-			cmd_exec_routine(lexer, cmd, pid, i);
+			cmd_exec_routine(lexer, cmd_list, pid, i);
 		i++;
 	}
 	if (pid != NULL)

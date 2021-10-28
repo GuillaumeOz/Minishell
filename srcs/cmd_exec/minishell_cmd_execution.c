@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 19:31:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/28 14:38:29 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/28 14:40:26 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,18 @@ static void	wait_childs(pid_t *pid, int nb_cmd)
 	int			i;
 	int			status;
 
-	i = 0;
+	i = -1;
 	if (intsig == 0 && g_exit_code == 130)
 		intsig = 130;
 	else if (g_exit_code != 130)
 		intsig = 0;
 	status = 0;
-	while (i < nb_cmd)
+	while (++i < nb_cmd)
 	{
-		g_exit_code = -3;
+		if (g_exit_code != 127)
+			g_exit_code = -3;
 		waitpid(pid[i], &status, 0);
-		if (g_exit_code != 130 && g_exit_code != 131)
+		if (g_exit_code != 130 && g_exit_code != 131 && g_exit_code != 127)
 		{
 			if (WIFEXITED(status) == true)
 				g_exit_code = WEXITSTATUS(status);
@@ -68,7 +69,6 @@ static void	wait_childs(pid_t *pid, int nb_cmd)
 			if (intsig == 130 && status != 0)
 				g_exit_code = 130;
 		}
-		i++;
 	}
 }
 

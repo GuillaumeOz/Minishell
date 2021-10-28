@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmd_builder.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:28:05 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/27 14:10:55 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/27 19:42:07 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,17 @@ char	**take_path(char **env)
 
 static char	*check_path(char **path, char *param, int i, char *cmd)
 {
+	int	fd;
+
 	ft_str_add_suffix(&(path[i]), "/");
 	ft_str_add_suffix(&(path[i]), param);
 	cmd = ft_strdup(path[i]);
-	if (open(cmd, O_RDONLY) > 0)
+	fd = open(cmd, O_RDONLY);
+	if (fd > 0)
 	{
 		ft_free_tab((void **)path);
 		path = NULL;
+		close(fd);
 		return (cmd);
 	}
 	free(cmd);

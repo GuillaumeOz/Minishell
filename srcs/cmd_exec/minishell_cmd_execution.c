@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 19:31:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/27 18:08:06 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/28 14:38:29 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	wait_childs(pid_t *pid, int nb_cmd)
 				g_exit_code = WEXITSTATUS(status);
 			if (WIFSIGNALED(status) == true)
 				g_exit_code = WTERMSIG(status);
-			if (intsig == 130)
+			if (intsig == 130 && status != 0)
 				g_exit_code = 130;
 		}
 		i++;

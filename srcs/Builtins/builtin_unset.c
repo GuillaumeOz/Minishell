@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 16:09:58 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/25 14:25:27 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/28 17:55:17 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	unset_env(char *name, char ***env)
 	if (name[0] == '-' && name[1] != '\0')
 		return (error_message(name, "unset"));
 	if (name == NULL || ft_strstr(name, "=") != NULL || ft_strlen(name) == 0
-		|| ft_is_digit(name[0]) == true || name[0] == '-')
+		|| ft_is_alpha(name[0]) == false)
 	{
 		ft_putstr_fd(2, "minishell: unset: « ");
 		ft_putstr_fd(2, name);

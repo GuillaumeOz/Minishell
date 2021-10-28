@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmd_execution.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 19:31:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/28 15:31:57 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/28 15:38:52 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void	wait_childs(pid_t *pid, int nb_cmd)
 static void	cmd_exec_routine(t_lexer *lexer,
 		t_list2 *cmd_list, pid_t *pid, int i)
 {
-	t_cmd *cmd;
+	t_cmd	*cmd;
 
 	cmd = list2_at(cmd_list, i);
 	cmd_builder(cmd);

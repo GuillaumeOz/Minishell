@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 15:56:18 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/29 15:01:25 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/29 20:42:44 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ void	set_lexer_limiter_error(t_lexer *lexer, t_lexer *limiter)
 void	minishell_lower_fd_error(t_lexer *lexer,
 	t_lexer *limiter, char *token)
 {
-	if (g_exit_code == 130)
+	if (g_exit_code & SIG_INT)
 	{
+		g_exit_code ^= SIG_INT;
 		set_lexer_limiter_error(lexer, NULL);
 		return ;
 	}
@@ -59,5 +60,6 @@ void	minishell_command_error(t_cmd *cmd, char *token)
 	ft_putstr_fd(2, token);
 	ft_putstr_fd(2, ": command not found");
 	ft_putstr_fd(2, "\n");
-	g_exit_code = 127;
+	g_exit_code |= SIG_CMDNOTFOUND;
+	g_exit_code |= 127;
 }

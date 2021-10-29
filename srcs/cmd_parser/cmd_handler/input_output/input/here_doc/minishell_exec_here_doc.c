@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_exec_here_doc.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 16:27:33 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/26 19:53:13 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/29 20:07:15 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ static void	here_doc_case_gestion(t_lexer *lexer,
 {
 	if (child_status == 33280)
 	{
-		g_exit_code = 130;
+		g_exit_code |= 130;
+		g_exit_code |= SIG_HEREDOC_INT;
 		cmd->error = true;
 		set_lexer_error(lexer);
 		close(cmd->here_doc_pipe[1]);
@@ -98,14 +99,14 @@ void	exec_here_doc(t_lexer *lexer, t_cmd *cmd, int *i)
 	cmd->here_doc = true;
 	here_doc_pipe_setter(cmd);
 	child_pid = fork();
-	g_exit_code = -2;
+	g_exit_code |= SIG_HEREDOC_FATHER_INT;
 	if (child_pid == 0)
 	{
-		g_exit_code = -1;
+		g_exit_code |= SIG_HEREDOC_CHILD_INT;
 		exec_here_doc_routine(cmd, i, weight);
 	}
 	else
 		waitpid(child_pid, &child_status, 0);
-	g_exit_code = 0;
+	g_exit_code ^= SIG_HEREDOC_FATHER_INT;
 	here_doc_case_gestion(lexer, cmd, child_status, i);
 }

@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:11:03 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/28 15:29:46 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/29 20:51:42 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	cmd_builtin_executer(t_cmd *cmd, t_lexer *lexer, t_list2 *cmd_list)
 {
+	signal_maker_remover();
+	if (g_exit_code & SIG_CMDNOTFOUND)
+		g_exit_code ^= SIG_CMDNOTFOUND;
 	if (ft_strcmp(cmd->cmd, "echo") == 0)
 		g_exit_code = print_echo(cmd->args, cmd->env);
 	else if (ft_strcmp(cmd->cmd, "cd") == 0)

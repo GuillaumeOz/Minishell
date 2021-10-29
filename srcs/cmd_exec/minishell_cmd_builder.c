@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:28:05 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/27 19:42:07 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/29 20:42:53 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ char	*find_cmd(char **env, char *param)
 	int		i;
 
 	i = 0;
-	if (open(param, O_RDONLY) > 0)
-		return (ft_strdup(param));
 	path = take_path(env);
 	cmd = param;
 	while (path && path[i])
@@ -67,6 +65,8 @@ char	*find_cmd(char **env, char *param)
 			return (cmd);
 		i++;
 	}
+	if (open(param, O_RDONLY) > 0)
+		return (ft_strdup(param));
 	if (path != NULL)
 		ft_free_tab((void **)path);
 	return (NULL);

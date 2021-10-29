@@ -6,61 +6,67 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 20:20:52 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/29 15:07:42 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/29 20:55:17 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	handle_signal_case(int *status, int *intsig)
+void	signal_maker_remover()
 {
-	debug
-	debug
-	if (WIFEXITED(*status) == true)
-		g_exit_code = WEXITSTATUS(*status);
-	if (g_exit_code == 13)
-		g_exit_code = 126;
-	else if (WIFSIGNALED(*status) == true)
-		g_exit_code = WTERMSIG(*status);
-	if ((*intsig) == 130 && (*status) != 0)
-		g_exit_code = 130;
+	if (g_exit_code & SIG_HEREDOC_INT)
+		g_exit_code ^= SIG_HEREDOC_INT;
+	if (g_exit_code & SIG_INT)
+		g_exit_code ^= SIG_INT;
 }
 
-static void	signal_edge_case(int *intsig, int *error_nf)
+static t_bool is_signal_edge_case()//it is usefull
 {
-	PRINTD(*(error_nf))
-	PRINTD(g_exit_code)
-	debug
-	if (*(error_nf) == 0 && g_exit_code == 127)
-		*(error_nf) = 127;
-	else if (g_exit_code == 127)
-		*(error_nf) = 0;
-	if (*(intsig) == 0 && g_exit_code == 130)
-		*(intsig) = 130;
-	else if (g_exit_code != 130)
-		*(intsig) = 0;
-	PRINTD(g_exit_code)
-	PRINTD(*(error_nf))
+	if (g_exit_code & SIG_HEREDOC_INT)
+	{
+		g_exit_code ^= SIG_HEREDOC_INT;
+		return (true);
+	}
+	if (g_exit_code & SIG_INT)
+	{
+		g_exit_code ^= SIG_INT;
+		return (true);
+	}
+	if (g_exit_code & SIG_CMDNOTFOUND)
+	{
+		g_exit_code ^= SIG_CMDNOTFOUND;
+		return (true);
+	}
+	return (false);
+}
+
+static void	handle_casual_status(int status)
+{
+	if (WIFEXITED(status) == true)
+		g_exit_code = WEXITSTATUS(status);
+	if (g_exit_code == 13)
+		g_exit_code = 126;
+	else if (WIFSIGNALED(status) == true)
+		g_exit_code = WTERMSIG(status);
 }
 
 void	wait_childs(pid_t *pid, int nb_cmd)
 {
-	static int	intsig = 0;
-	static int	error_nf = 0;
 	int			status;
 	int			i;
 
 	i = 0;
-	signal_edge_case(&intsig, &error_nf);
 	status = 0;
+	signal_maker_remover();
 	while (i < nb_cmd)
 	{
-		if (g_exit_code != 127)
-			g_exit_code = -3;
 		waitpid(pid[i], &status, 0);
-		if (g_exit_code != 130 && g_exit_code != 131
-			&& (g_exit_code == 127 && error_nf == 0))
-			handle_signal_case(&status, &intsig);
+		if (is_signal_edge_case() == false)// we need this ?
+			handle_casual_status(status);
+		if (g_exit_code & SIG_CMDNOTFOUND)
+			g_exit_code ^= SIG_CMDNOTFOUND;
+		PRINTD(g_exit_code)
+		// < a cases
 		i++;
 	}
 }

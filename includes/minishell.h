@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 17:04:53 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/28 17:06:03 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/29 16:49:26 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@
 #define PRINTS(x)	fprintf(stderr, "%s\n", x);
 #define PRINTP(x)	fprintf(stderr, "%p\n", x);
 
-int		g_exit_code;
+unsigned int	g_exit_code;
 
 #endif

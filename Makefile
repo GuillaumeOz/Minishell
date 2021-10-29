@@ -49,7 +49,7 @@ SRC			= 	main.c minishell_cmd_gestion.c minishell_cmd_handler.c \
 				minishell_t_lexer_manipulation.c minishell_t_lexer.c \
 				minishell_t_cmd_setter.c minishell_t_cmd_destructor.c \
 				minishell_t_cmd_constructor.c minishell_prompt.c \
-				minishell_env_allocation.c
+				minishell_cmd_wait_childs.c minishell_env_allocation.c
 
 OBJ			=	$(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 

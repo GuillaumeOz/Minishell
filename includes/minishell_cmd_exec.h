@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:21:39 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/28 15:28:51 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/10/28 21:23:55 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ char	*find_cmd(char **env, char *param);
 
 void	cmd_builder(t_cmd *cmd);
 void	cmd_builtin_executer(t_cmd *cmd, t_lexer *lexer, t_list2 *cmd_list);
+
+void    wait_childs(pid_t *pid, int nb_cmd);
 
 void	cmd_execution(t_lexer *lexer, t_list2 *cmd_list, pid_t *pid);
 

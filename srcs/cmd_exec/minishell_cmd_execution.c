@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmd_execution.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 19:31:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/28 17:45:18 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/10/29 11:35:07 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,41 +40,6 @@ static void	close_father_pipe_cmd(t_cmd *cmd)
 		if (cmd->here_doc == true)
 			close(cmd->here_doc_pipe[0]);
 		close(cmd->previous_pipe[0]);
-	}
-}
-
-static void	wait_childs(pid_t *pid, int nb_cmd)
-{
-	static int	intsig = 0;
-	static int	error_nf = 0;
-	int			i;
-	int			status;
-
-	i = -1;
-	if (error_nf == 0 && g_exit_code == 127)
-		error_nf = 127;
-	else if (g_exit_code != 127)
-		error_nf = 0;
-	if (intsig == 0 && g_exit_code == 130)
-		intsig = 130;
-	else if (g_exit_code != 130)
-		intsig = 0;
-	status = 0;
-	while (++i < nb_cmd)
-	{
-		if (g_exit_code != 127)
-			g_exit_code = -3;
-		waitpid(pid[i], &status, 0);
-		if (g_exit_code != 130 && g_exit_code != 131 && g_exit_code != 127)
-		{
-			debug
-			if (WIFEXITED(status) == true)
-				g_exit_code = WEXITSTATUS(status);
-			if (WIFSIGNALED(status) == true)
-				g_exit_code = WTERMSIG(status);
-			if (intsig == 130 && status != 0)
-				g_exit_code = 130;
-		}
 	}
 }
 

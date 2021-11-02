@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 15:51:13 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/11/02 12:44:56 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/11/02 16:15:19 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 static t_bool	is_dollar_limit(t_lexer *lexer, int *i, int j)
 {
-	if (ft_is_whitespaces(lexer->args[(*i) + j + 1]) == false
-		&& lexer->args[(*i) + j + 1] != QUOTES
-		&& lexer->args[(*i) + j + 1] != QUOTE
-		&& lexer->args[(*i) + j + 1] != DOLLAR
-		&& lexer->args[(*i) + j + 1] != '\0')
+	if (ft_is_alpha_num(lexer->args[(*i) + j + 1]) == true)
+		return (false);
+	else if (lexer->args[(*i) + j + 1] == '_')
 		return (false);
 	else
 		return (true);

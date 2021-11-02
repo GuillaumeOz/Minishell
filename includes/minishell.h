@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 17:04:53 by chdespon          #+#    #+#             */
-/*   Updated: 2021/10/29 16:49:26 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/11/02 14:43:41 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,6 @@
 # include "minishell_cmd_parser.h"
 # include "minishell_cmd_exec.h"
 # include "minishell_builtins.h"
-
-#define debug		write(2, "ICI\n", 4);
-#define info		printf("line -> %d, fonction -> %s\n", __LINE__, __func__);
-#define PRINTD(x)	fprintf(stderr, "%d\n", x);
-#define PRINTC(x)	fprintf(stderr, "%c\n", x);
-#define PRINTS(x)	fprintf(stderr, "%s\n", x);
-#define PRINTP(x)	fprintf(stderr, "%p\n", x);
 
 unsigned int	g_exit_code;
 

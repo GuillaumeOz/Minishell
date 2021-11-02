@@ -6,7 +6,7 @@
 /*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:16:42 by chdespon          #+#    #+#             */
-/*   Updated: 2021/11/02 12:48:55 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/11/02 14:57:51 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,32 +23,33 @@ static int	handling_case_tilde(char ***env, t_bool n_flag)
 	return (EXIT_SUCCESS);
 }
 
-static t_bool	check_nflag(char **args)
+static int	check_nflag(char **args)
 {
 	char	*tmp;
-	t_bool	n_flag;
+	int		n_flag;
 
+	n_flag = 0;
 	if (args[1] != NULL && ft_strncmp(args[1], "-n", 2) == 0)
 	{
 		if (ft_strstr(args[1] + 2, "-") == 0)
 		{
 			tmp = ft_rm_charset(args[1], "-n");
 			if (tmp[0] == '\0')
-				n_flag = true;
+				n_flag = 1;
 			else
-				n_flag = false;
+				n_flag = 0;
 			free(tmp);
 		}
 	}
 	else
-		n_flag = false;
+		n_flag = 0;
 	return (n_flag);
 }
 
 int	print_echo(char **args, char ***env)
 {
 	int		i;
-	t_bool	n_flag;
+	int		n_flag;
 
 	n_flag = check_nflag(args);
 	i = 1 + n_flag;
@@ -56,7 +57,7 @@ int	print_echo(char **args, char ***env)
 		return (handling_case_tilde(env, n_flag));
 	while (args[i] != NULL)
 	{
-		if (i > 1 + (int)n_flag)
+		if (i > 1 + n_flag)
 			ft_putchar(' ');
 		ft_putstr(args[i]);
 		i++;

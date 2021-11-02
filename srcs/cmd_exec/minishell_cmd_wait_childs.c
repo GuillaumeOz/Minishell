@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmd_wait_childs.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 20:20:52 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/11/02 14:35:53 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/11/02 14:40:53 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	signal_maker_remover(void)
 		g_exit_code ^= SIG_INT;
 }
 
-static t_bool is_signal_edge_case(void)//it is usefull
+static t_bool	is_signal_edge_case(void)
 {
 	if (g_exit_code & SIG_HEREDOC_INT)
 	{
@@ -64,11 +64,10 @@ void	wait_childs(pid_t *pid, int nb_cmd)
 	{
 		g_exit_code |= SIG_QUIT;
 		waitpid(pid[i], &status, 0);
-		if (is_signal_edge_case() == false)// we need this ?
+		if (is_signal_edge_case() == false)
 			handle_casual_status(status);
 		if (g_exit_code & SIG_CMDNOTFOUND)
 			g_exit_code ^= SIG_CMDNOTFOUND;
-		// < a cases
 		i++;
 	}
 }

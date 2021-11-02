@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_signals.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 15:56:23 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/11/02 14:35:03 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/11/02 14:39:13 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ void	handle_sigquit(int sig)
 			g_exit_code |= 131;
 		}
 		else if (g_exit_code ^ SIG_HEREDOC_FATHER_INT)
-			ft_putstr_fd(1, "\b\b  \b\b");
+			ft_putstr_fd(2, "\b\b  \b\b");
 	}
 }

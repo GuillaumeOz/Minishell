@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_prompt.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 16:02:51 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/11/02 12:41:56 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/11/02 14:41:20 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	*choose_color_of_arrow(char *line)
 				_YELLOW"✗"_WHITE" ");
 	else
 		line = readline(_GREEN"➜ "_BLUE"("_RED"Minishell" _BLUE") "
-				_YELLOW"✗"_WHITE" ");	
+				_YELLOW"✗"_WHITE" ");
 	return (line);
 }
 

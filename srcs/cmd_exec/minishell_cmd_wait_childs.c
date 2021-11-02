@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 20:20:52 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/11/02 10:57:08 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/11/02 14:35:53 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ static t_bool is_signal_edge_case(void)//it is usefull
 
 static void	handle_casual_status(int status)
 {
+	if (g_exit_code == 131)
+		return ;
 	if (WIFEXITED(status) == true)
 		g_exit_code = WEXITSTATUS(status);
 	if (g_exit_code == 13)
@@ -60,6 +62,7 @@ void	wait_childs(pid_t *pid, int nb_cmd)
 	signal_maker_remover();
 	while (i < nb_cmd)
 	{
+		g_exit_code |= SIG_QUIT;
 		waitpid(pid[i], &status, 0);
 		if (is_signal_edge_case() == false)// we need this ?
 			handle_casual_status(status);

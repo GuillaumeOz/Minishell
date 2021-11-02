@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 16:02:51 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/11/02 11:05:34 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/11/02 12:41:56 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	prompt(char ***env)
 
 	while (1)
 	{
-		// PRINTD(g_exit_code)
 		line = choose_color_of_arrow(line);
 		lexer = tokenizer(line, env);
 		if (line != NULL && ft_strcmp(line, "\n") > 0

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_echo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 12:16:42 by chdespon          #+#    #+#             */
-/*   Updated: 2021/11/02 10:59:44 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/11/02 12:48:55 by chdespon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,15 @@ static t_bool	check_nflag(char **args)
 
 	if (args[1] != NULL && ft_strncmp(args[1], "-n", 2) == 0)
 	{
-		tmp = ft_rm_charset(args[1], "-n");
-		if (tmp[0] == '\0')
-			n_flag = true;
-		else
-			n_flag = false;
-		free(tmp);
+		if (ft_strstr(args[1] + 2, "-") == 0)
+		{
+			tmp = ft_rm_charset(args[1], "-n");
+			if (tmp[0] == '\0')
+				n_flag = true;
+			else
+				n_flag = false;
+			free(tmp);
+		}
 	}
 	else
 		n_flag = false;

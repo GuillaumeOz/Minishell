@@ -6,13 +6,13 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 20:20:52 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/29 20:55:17 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/11/02 10:57:08 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	signal_maker_remover()
+void	signal_maker_remover(void)
 {
 	if (g_exit_code & SIG_HEREDOC_INT)
 		g_exit_code ^= SIG_HEREDOC_INT;
@@ -20,7 +20,7 @@ void	signal_maker_remover()
 		g_exit_code ^= SIG_INT;
 }
 
-static t_bool is_signal_edge_case()//it is usefull
+static t_bool is_signal_edge_case(void)//it is usefull
 {
 	if (g_exit_code & SIG_HEREDOC_INT)
 	{
@@ -65,7 +65,6 @@ void	wait_childs(pid_t *pid, int nb_cmd)
 			handle_casual_status(status);
 		if (g_exit_code & SIG_CMDNOTFOUND)
 			g_exit_code ^= SIG_CMDNOTFOUND;
-		PRINTD(g_exit_code)
 		// < a cases
 		i++;
 	}

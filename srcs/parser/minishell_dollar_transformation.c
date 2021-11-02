@@ -6,7 +6,7 @@
 /*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 15:51:13 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/10/20 17:21:47 by gozsertt         ###   ########.fr       */
+/*   Updated: 2021/11/02 11:04:04 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ static void	compute_dollar_question_mark(t_lexer *lexer, int *i)
 	char	*after;
 
 	before = ft_strndup(lexer->args, (*i));
+	signal_maker_remover();
+	if (g_exit_code & SIG_CMDNOTFOUND)
+		g_exit_code ^= SIG_CMDNOTFOUND;
 	exit_code = ft_itoa(g_exit_code);
 	after = ft_strdup(lexer->args + (*i) + 1 + 1);
 	free(lexer->args);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_cmd_wait_childs.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chdespon <chdespon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gozsertt <gozsertt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 20:20:52 by gozsertt          #+#    #+#             */
-/*   Updated: 2021/11/02 14:40:53 by chdespon         ###   ########.fr       */
+/*   Updated: 2021/11/02 18:24:04 by gozsertt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	wait_childs(pid_t *pid, int nb_cmd)
 	{
 		g_exit_code |= SIG_QUIT;
 		waitpid(pid[i], &status, 0);
+		g_exit_code ^= SIG_QUIT;
 		if (is_signal_edge_case() == false)
 			handle_casual_status(status);
 		if (g_exit_code & SIG_CMDNOTFOUND)
